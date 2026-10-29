@@ -1,0 +1,4927 @@
+{
+ "retrieved": "2026-10-29",
+ "n_total": 465740,
+ "nations": {
+  "England": {
+   "n": 379683,
+   "pop": 58834812,
+   "per_1000": 6.45,
+   "grades": {
+    "II": {
+     "n": 348215,
+     "pct": 91.7
+    },
+    "II*": {
+     "n": 22127,
+     "pct": 5.8
+    },
+    "I": {
+     "n": 9341,
+     "pct": 2.5
+    }
+   },
+   "top_grade": "I",
+   "top_n": 9341,
+   "top_pct": 2.5,
+   "mid_grade": "II*",
+   "mid_n": 22127,
+   "mid_pct": 5.8
+  },
+  "Scotland": {
+   "n": 46749,
+   "pop": 5545500,
+   "per_1000": 8.43,
+   "grades": {
+    "B": {
+     "n": 23194,
+     "pct": 49.6
+    },
+    "C": {
+     "n": 20048,
+     "pct": 42.9
+    },
+    "A": {
+     "n": 3507,
+     "pct": 7.5
+    }
+   },
+   "top_grade": "A",
+   "top_n": 3507,
+   "top_pct": 7.5,
+   "mid_grade": "B",
+   "mid_n": 23194,
+   "mid_pct": 49.6
+  },
+  "Wales": {
+   "n": 30110,
+   "pop": 3175181,
+   "per_1000": 9.48,
+   "grades": {
+    "II": {
+     "n": 27473,
+     "pct": 91.2
+    },
+    "II*": {
+     "n": 2142,
+     "pct": 7.1
+    },
+    "I": {
+     "n": 494,
+     "pct": 1.6
+    },
+    "null": {
+     "n": 1,
+     "pct": 0.0
+    }
+   },
+   "top_grade": "I",
+   "top_n": 494,
+   "top_pct": 1.6,
+   "mid_grade": "II*",
+   "mid_n": 2142,
+   "mid_pct": 7.1
+  },
+  "Northern Ireland": {
+   "n": 9198,
+   "pop": 1928446,
+   "per_1000": 4.77,
+   "grades": {
+    "B2": {
+     "n": 3843,
+     "pct": 41.8
+    },
+    "B1": {
+     "n": 3435,
+     "pct": 37.3
+    },
+    "B": {
+     "n": 1017,
+     "pct": 11.1
+    },
+    "B+": {
+     "n": 679,
+     "pct": 7.4
+    },
+    "A": {
+     "n": 224,
+     "pct": 2.4
+    }
+   },
+   "top_grade": "A",
+   "top_n": 224,
+   "top_pct": 2.4,
+   "mid_grade": "B+",
+   "mid_n": 679,
+   "mid_pct": 7.4
+  }
+ },
+ "uk_pop": 69483939,
+ "uk_top_n": 13566,
+ "uk_top_pct": 2.9,
+ "uk_per_1000": 6.7,
+ "pop_year": "2025",
+ "scotland_entities": 67477,
+ "ni_dropped_record_only": 6683,
+ "n_in_bua": 275993,
+ "gb_n": 456542,
+ "pct_in_bua_gb": 60.5,
+ "types": {
+  "England": {
+   "church": {
+    "n": 24602,
+    "pct": 6.5,
+    "top_n": 4999,
+    "top_pct": 53.5,
+    "top_rate": 20.3
+   },
+   "monument": {
+    "n": 16741,
+    "pct": 4.4,
+    "top_n": 118,
+    "top_pct": 1.3,
+    "top_rate": 0.7
+   },
+   "war_memorial": {
+    "n": 4390,
+    "pct": 1.2,
+    "top_n": 12,
+    "top_pct": 0.1,
+    "top_rate": 0.3
+   },
+   "house": {
+    "n": 123567,
+    "pct": 32.5,
+    "top_n": 1410,
+    "top_pct": 15.1,
+    "top_rate": 1.1
+   },
+   "farm": {
+    "n": 27172,
+    "pct": 7.2,
+    "top_n": 182,
+    "top_pct": 1.9,
+    "top_rate": 0.7
+   },
+   "pub": {
+    "n": 10175,
+    "pct": 2.7,
+    "top_n": 41,
+    "top_pct": 0.4,
+    "top_rate": 0.4
+   },
+   "commercial": {
+    "n": 3887,
+    "pct": 1.0,
+    "top_n": 44,
+    "top_pct": 0.5,
+    "top_rate": 1.1
+   },
+   "transport": {
+    "n": 15720,
+    "pct": 4.1,
+    "top_n": 190,
+    "top_pct": 2.0,
+    "top_rate": 1.2
+   },
+   "wall": {
+    "n": 22661,
+    "pct": 6.0,
+    "top_n": 543,
+    "top_pct": 5.8,
+    "top_rate": 2.4
+   },
+   "street": {
+    "n": 6685,
+    "pct": 1.8,
+    "top_n": 36,
+    "top_pct": 0.4,
+    "top_rate": 0.5
+   },
+   "industrial": {
+    "n": 7387,
+    "pct": 1.9,
+    "top_n": 65,
+    "top_pct": 0.7,
+    "top_rate": 0.9
+   },
+   "civic": {
+    "n": 9230,
+    "pct": 2.4,
+    "top_n": 465,
+    "top_pct": 5.0,
+    "top_rate": 5.0
+   },
+   "garden": {
+    "n": 5874,
+    "pct": 1.5,
+    "top_n": 153,
+    "top_pct": 1.6,
+    "top_rate": 2.6
+   },
+   "defence": {
+    "n": 2211,
+    "pct": 0.6,
+    "top_n": 366,
+    "top_pct": 3.9,
+    "top_rate": 16.6
+   },
+   "address": {
+    "n": 67098,
+    "pct": 17.7,
+    "top_n": 181,
+    "top_pct": 1.9,
+    "top_rate": 0.3
+   },
+   "other": {
+    "n": 32283,
+    "pct": 8.5,
+    "top_n": 536,
+    "top_pct": 5.7,
+    "top_rate": 1.7
+   }
+  },
+  "Scotland": {
+   "church": {
+    "n": 3442,
+    "pct": 7.4,
+    "top_n": 428,
+    "top_pct": 12.2,
+    "top_rate": 12.4
+   },
+   "monument": {
+    "n": 777,
+    "pct": 1.7,
+    "top_n": 105,
+    "top_pct": 3.0,
+    "top_rate": 13.5
+   },
+   "war_memorial": {
+    "n": 244,
+    "pct": 0.5,
+    "top_n": 13,
+    "top_pct": 0.4,
+    "top_rate": 5.3
+   },
+   "house": {
+    "n": 11887,
+    "pct": 25.4,
+    "top_n": 861,
+    "top_pct": 24.6,
+    "top_rate": 7.2
+   },
+   "farm": {
+    "n": 2005,
+    "pct": 4.3,
+    "top_n": 153,
+    "top_pct": 4.4,
+    "top_rate": 7.6
+   },
+   "pub": {
+    "n": 1193,
+    "pct": 2.6,
+    "top_n": 33,
+    "top_pct": 0.9,
+    "top_rate": 2.8
+   },
+   "commercial": {
+    "n": 1186,
+    "pct": 2.5,
+    "top_n": 78,
+    "top_pct": 2.2,
+    "top_rate": 6.6
+   },
+   "transport": {
+    "n": 3529,
+    "pct": 7.5,
+    "top_n": 321,
+    "top_pct": 9.2,
+    "top_rate": 9.1
+   },
+   "wall": {
+    "n": 3743,
+    "pct": 8.0,
+    "top_n": 407,
+    "top_pct": 11.6,
+    "top_rate": 10.9
+   },
+   "street": {
+    "n": 409,
+    "pct": 0.9,
+    "top_n": 23,
+    "top_pct": 0.7,
+    "top_rate": 5.6
+   },
+   "industrial": {
+    "n": 1233,
+    "pct": 2.6,
+    "top_n": 109,
+    "top_pct": 3.1,
+    "top_rate": 8.8
+   },
+   "civic": {
+    "n": 2021,
+    "pct": 4.3,
+    "top_n": 212,
+    "top_pct": 6.0,
+    "top_rate": 10.5
+   },
+   "garden": {
+    "n": 1312,
+    "pct": 2.8,
+    "top_n": 134,
+    "top_pct": 3.8,
+    "top_rate": 10.2
+   },
+   "defence": {
+    "n": 922,
+    "pct": 2.0,
+    "top_n": 253,
+    "top_pct": 7.2,
+    "top_rate": 27.4
+   },
+   "address": {
+    "n": 11593,
+    "pct": 24.8,
+    "top_n": 297,
+    "top_pct": 8.5,
+    "top_rate": 2.6
+   },
+   "other": {
+    "n": 1253,
+    "pct": 2.7,
+    "top_n": 80,
+    "top_pct": 2.3,
+    "top_rate": 6.4
+   }
+  },
+  "Wales": {
+   "church": {
+    "n": 2301,
+    "pct": 7.6,
+    "top_n": 191,
+    "top_pct": 38.7,
+    "top_rate": 8.3
+   },
+   "monument": {
+    "n": 590,
+    "pct": 2.0,
+    "top_n": 4,
+    "top_pct": 0.8,
+    "top_rate": 0.7
+   },
+   "war_memorial": {
+    "n": 239,
+    "pct": 0.8,
+    "top_n": 0,
+    "top_pct": 0.0,
+    "top_rate": 0.0
+   },
+   "house": {
+    "n": 6275,
+    "pct": 20.8,
+    "top_n": 71,
+    "top_pct": 14.4,
+    "top_rate": 1.1
+   },
+   "farm": {
+    "n": 2479,
+    "pct": 8.2,
+    "top_n": 8,
+    "top_pct": 1.6,
+    "top_rate": 0.3
+   },
+   "pub": {
+    "n": 707,
+    "pct": 2.3,
+    "top_n": 2,
+    "top_pct": 0.4,
+    "top_rate": 0.3
+   },
+   "commercial": {
+    "n": 513,
+    "pct": 1.7,
+    "top_n": 0,
+    "top_pct": 0.0,
+    "top_rate": 0.0
+   },
+   "transport": {
+    "n": 2130,
+    "pct": 7.1,
+    "top_n": 31,
+    "top_pct": 6.3,
+    "top_rate": 1.5
+   },
+   "wall": {
+    "n": 1885,
+    "pct": 6.3,
+    "top_n": 23,
+    "top_pct": 4.7,
+    "top_rate": 1.2
+   },
+   "street": {
+    "n": 315,
+    "pct": 1.0,
+    "top_n": 1,
+    "top_pct": 0.2,
+    "top_rate": 0.3
+   },
+   "industrial": {
+    "n": 777,
+    "pct": 2.6,
+    "top_n": 4,
+    "top_pct": 0.8,
+    "top_rate": 0.5
+   },
+   "civic": {
+    "n": 791,
+    "pct": 2.6,
+    "top_n": 14,
+    "top_pct": 2.8,
+    "top_rate": 1.8
+   },
+   "garden": {
+    "n": 554,
+    "pct": 1.8,
+    "top_n": 2,
+    "top_pct": 0.4,
+    "top_rate": 0.4
+   },
+   "defence": {
+    "n": 336,
+    "pct": 1.1,
+    "top_n": 83,
+    "top_pct": 16.8,
+    "top_rate": 24.7
+   },
+   "address": {
+    "n": 3554,
+    "pct": 11.8,
+    "top_n": 1,
+    "top_pct": 0.2,
+    "top_rate": 0.0
+   },
+   "other": {
+    "n": 6664,
+    "pct": 22.1,
+    "top_n": 59,
+    "top_pct": 11.9,
+    "top_rate": 0.9
+   }
+  },
+  "Northern Ireland": {
+   "church": {
+    "n": 987,
+    "pct": 10.7,
+    "top_n": 46,
+    "top_pct": 20.5,
+    "top_rate": 4.7
+   },
+   "monument": {
+    "n": 168,
+    "pct": 1.8,
+    "top_n": 12,
+    "top_pct": 5.4,
+    "top_rate": 7.1
+   },
+   "war_memorial": {
+    "n": 1,
+    "pct": 0.0,
+    "top_n": 0,
+    "top_pct": 0.0,
+    "top_rate": 0.0
+   },
+   "house": {
+    "n": 4533,
+    "pct": 49.3,
+    "top_n": 78,
+    "top_pct": 34.8,
+    "top_rate": 1.7
+   },
+   "farm": {
+    "n": 176,
+    "pct": 1.9,
+    "top_n": 2,
+    "top_pct": 0.9,
+    "top_rate": 1.1
+   },
+   "pub": {
+    "n": 167,
+    "pct": 1.8,
+    "top_n": 4,
+    "top_pct": 1.8,
+    "top_rate": 2.4
+   },
+   "commercial": {
+    "n": 1029,
+    "pct": 11.2,
+    "top_n": 11,
+    "top_pct": 4.9,
+    "top_rate": 1.1
+   },
+   "transport": {
+    "n": 588,
+    "pct": 6.4,
+    "top_n": 15,
+    "top_pct": 6.7,
+    "top_rate": 2.6
+   },
+   "wall": {
+    "n": 376,
+    "pct": 4.1,
+    "top_n": 12,
+    "top_pct": 5.4,
+    "top_rate": 3.2
+   },
+   "street": {
+    "n": 218,
+    "pct": 2.4,
+    "top_n": 5,
+    "top_pct": 2.2,
+    "top_rate": 2.3
+   },
+   "industrial": {
+    "n": 167,
+    "pct": 1.8,
+    "top_n": 1,
+    "top_pct": 0.4,
+    "top_rate": 0.6
+   },
+   "civic": {
+    "n": 621,
+    "pct": 6.8,
+    "top_n": 28,
+    "top_pct": 12.5,
+    "top_rate": 4.5
+   },
+   "garden": {
+    "n": 68,
+    "pct": 0.7,
+    "top_n": 4,
+    "top_pct": 1.8,
+    "top_rate": 5.9
+   },
+   "defence": {
+    "n": 9,
+    "pct": 0.1,
+    "top_n": 1,
+    "top_pct": 0.4,
+    "top_rate": 11.1
+   },
+   "address": {
+    "n": 20,
+    "pct": 0.2,
+    "top_n": 0,
+    "top_pct": 0.0,
+    "top_rate": 0.0
+   },
+   "other": {
+    "n": 70,
+    "pct": 0.8,
+    "top_n": 5,
+    "top_pct": 2.2,
+    "top_rate": 7.1
+   }
+  },
+  "UK": {
+   "church": {
+    "n": 31332,
+    "pct": 6.7,
+    "top_n": 5664,
+    "top_pct": 41.8,
+    "top_rate": 18.1
+   },
+   "monument": {
+    "n": 18276,
+    "pct": 3.9,
+    "top_n": 239,
+    "top_pct": 1.8,
+    "top_rate": 1.3
+   },
+   "war_memorial": {
+    "n": 4874,
+    "pct": 1.0,
+    "top_n": 25,
+    "top_pct": 0.2,
+    "top_rate": 0.5
+   },
+   "house": {
+    "n": 146262,
+    "pct": 31.4,
+    "top_n": 2420,
+    "top_pct": 17.8,
+    "top_rate": 1.7
+   },
+   "farm": {
+    "n": 31832,
+    "pct": 6.8,
+    "top_n": 345,
+    "top_pct": 2.5,
+    "top_rate": 1.1
+   },
+   "pub": {
+    "n": 12242,
+    "pct": 2.6,
+    "top_n": 80,
+    "top_pct": 0.6,
+    "top_rate": 0.7
+   },
+   "commercial": {
+    "n": 6615,
+    "pct": 1.4,
+    "top_n": 133,
+    "top_pct": 1.0,
+    "top_rate": 2.0
+   },
+   "transport": {
+    "n": 21967,
+    "pct": 4.7,
+    "top_n": 557,
+    "top_pct": 4.1,
+    "top_rate": 2.5
+   },
+   "wall": {
+    "n": 28665,
+    "pct": 6.2,
+    "top_n": 985,
+    "top_pct": 7.3,
+    "top_rate": 3.4
+   },
+   "street": {
+    "n": 7627,
+    "pct": 1.6,
+    "top_n": 65,
+    "top_pct": 0.5,
+    "top_rate": 0.9
+   },
+   "industrial": {
+    "n": 9564,
+    "pct": 2.1,
+    "top_n": 179,
+    "top_pct": 1.3,
+    "top_rate": 1.9
+   },
+   "civic": {
+    "n": 12663,
+    "pct": 2.7,
+    "top_n": 719,
+    "top_pct": 5.3,
+    "top_rate": 5.7
+   },
+   "garden": {
+    "n": 7808,
+    "pct": 1.7,
+    "top_n": 293,
+    "top_pct": 2.2,
+    "top_rate": 3.8
+   },
+   "defence": {
+    "n": 3478,
+    "pct": 0.7,
+    "top_n": 703,
+    "top_pct": 5.2,
+    "top_rate": 20.2
+   },
+   "address": {
+    "n": 82265,
+    "pct": 17.7,
+    "top_n": 479,
+    "top_pct": 3.5,
+    "top_rate": 0.6
+   },
+   "other": {
+    "n": 40270,
+    "pct": 8.6,
+    "top_n": 680,
+    "top_pct": 5.0,
+    "top_rate": 1.7
+   }
+  }
+ },
+ "type_order": [
+  "church",
+  "monument",
+  "war_memorial",
+  "house",
+  "farm",
+  "pub",
+  "commercial",
+  "transport",
+  "wall",
+  "street",
+  "industrial",
+  "civic",
+  "garden",
+  "defence",
+  "address",
+  "other"
+ ],
+ "type_labels": {
+  "church": "Churches and chapels",
+  "monument": "Tombs, crosses and monuments",
+  "war_memorial": "War memorials",
+  "house": "Houses and cottages",
+  "farm": "Barns and farm buildings",
+  "pub": "Pubs, inns and hotels",
+  "commercial": "Shops, banks and offices",
+  "transport": "Bridges, roads, railways and canals",
+  "wall": "Walls, gates and railings",
+  "street": "Kiosks, post boxes, pumps and lamps",
+  "industrial": "Mills, works and industry",
+  "civic": "Schools, halls and public buildings",
+  "garden": "Garden and park structures",
+  "defence": "Castles and defences",
+  "other": "Named buildings (use not in name)",
+  "address": "Numbered street buildings (use not in name)"
+ },
+ "top_church_pct": {
+  "England": 53.5,
+  "Scotland": 12.2,
+  "Wales": 38.7,
+  "Northern Ireland": 20.5
+ },
+ "type_check_wales": {
+  "n": 18631,
+  "agree": 13205,
+  "agree_pct": 70.9,
+  "n_unclassified": 10218,
+  "agree_pct_excl_walls": 76.8
+ },
+ "n_k6": 2302,
+ "n_kiosk": 2626,
+ "n_milestone": 4860,
+ "n_war_memorial": 4874,
+ "n_chest_tomb": 5105,
+ "counties_n": 218,
+ "county_top_per_head": [
+  {
+   "name": "Isles of Scilly",
+   "nation": "England",
+   "per_1000": 56.55,
+   "n": 130,
+   "pop": 2299
+  },
+  {
+   "name": "City of London",
+   "nation": "England",
+   "per_1000": 43.5,
+   "n": 680,
+   "pop": 15631
+  },
+  {
+   "name": "Powys",
+   "nation": "Wales",
+   "per_1000": 40.74,
+   "n": 5493,
+   "pop": 134843
+  },
+  {
+   "name": "Gwynedd",
+   "nation": "Wales",
+   "per_1000": 34.79,
+   "n": 4185,
+   "pop": 120295
+  },
+  {
+   "name": "Rutland",
+   "nation": "England",
+   "per_1000": 33.92,
+   "n": 1412,
+   "pop": 41629
+  },
+  {
+   "name": "Herefordshire, County of",
+   "nation": "England",
+   "per_1000": 30.75,
+   "n": 5921,
+   "pop": 192539
+  },
+  {
+   "name": "Orkney Islands",
+   "nation": "Scotland",
+   "per_1000": 28.7,
+   "n": 629,
+   "pop": 21920
+  },
+  {
+   "name": "Ceredigion",
+   "nation": "Wales",
+   "per_1000": 26.45,
+   "n": 1923,
+   "pop": 72696
+  },
+  {
+   "name": "Scottish Borders",
+   "nation": "Scotland",
+   "per_1000": 25.45,
+   "n": 2972,
+   "pop": 116800
+  },
+  {
+   "name": "Monmouthshire",
+   "nation": "Wales",
+   "per_1000": 25.19,
+   "n": 2401,
+   "pop": 95329
+  },
+  {
+   "name": "Dorset",
+   "nation": "England",
+   "per_1000": 23.59,
+   "n": 9226,
+   "pop": 391036
+  },
+  {
+   "name": "Wiltshire",
+   "nation": "England",
+   "per_1000": 23.35,
+   "n": 12289,
+   "pop": 526392
+  }
+ ],
+ "county_bottom_per_head": [
+  {
+   "name": "Barking and Dagenham",
+   "nation": "England",
+   "per_1000": 0.18,
+   "n": 42,
+   "pop": 238295
+  },
+  {
+   "name": "Newham",
+   "nation": "England",
+   "per_1000": 0.33,
+   "n": 126,
+   "pop": 376542
+  },
+  {
+   "name": "Brent",
+   "nation": "England",
+   "per_1000": 0.35,
+   "n": 123,
+   "pop": 352201
+  },
+  {
+   "name": "Luton",
+   "nation": "England",
+   "per_1000": 0.36,
+   "n": 85,
+   "pop": 236380
+  },
+  {
+   "name": "Blackpool",
+   "nation": "England",
+   "per_1000": 0.39,
+   "n": 56,
+   "pop": 143492
+  },
+  {
+   "name": "Waltham Forest",
+   "nation": "England",
+   "per_1000": 0.41,
+   "n": 115,
+   "pop": 283713
+  },
+  {
+   "name": "Croydon",
+   "nation": "England",
+   "per_1000": 0.43,
+   "n": 178,
+   "pop": 410085
+  },
+  {
+   "name": "Redbridge",
+   "nation": "England",
+   "per_1000": 0.43,
+   "n": 137,
+   "pop": 321829
+  },
+  {
+   "name": "Bexley",
+   "nation": "England",
+   "per_1000": 0.45,
+   "n": 116,
+   "pop": 257103
+  },
+  {
+   "name": "Havering",
+   "nation": "England",
+   "per_1000": 0.54,
+   "n": 151,
+   "pop": 280787
+  }
+ ],
+ "county_most": [
+  {
+   "name": "Devon",
+   "nation": "England",
+   "n": 19176,
+   "per_1000": 22.68
+  },
+  {
+   "name": "Kent",
+   "nation": "England",
+   "n": 17341,
+   "per_1000": 10.49
+  },
+  {
+   "name": "Essex",
+   "nation": "England",
+   "n": 14002,
+   "per_1000": 8.88
+  },
+  {
+   "name": "Suffolk",
+   "nation": "England",
+   "n": 13429,
+   "per_1000": 17.0
+  },
+  {
+   "name": "Gloucestershire",
+   "nation": "England",
+   "n": 12982,
+   "per_1000": 19.32
+  },
+  {
+   "name": "Cornwall",
+   "nation": "England",
+   "n": 12599,
+   "per_1000": 21.54
+  },
+  {
+   "name": "Wiltshire",
+   "nation": "England",
+   "n": 12289,
+   "per_1000": 23.35
+  },
+  {
+   "name": "North Yorkshire",
+   "nation": "England",
+   "n": 12243,
+   "per_1000": 19.16
+  },
+  {
+   "name": "Oxfordshire",
+   "nation": "England",
+   "n": 12208,
+   "per_1000": 15.86
+  },
+  {
+   "name": "Somerset",
+   "nation": "England",
+   "n": 11752,
+   "per_1000": 19.89
+  }
+ ],
+ "county_top_grade_share": [
+  {
+   "name": "City of Edinburgh",
+   "nation": "Scotland",
+   "top_pct": 18.6,
+   "top_n": 896,
+   "n": 4814
+  },
+  {
+   "name": "Glasgow City",
+   "nation": "Scotland",
+   "top_pct": 15.5,
+   "top_n": 284,
+   "n": 1835
+  },
+  {
+   "name": "City of London",
+   "nation": "England",
+   "top_pct": 13.7,
+   "top_n": 93,
+   "n": 680
+  },
+  {
+   "name": "Midlothian",
+   "nation": "Scotland",
+   "top_pct": 9.7,
+   "top_n": 67,
+   "n": 693
+  },
+  {
+   "name": "Dundee City",
+   "nation": "Scotland",
+   "top_pct": 8.8,
+   "top_n": 78,
+   "n": 885
+  },
+  {
+   "name": "South Lanarkshire",
+   "nation": "Scotland",
+   "top_pct": 8.3,
+   "top_n": 88,
+   "n": 1065
+  },
+  {
+   "name": "South Ayrshire",
+   "nation": "Scotland",
+   "top_pct": 7.7,
+   "top_n": 72,
+   "n": 931
+  },
+  {
+   "name": "Medway",
+   "nation": "England",
+   "top_pct": 7.5,
+   "top_n": 49,
+   "n": 654
+  },
+  {
+   "name": "East Lothian",
+   "nation": "Scotland",
+   "top_pct": 7.1,
+   "top_n": 126,
+   "n": 1784
+  },
+  {
+   "name": "Newcastle upon Tyne",
+   "nation": "England",
+   "top_pct": 7.0,
+   "top_n": 54,
+   "n": 776
+  }
+ ],
+ "london": {
+  "n": 19371,
+  "pop": 9122909,
+  "per_1000": 2.12,
+  "westminster": {
+   "n": 3788,
+   "per_1000": 17.84
+  }
+ },
+ "regions": {
+  "South West": {
+   "n": 90295
+  },
+  "East of England": {
+   "n": 58178
+  },
+  "West Midlands": {
+   "n": 34426
+  },
+  "North West": {
+   "n": 25842
+  },
+  "London": {
+   "n": 19431
+  },
+  "South East": {
+   "n": 77144
+  },
+  "East Midlands": {
+   "n": 30303
+  },
+  "North East": {
+   "n": 12706
+  },
+  "Yorkshire and The Humber": {
+   "n": 31358
+  }
+ },
+ "towns_n_ew_10k": 890,
+ "town_top_per_head": [
+  {
+   "name": "Ludlow",
+   "nation": "England",
+   "per_1000": 40.69,
+   "n": 436,
+   "pop": 10714
+  },
+  {
+   "name": "Sherborne",
+   "nation": "England",
+   "per_1000": 36.48,
+   "n": 378,
+   "pop": 10363
+  },
+  {
+   "name": "Whitby",
+   "nation": "England",
+   "per_1000": 34.5,
+   "n": 453,
+   "pop": 13132
+  },
+  {
+   "name": "Monmouth",
+   "nation": "Wales",
+   "per_1000": 34.12,
+   "n": 377,
+   "pop": 11049
+  },
+  {
+   "name": "Lewes",
+   "nation": "England",
+   "per_1000": 31.46,
+   "n": 526,
+   "pop": 16719
+  },
+  {
+   "name": "Henley-on-Thames",
+   "nation": "England",
+   "per_1000": 30.52,
+   "n": 372,
+   "pop": 12187
+  },
+  {
+   "name": "Wells",
+   "nation": "England",
+   "per_1000": 29.88,
+   "n": 333,
+   "pop": 11145
+  },
+  {
+   "name": "Haverfordwest",
+   "nation": "Wales",
+   "per_1000": 27.55,
+   "n": 322,
+   "pop": 11689
+  },
+  {
+   "name": "Tewkesbury",
+   "nation": "England",
+   "per_1000": 26.93,
+   "n": 365,
+   "pop": 13555
+  },
+  {
+   "name": "Bewdley",
+   "nation": "England",
+   "per_1000": 24.71,
+   "n": 279,
+   "pop": 11290
+  },
+  {
+   "name": "Caernarfon",
+   "nation": "Wales",
+   "per_1000": 24.7,
+   "n": 249,
+   "pop": 10079
+  },
+  {
+   "name": "Bath",
+   "nation": "England",
+   "per_1000": 23.74,
+   "n": 2256,
+   "pop": 95048
+  },
+  {
+   "name": "Llandudno",
+   "nation": "Wales",
+   "per_1000": 23.4,
+   "n": 354,
+   "pop": 15128
+  },
+  {
+   "name": "Berwick-upon-Tweed",
+   "nation": "England",
+   "per_1000": 21.68,
+   "n": 288,
+   "pop": 13286
+  },
+  {
+   "name": "Stamford",
+   "nation": "England",
+   "per_1000": 21.4,
+   "n": 444,
+   "pop": 20751
+  }
+ ],
+ "town50_top_per_head": [
+  {
+   "name": "Bath",
+   "nation": "England",
+   "per_1000": 23.74,
+   "n": 2256,
+   "pop": 95048
+  },
+  {
+   "name": "City of Westminster",
+   "nation": "England",
+   "per_1000": 18.98,
+   "n": 3876,
+   "pop": 204242
+  },
+  {
+   "name": "Canterbury",
+   "nation": "England",
+   "per_1000": 16.47,
+   "n": 913,
+   "pop": 55421
+  },
+  {
+   "name": "Weymouth",
+   "nation": "England",
+   "per_1000": 10.53,
+   "n": 562,
+   "pop": 53377
+  },
+  {
+   "name": "Shrewsbury",
+   "nation": "England",
+   "per_1000": 10.12,
+   "n": 763,
+   "pop": 75432
+  },
+  {
+   "name": "Cheltenham",
+   "nation": "England",
+   "per_1000": 9.17,
+   "n": 1036,
+   "pop": 113026
+  },
+  {
+   "name": "Camden",
+   "nation": "England",
+   "per_1000": 9.05,
+   "n": 1873,
+   "pop": 207075
+  },
+  {
+   "name": "York",
+   "nation": "England",
+   "per_1000": 8.94,
+   "n": 1270,
+   "pop": 142114
+  },
+  {
+   "name": "Huddersfield",
+   "nation": "England",
+   "per_1000": 8.73,
+   "n": 1240,
+   "pop": 142085
+  },
+  {
+   "name": "Kensington and Chelsea",
+   "nation": "England",
+   "per_1000": 7.93,
+   "n": 1137,
+   "pop": 143376
+  }
+ ],
+ "town50_bottom_per_head": [
+  {
+   "name": "Barking and Dagenham",
+   "nation": "England",
+   "per_1000": 0.17,
+   "n": 37,
+   "pop": 216615
+  },
+  {
+   "name": "Basildon",
+   "nation": "England",
+   "per_1000": 0.18,
+   "n": 21,
+   "pop": 116179
+  },
+  {
+   "name": "Corby",
+   "nation": "England",
+   "per_1000": 0.21,
+   "n": 14,
+   "pop": 67661
+  },
+  {
+   "name": "Bloxwich",
+   "nation": "England",
+   "per_1000": 0.23,
+   "n": 12,
+   "pop": 51946
+  },
+  {
+   "name": "Brent",
+   "nation": "England",
+   "per_1000": 0.29,
+   "n": 98,
+   "pop": 337936
+  },
+  {
+   "name": "Scunthorpe",
+   "nation": "England",
+   "per_1000": 0.3,
+   "n": 24,
+   "pop": 80211
+  },
+  {
+   "name": "Nuneaton",
+   "nation": "England",
+   "per_1000": 0.32,
+   "n": 29,
+   "pop": 89431
+  },
+  {
+   "name": "Newham",
+   "nation": "England",
+   "per_1000": 0.33,
+   "n": 116,
+   "pop": 351034
+  },
+  {
+   "name": "Blackpool",
+   "nation": "England",
+   "per_1000": 0.33,
+   "n": 50,
+   "pop": 149765
+  },
+  {
+   "name": "Wythenshawe",
+   "nation": "England",
+   "per_1000": 0.35,
+   "n": 35,
+   "pop": 99912
+  }
+ ],
+ "town_most": [
+  {
+   "name": "Edinburgh",
+   "nation": "Scotland",
+   "n": 4366,
+   "per_1000": null
+  },
+  {
+   "name": "City of Westminster",
+   "nation": "England",
+   "n": 3876,
+   "per_1000": 18.98
+  },
+  {
+   "name": "Bath",
+   "nation": "England",
+   "n": 2256,
+   "per_1000": 23.74
+  },
+  {
+   "name": "Bristol",
+   "nation": "England",
+   "n": 2039,
+   "per_1000": 4.78
+  },
+  {
+   "name": "Camden",
+   "nation": "England",
+   "n": 1873,
+   "per_1000": 9.05
+  },
+  {
+   "name": "Glasgow",
+   "nation": "Scotland",
+   "n": 1787,
+   "per_1000": null
+  },
+  {
+   "name": "Liverpool",
+   "nation": "England",
+   "n": 1522,
+   "per_1000": 3.02
+  },
+  {
+   "name": "Birmingham",
+   "nation": "England",
+   "n": 1409,
+   "per_1000": 1.27
+  },
+  {
+   "name": "York",
+   "nation": "England",
+   "n": 1270,
+   "per_1000": 8.94
+  },
+  {
+   "name": "Huddersfield",
+   "nation": "England",
+   "n": 1240,
+   "per_1000": 8.73
+  },
+  {
+   "name": "Leeds",
+   "nation": "England",
+   "n": 1219,
+   "per_1000": 2.29
+  },
+  {
+   "name": "Brighton and Hove",
+   "nation": "England",
+   "n": 1204,
+   "per_1000": 4.39
+  }
+ ],
+ "village_top_per_head": [
+  {
+   "name": "Aberaeron",
+   "nation": "Wales",
+   "per_1000": 194.01,
+   "n": 246,
+   "pop": 1268
+  },
+  {
+   "name": "Beaumaris",
+   "nation": "Wales",
+   "per_1000": 143.3,
+   "n": 231,
+   "pop": 1612
+  },
+  {
+   "name": "Chipping Campden",
+   "nation": "England",
+   "per_1000": 133.2,
+   "n": 205,
+   "pop": 1539
+  },
+  {
+   "name": "Sandwich",
+   "nation": "England",
+   "per_1000": 128.99,
+   "n": 440,
+   "pop": 3411
+  },
+  {
+   "name": "Burford",
+   "nation": "England",
+   "per_1000": 124.43,
+   "n": 246,
+   "pop": 1977
+  },
+  {
+   "name": "Arundel",
+   "nation": "England",
+   "per_1000": 123.46,
+   "n": 190,
+   "pop": 1539
+  },
+  {
+   "name": "Kirkby Lonsdale",
+   "nation": "England",
+   "per_1000": 119.09,
+   "n": 131,
+   "pop": 1100
+  },
+  {
+   "name": "Upton upon Severn",
+   "nation": "England",
+   "per_1000": 109.02,
+   "n": 116,
+   "pop": 1064
+  },
+  {
+   "name": "Lavenham",
+   "nation": "England",
+   "per_1000": 101.98,
+   "n": 196,
+   "pop": 1922
+  },
+  {
+   "name": "Appledore (Torridge)",
+   "nation": "England",
+   "per_1000": 96.75,
+   "n": 116,
+   "pop": 1199
+  }
+ ],
+ "list_years": {
+  "England": {
+   "n": 379683,
+   "by_year": {
+    "1947": 62,
+    "1948": 270,
+    "1949": 2116,
+    "1950": 5734,
+    "1951": 7691,
+    "1952": 11227,
+    "1953": 4030,
+    "1954": 5765,
+    "1955": 6073,
+    "1956": 906,
+    "1957": 1351,
+    "1958": 2266,
+    "1959": 3105,
+    "1960": 3659,
+    "1961": 2859,
+    "1962": 1475,
+    "1963": 1225,
+    "1964": 749,
+    "1965": 1405,
+    "1966": 5943,
+    "1967": 10598,
+    "1968": 3306,
+    "1969": 4095,
+    "1970": 4282,
+    "1971": 4890,
+    "1972": 13700,
+    "1973": 10224,
+    "1974": 12815,
+    "1975": 9397,
+    "1976": 8219,
+    "1977": 5377,
+    "1978": 4888,
+    "1979": 4069,
+    "1980": 5282,
+    "1981": 4408,
+    "1982": 5181,
+    "1983": 16285,
+    "1984": 28440,
+    "1985": 28663,
+    "1986": 27213,
+    "1987": 34953,
+    "1988": 21674,
+    "1989": 6007,
+    "1990": 3538,
+    "1991": 2038,
+    "1992": 1923,
+    "1993": 3153,
+    "1994": 3806,
+    "1995": 2020,
+    "1996": 1808,
+    "1997": 1203,
+    "1998": 1905,
+    "1999": 2252,
+    "2000": 1293,
+    "2001": 800,
+    "2002": 543,
+    "2003": 587,
+    "2004": 598,
+    "2005": 497,
+    "2006": 328,
+    "2007": 517,
+    "2008": 466,
+    "2009": 500,
+    "2010": 655,
+    "2011": 572,
+    "2012": 439,
+    "2013": 342,
+    "2014": 341,
+    "2015": 747,
+    "2016": 1083,
+    "2017": 915,
+    "2018": 901,
+    "2019": 512,
+    "2020": 363,
+    "2021": 244,
+    "2022": 203,
+    "2023": 195,
+    "2024": 208,
+    "2025": 183,
+    "2026": 128
+   },
+   "by_decade": {
+    "1940": {
+     "n": 2448,
+     "pct": 0.6
+    },
+    "1950": {
+     "n": 48148,
+     "pct": 12.7
+    },
+    "1960": {
+     "n": 35314,
+     "pct": 9.3
+    },
+    "1970": {
+     "n": 77861,
+     "pct": 20.5
+    },
+    "1980": {
+     "n": 178106,
+     "pct": 46.9
+    },
+    "1990": {
+     "n": 23646,
+     "pct": 6.2
+    },
+    "2000": {
+     "n": 6129,
+     "pct": 1.6
+    },
+    "2010": {
+     "n": 6507,
+     "pct": 1.7
+    },
+    "2020": {
+     "n": 1524,
+     "pct": 0.4
+    }
+   },
+   "peak_year": 1987,
+   "peak_n": 34953,
+   "first": 1947,
+   "last": 2026,
+   "since_2000_pct": 3.7,
+   "in_1980s_pct": 46.9,
+   "before_1970_pct": 22.6,
+   "median": 1983
+  },
+  "Scotland": {
+   "n": 46749,
+   "by_year": {
+    "1957": 3,
+    "1959": 74,
+    "1960": 75,
+    "1961": 35,
+    "1962": 2,
+    "1963": 46,
+    "1964": 66,
+    "1965": 712,
+    "1966": 597,
+    "1967": 557,
+    "1969": 8,
+    "1970": 1540,
+    "1971": 10382,
+    "1972": 3583,
+    "1973": 575,
+    "1974": 388,
+    "1975": 92,
+    "1976": 199,
+    "1977": 1490,
+    "1978": 647,
+    "1979": 1818,
+    "1980": 2966,
+    "1981": 1926,
+    "1982": 619,
+    "1983": 567,
+    "1984": 1210,
+    "1985": 497,
+    "1986": 734,
+    "1987": 586,
+    "1988": 935,
+    "1989": 1139,
+    "1990": 736,
+    "1991": 660,
+    "1992": 1005,
+    "1993": 1572,
+    "1994": 812,
+    "1995": 704,
+    "1996": 905,
+    "1997": 715,
+    "1998": 864,
+    "1999": 628,
+    "2000": 632,
+    "2001": 480,
+    "2002": 527,
+    "2003": 379,
+    "2004": 307,
+    "2005": 113,
+    "2006": 483,
+    "2007": 215,
+    "2008": 149,
+    "2009": 83,
+    "2010": 181,
+    "2011": 99,
+    "2012": 34,
+    "2013": 50,
+    "2014": 63,
+    "2015": 18,
+    "2016": 35,
+    "2017": 46,
+    "2018": 14,
+    "2019": 39,
+    "2020": 31,
+    "2021": 16,
+    "2022": 24,
+    "2023": 10,
+    "2024": 18,
+    "2025": 16,
+    "2026": 18
+   },
+   "by_decade": {
+    "1950": {
+     "n": 77,
+     "pct": 0.2
+    },
+    "1960": {
+     "n": 2098,
+     "pct": 4.5
+    },
+    "1970": {
+     "n": 20714,
+     "pct": 44.3
+    },
+    "1980": {
+     "n": 11179,
+     "pct": 23.9
+    },
+    "1990": {
+     "n": 8601,
+     "pct": 18.4
+    },
+    "2000": {
+     "n": 3368,
+     "pct": 7.2
+    },
+    "2010": {
+     "n": 579,
+     "pct": 1.2
+    },
+    "2020": {
+     "n": 133,
+     "pct": 0.3
+    }
+   },
+   "peak_year": 1971,
+   "peak_n": 10382,
+   "first": 1957,
+   "last": 2026,
+   "since_2000_pct": 8.7,
+   "in_1980s_pct": 23.9,
+   "before_1970_pct": 4.7,
+   "median": 1980
+  },
+  "Wales": {
+   "n": 30107,
+   "by_year": {
+    "1949": 76,
+    "1950": 331,
+    "1951": 487,
+    "1952": 650,
+    "1953": 278,
+    "1954": 33,
+    "1955": 53,
+    "1956": 86,
+    "1960": 26,
+    "1961": 380,
+    "1962": 353,
+    "1963": 540,
+    "1964": 165,
+    "1965": 21,
+    "1966": 639,
+    "1967": 130,
+    "1968": 267,
+    "1969": 6,
+    "1970": 224,
+    "1971": 306,
+    "1972": 52,
+    "1973": 124,
+    "1974": 789,
+    "1975": 499,
+    "1976": 741,
+    "1977": 263,
+    "1978": 371,
+    "1979": 47,
+    "1980": 287,
+    "1981": 927,
+    "1982": 129,
+    "1983": 209,
+    "1984": 57,
+    "1985": 312,
+    "1986": 393,
+    "1987": 482,
+    "1988": 696,
+    "1989": 690,
+    "1990": 590,
+    "1991": 455,
+    "1992": 839,
+    "1993": 892,
+    "1994": 1191,
+    "1995": 1170,
+    "1996": 1184,
+    "1997": 977,
+    "1998": 1870,
+    "1999": 1452,
+    "2000": 1528,
+    "2001": 1334,
+    "2002": 975,
+    "2003": 845,
+    "2004": 875,
+    "2005": 1381,
+    "2006": 40,
+    "2007": 37,
+    "2008": 23,
+    "2009": 15,
+    "2010": 27,
+    "2011": 16,
+    "2012": 14,
+    "2013": 9,
+    "2014": 6,
+    "2015": 1,
+    "2016": 28,
+    "2017": 20,
+    "2018": 25,
+    "2019": 8,
+    "2020": 23,
+    "2021": 29,
+    "2022": 25,
+    "2023": 38,
+    "2024": 18,
+    "2025": 18,
+    "2026": 10
+   },
+   "by_decade": {
+    "1940": {
+     "n": 76,
+     "pct": 0.3
+    },
+    "1950": {
+     "n": 1918,
+     "pct": 6.4
+    },
+    "1960": {
+     "n": 2527,
+     "pct": 8.4
+    },
+    "1970": {
+     "n": 3416,
+     "pct": 11.3
+    },
+    "1980": {
+     "n": 4182,
+     "pct": 13.9
+    },
+    "1990": {
+     "n": 10620,
+     "pct": 35.3
+    },
+    "2000": {
+     "n": 7053,
+     "pct": 23.4
+    },
+    "2010": {
+     "n": 154,
+     "pct": 0.5
+    },
+    "2020": {
+     "n": 161,
+     "pct": 0.5
+    }
+   },
+   "peak_year": 1998,
+   "peak_n": 1870,
+   "first": 1949,
+   "last": 2026,
+   "since_2000_pct": 24.5,
+   "in_1980s_pct": 13.9,
+   "before_1970_pct": 15.0,
+   "median": 1994
+  }
+ },
+ "eng_recent": {
+  "n": 5682,
+  "types": {
+   "war_memorial": 2889,
+   "house": 446,
+   "transport": 323,
+   "other": 282,
+   "church": 260,
+   "street": 251,
+   "civic": 199,
+   "address": 169,
+   "monument": 165,
+   "farm": 153,
+   "wall": 116,
+   "garden": 111,
+   "industrial": 104,
+   "commercial": 91,
+   "pub": 71,
+   "defence": 52
+  }
+ },
+ "cent_keys": [
+  "le15",
+  "c16",
+  "c17",
+  "c18",
+  "c19",
+  "c20"
+ ],
+ "cent_labels": {
+  "le15": "Before 1500",
+  "c16": "1500s (16th century)",
+  "c17": "1600s (17th century)",
+  "c18": "1700s (18th century)",
+  "c19": "1800s (19th century)",
+  "c20": "1900 and later"
+ },
+ "dates": {
+  "England": {
+   "n_sampled": 5000,
+   "n_text": 5000,
+   "n_dated": 4895,
+   "dated_pct": 97.9,
+   "n_period_word": 55,
+   "n_year": 1479,
+   "dist": {
+    "n": 4895,
+    "le15": {
+     "n": 282,
+     "pct": 5.8,
+     "ci": [
+      5.1,
+      6.4
+     ]
+    },
+    "c16": {
+     "n": 323,
+     "pct": 6.6,
+     "ci": [
+      5.9,
+      7.3
+     ]
+    },
+    "c17": {
+     "n": 865,
+     "pct": 17.7,
+     "ci": [
+      16.6,
+      18.8
+     ]
+    },
+    "c18": {
+     "n": 1510,
+     "pct": 30.8,
+     "ci": [
+      29.6,
+      32.2
+     ]
+    },
+    "c19": {
+     "n": 1596,
+     "pct": 32.6,
+     "ci": [
+      31.3,
+      33.9
+     ]
+    },
+    "c20": {
+     "n": 319,
+     "pct": 6.5,
+     "ci": [
+      5.9,
+      7.2
+     ]
+    }
+   },
+   "dist_earliest": {
+    "n": 4895,
+    "le15": {
+     "n": 333,
+     "pct": 6.8,
+     "ci": [
+      6.1,
+      7.5
+     ]
+    },
+    "c16": {
+     "n": 354,
+     "pct": 7.2,
+     "ci": [
+      6.5,
+      8.0
+     ]
+    },
+    "c17": {
+     "n": 949,
+     "pct": 19.4,
+     "ci": [
+      18.3,
+      20.5
+     ]
+    },
+    "c18": {
+     "n": 1481,
+     "pct": 30.3,
+     "ci": [
+      29.0,
+      31.6
+     ]
+    },
+    "c19": {
+     "n": 1521,
+     "pct": 31.1,
+     "ci": [
+      29.8,
+      32.4
+     ]
+    },
+    "c20": {
+     "n": 257,
+     "pct": 5.3,
+     "ci": [
+      4.7,
+      5.9
+     ]
+    }
+   },
+   "population": 379683,
+   "by_region": {
+    "South East": {
+     "n": 976,
+     "le15": {
+      "n": 70,
+      "pct": 7.2,
+      "ci": [
+       5.7,
+       9.0
+      ]
+     },
+     "c16": {
+      "n": 93,
+      "pct": 9.5,
+      "ci": [
+       7.8,
+       11.5
+      ]
+     },
+     "c17": {
+      "n": 197,
+      "pct": 20.2,
+      "ci": [
+       17.8,
+       22.8
+      ]
+     },
+     "c18": {
+      "n": 310,
+      "pct": 31.8,
+      "ci": [
+       28.9,
+       34.7
+      ]
+     },
+     "c19": {
+      "n": 247,
+      "pct": 25.3,
+      "ci": [
+       22.7,
+       28.1
+      ]
+     },
+     "c20": {
+      "n": 59,
+      "pct": 6.0,
+      "ci": [
+       4.7,
+       7.7
+      ]
+     }
+    },
+    "South West": {
+     "n": 1198,
+     "le15": {
+      "n": 57,
+      "pct": 4.8,
+      "ci": [
+       3.7,
+       6.1
+      ]
+     },
+     "c16": {
+      "n": 61,
+      "pct": 5.1,
+      "ci": [
+       4.0,
+       6.5
+      ]
+     },
+     "c17": {
+      "n": 212,
+      "pct": 17.7,
+      "ci": [
+       15.6,
+       20.0
+      ]
+     },
+     "c18": {
+      "n": 387,
+      "pct": 32.3,
+      "ci": [
+       29.7,
+       35.0
+      ]
+     },
+     "c19": {
+      "n": 435,
+      "pct": 36.3,
+      "ci": [
+       33.6,
+       39.1
+      ]
+     },
+     "c20": {
+      "n": 46,
+      "pct": 3.8,
+      "ci": [
+       2.9,
+       5.1
+      ]
+     }
+    },
+    "East of England": {
+     "n": 743,
+     "le15": {
+      "n": 75,
+      "pct": 10.1,
+      "ci": [
+       8.1,
+       12.5
+      ]
+     },
+     "c16": {
+      "n": 106,
+      "pct": 14.3,
+      "ci": [
+       11.9,
+       17.0
+      ]
+     },
+     "c17": {
+      "n": 179,
+      "pct": 24.1,
+      "ci": [
+       21.2,
+       27.3
+      ]
+     },
+     "c18": {
+      "n": 169,
+      "pct": 22.7,
+      "ci": [
+       19.9,
+       25.9
+      ]
+     },
+     "c19": {
+      "n": 162,
+      "pct": 21.8,
+      "ci": [
+       19.0,
+       24.9
+      ]
+     },
+     "c20": {
+      "n": 52,
+      "pct": 7.0,
+      "ci": [
+       5.4,
+       9.1
+      ]
+     }
+    },
+    "East Midlands": {
+     "n": 387,
+     "le15": {
+      "n": 20,
+      "pct": 5.2,
+      "ci": [
+       3.4,
+       7.8
+      ]
+     },
+     "c16": {
+      "n": 8,
+      "pct": 2.1,
+      "ci": [
+       1.1,
+       4.0
+      ]
+     },
+     "c17": {
+      "n": 71,
+      "pct": 18.3,
+      "ci": [
+       14.8,
+       22.5
+      ]
+     },
+     "c18": {
+      "n": 131,
+      "pct": 33.9,
+      "ci": [
+       29.3,
+       38.7
+      ]
+     },
+     "c19": {
+      "n": 128,
+      "pct": 33.1,
+      "ci": [
+       28.6,
+       37.9
+      ]
+     },
+     "c20": {
+      "n": 29,
+      "pct": 7.5,
+      "ci": [
+       5.3,
+       10.6
+      ]
+     }
+    },
+    "West Midlands": {
+     "n": 443,
+     "le15": {
+      "n": 23,
+      "pct": 5.2,
+      "ci": [
+       3.5,
+       7.7
+      ]
+     },
+     "c16": {
+      "n": 26,
+      "pct": 5.9,
+      "ci": [
+       4.0,
+       8.5
+      ]
+     },
+     "c17": {
+      "n": 100,
+      "pct": 22.6,
+      "ci": [
+       18.9,
+       26.7
+      ]
+     },
+     "c18": {
+      "n": 154,
+      "pct": 34.8,
+      "ci": [
+       30.5,
+       39.3
+      ]
+     },
+     "c19": {
+      "n": 114,
+      "pct": 25.7,
+      "ci": [
+       21.9,
+       30.0
+      ]
+     },
+     "c20": {
+      "n": 26,
+      "pct": 5.9,
+      "ci": [
+       4.0,
+       8.5
+      ]
+     }
+    },
+    "North East": {
+     "n": 176,
+     "le15": {
+      "n": 10,
+      "pct": 5.7,
+      "ci": [
+       3.1,
+       10.1
+      ]
+     },
+     "c16": {
+      "n": 6,
+      "pct": 3.4,
+      "ci": [
+       1.6,
+       7.2
+      ]
+     },
+     "c17": {
+      "n": 16,
+      "pct": 9.1,
+      "ci": [
+       5.7,
+       14.3
+      ]
+     },
+     "c18": {
+      "n": 62,
+      "pct": 35.2,
+      "ci": [
+       28.6,
+       42.5
+      ]
+     },
+     "c19": {
+      "n": 65,
+      "pct": 36.9,
+      "ci": [
+       30.2,
+       44.3
+      ]
+     },
+     "c20": {
+      "n": 17,
+      "pct": 9.7,
+      "ci": [
+       6.1,
+       14.9
+      ]
+     }
+    },
+    "London": {
+     "n": 249,
+     "le15": {
+      "n": 4,
+      "pct": 1.6,
+      "ci": [
+       0.6,
+       4.1
+      ]
+     },
+     "c16": {
+      "n": 2,
+      "pct": 0.8,
+      "ci": [
+       0.2,
+       2.9
+      ]
+     },
+     "c17": {
+      "n": 8,
+      "pct": 3.2,
+      "ci": [
+       1.6,
+       6.2
+      ]
+     },
+     "c18": {
+      "n": 51,
+      "pct": 20.5,
+      "ci": [
+       15.9,
+       25.9
+      ]
+     },
+     "c19": {
+      "n": 140,
+      "pct": 56.2,
+      "ci": [
+       50.0,
+       62.2
+      ]
+     },
+     "c20": {
+      "n": 44,
+      "pct": 17.7,
+      "ci": [
+       13.4,
+       22.9
+      ]
+     }
+    },
+    "North West": {
+     "n": 321,
+     "le15": {
+      "n": 6,
+      "pct": 1.9,
+      "ci": [
+       0.9,
+       4.0
+      ]
+     },
+     "c16": {
+      "n": 9,
+      "pct": 2.8,
+      "ci": [
+       1.5,
+       5.2
+      ]
+     },
+     "c17": {
+      "n": 44,
+      "pct": 13.7,
+      "ci": [
+       10.4,
+       17.9
+      ]
+     },
+     "c18": {
+      "n": 87,
+      "pct": 27.1,
+      "ci": [
+       22.5,
+       32.2
+      ]
+     },
+     "c19": {
+      "n": 147,
+      "pct": 45.8,
+      "ci": [
+       40.4,
+       51.3
+      ]
+     },
+     "c20": {
+      "n": 28,
+      "pct": 8.7,
+      "ci": [
+       6.1,
+       12.3
+      ]
+     }
+    },
+    "Yorkshire and The Humber": {
+     "n": 402,
+     "le15": {
+      "n": 17,
+      "pct": 4.2,
+      "ci": [
+       2.7,
+       6.7
+      ]
+     },
+     "c16": {
+      "n": 12,
+      "pct": 3.0,
+      "ci": [
+       1.7,
+       5.1
+      ]
+     },
+     "c17": {
+      "n": 38,
+      "pct": 9.5,
+      "ci": [
+       7.0,
+       12.7
+      ]
+     },
+     "c18": {
+      "n": 159,
+      "pct": 39.6,
+      "ci": [
+       34.9,
+       44.4
+      ]
+     },
+     "c19": {
+      "n": 158,
+      "pct": 39.3,
+      "ci": [
+       34.7,
+       44.2
+      ]
+     },
+     "c20": {
+      "n": 18,
+      "pct": 4.5,
+      "ci": [
+       2.9,
+       7.0
+      ]
+     }
+    }
+   },
+   "by_type": {
+    "address": {
+     "n": 857,
+     "le15": {
+      "n": 22,
+      "pct": 2.6,
+      "ci": [
+       1.7,
+       3.9
+      ]
+     },
+     "c16": {
+      "n": 48,
+      "pct": 5.6,
+      "ci": [
+       4.3,
+       7.3
+      ]
+     },
+     "c17": {
+      "n": 118,
+      "pct": 13.8,
+      "ci": [
+       11.6,
+       16.2
+      ]
+     },
+     "c18": {
+      "n": 298,
+      "pct": 34.8,
+      "ci": [
+       31.7,
+       38.0
+      ]
+     },
+     "c19": {
+      "n": 337,
+      "pct": 39.3,
+      "ci": [
+       36.1,
+       42.6
+      ]
+     },
+     "c20": {
+      "n": 34,
+      "pct": 4.0,
+      "ci": [
+       2.9,
+       5.5
+      ]
+     }
+    },
+    "other": {
+     "n": 407,
+     "le15": {
+      "n": 20,
+      "pct": 4.9,
+      "ci": [
+       3.2,
+       7.5
+      ]
+     },
+     "c16": {
+      "n": 38,
+      "pct": 9.3,
+      "ci": [
+       6.9,
+       12.6
+      ]
+     },
+     "c17": {
+      "n": 95,
+      "pct": 23.3,
+      "ci": [
+       19.5,
+       27.7
+      ]
+     },
+     "c18": {
+      "n": 121,
+      "pct": 29.7,
+      "ci": [
+       25.5,
+       34.3
+      ]
+     },
+     "c19": {
+      "n": 93,
+      "pct": 22.9,
+      "ci": [
+       19.0,
+       27.2
+      ]
+     },
+     "c20": {
+      "n": 40,
+      "pct": 9.8,
+      "ci": [
+       7.3,
+       13.1
+      ]
+     }
+    },
+    "garden": {
+     "n": 76,
+     "le15": {
+      "n": 3,
+      "pct": 3.9,
+      "ci": [
+       1.4,
+       11.0
+      ]
+     },
+     "c16": {
+      "n": 1,
+      "pct": 1.3,
+      "ci": [
+       0.2,
+       7.1
+      ]
+     },
+     "c17": {
+      "n": 4,
+      "pct": 5.3,
+      "ci": [
+       2.1,
+       12.8
+      ]
+     },
+     "c18": {
+      "n": 24,
+      "pct": 31.6,
+      "ci": [
+       22.2,
+       42.7
+      ]
+     },
+     "c19": {
+      "n": 35,
+      "pct": 46.1,
+      "ci": [
+       35.3,
+       57.2
+      ]
+     },
+     "c20": {
+      "n": 9,
+      "pct": 11.8,
+      "ci": [
+       6.4,
+       21.0
+      ]
+     }
+    },
+    "house": {
+     "n": 1594,
+     "le15": {
+      "n": 80,
+      "pct": 5.0,
+      "ci": [
+       4.1,
+       6.2
+      ]
+     },
+     "c16": {
+      "n": 175,
+      "pct": 11.0,
+      "ci": [
+       9.5,
+       12.6
+      ]
+     },
+     "c17": {
+      "n": 424,
+      "pct": 26.6,
+      "ci": [
+       24.5,
+       28.8
+      ]
+     },
+     "c18": {
+      "n": 481,
+      "pct": 30.2,
+      "ci": [
+       28.0,
+       32.5
+      ]
+     },
+     "c19": {
+      "n": 388,
+      "pct": 24.3,
+      "ci": [
+       22.3,
+       26.5
+      ]
+     },
+     "c20": {
+      "n": 46,
+      "pct": 2.9,
+      "ci": [
+       2.2,
+       3.8
+      ]
+     }
+    },
+    "pub": {
+     "n": 121,
+     "le15": {
+      "n": 9,
+      "pct": 7.4,
+      "ci": [
+       4.0,
+       13.5
+      ]
+     },
+     "c16": {
+      "n": 8,
+      "pct": 6.6,
+      "ci": [
+       3.4,
+       12.5
+      ]
+     },
+     "c17": {
+      "n": 23,
+      "pct": 19.0,
+      "ci": [
+       13.0,
+       26.9
+      ]
+     },
+     "c18": {
+      "n": 40,
+      "pct": 33.1,
+      "ci": [
+       25.3,
+       41.8
+      ]
+     },
+     "c19": {
+      "n": 35,
+      "pct": 28.9,
+      "ci": [
+       21.6,
+       37.6
+      ]
+     },
+     "c20": {
+      "n": 6,
+      "pct": 5.0,
+      "ci": [
+       2.3,
+       10.4
+      ]
+     }
+    },
+    "monument": {
+     "n": 250,
+     "le15": {
+      "n": 23,
+      "pct": 9.2,
+      "ci": [
+       6.2,
+       13.4
+      ]
+     },
+     "c16": {
+      "n": 2,
+      "pct": 0.8,
+      "ci": [
+       0.2,
+       2.9
+      ]
+     },
+     "c17": {
+      "n": 39,
+      "pct": 15.6,
+      "ci": [
+       11.6,
+       20.6
+      ]
+     },
+     "c18": {
+      "n": 109,
+      "pct": 43.6,
+      "ci": [
+       37.6,
+       49.8
+      ]
+     },
+     "c19": {
+      "n": 69,
+      "pct": 27.6,
+      "ci": [
+       22.4,
+       33.4
+      ]
+     },
+     "c20": {
+      "n": 8,
+      "pct": 3.2,
+      "ci": [
+       1.6,
+       6.2
+      ]
+     }
+    },
+    "church": {
+     "n": 299,
+     "le15": {
+      "n": 92,
+      "pct": 30.8,
+      "ci": [
+       25.8,
+       36.2
+      ]
+     },
+     "c16": {
+      "n": 10,
+      "pct": 3.3,
+      "ci": [
+       1.8,
+       6.0
+      ]
+     },
+     "c17": {
+      "n": 14,
+      "pct": 4.7,
+      "ci": [
+       2.8,
+       7.7
+      ]
+     },
+     "c18": {
+      "n": 45,
+      "pct": 15.1,
+      "ci": [
+       11.4,
+       19.5
+      ]
+     },
+     "c19": {
+      "n": 127,
+      "pct": 42.5,
+      "ci": [
+       37.0,
+       48.1
+      ]
+     },
+     "c20": {
+      "n": 11,
+      "pct": 3.7,
+      "ci": [
+       2.1,
+       6.5
+      ]
+     }
+    },
+    "wall": {
+     "n": 315,
+     "le15": {
+      "n": 6,
+      "pct": 1.9,
+      "ci": [
+       0.9,
+       4.1
+      ]
+     },
+     "c16": {
+      "n": 13,
+      "pct": 4.1,
+      "ci": [
+       2.4,
+       6.9
+      ]
+     },
+     "c17": {
+      "n": 29,
+      "pct": 9.2,
+      "ci": [
+       6.5,
+       12.9
+      ]
+     },
+     "c18": {
+      "n": 90,
+      "pct": 28.6,
+      "ci": [
+       23.9,
+       33.8
+      ]
+     },
+     "c19": {
+      "n": 162,
+      "pct": 51.4,
+      "ci": [
+       45.9,
+       56.9
+      ]
+     },
+     "c20": {
+      "n": 15,
+      "pct": 4.8,
+      "ci": [
+       2.9,
+       7.7
+      ]
+     }
+    },
+    "transport": {
+     "n": 177,
+     "le15": {
+      "n": 4,
+      "pct": 2.3,
+      "ci": [
+       0.9,
+       5.7
+      ]
+     },
+     "c16": {
+      "n": 0,
+      "pct": 0.0,
+      "ci": [
+       0.0,
+       2.1
+      ]
+     },
+     "c17": {
+      "n": 7,
+      "pct": 4.0,
+      "ci": [
+       1.9,
+       7.9
+      ]
+     },
+     "c18": {
+      "n": 68,
+      "pct": 38.4,
+      "ci": [
+       31.6,
+       45.8
+      ]
+     },
+     "c19": {
+      "n": 91,
+      "pct": 51.4,
+      "ci": [
+       44.1,
+       58.7
+      ]
+     },
+     "c20": {
+      "n": 7,
+      "pct": 4.0,
+      "ci": [
+       1.9,
+       7.9
+      ]
+     }
+    },
+    "farm": {
+     "n": 340,
+     "le15": {
+      "n": 9,
+      "pct": 2.6,
+      "ci": [
+       1.4,
+       5.0
+      ]
+     },
+     "c16": {
+      "n": 18,
+      "pct": 5.3,
+      "ci": [
+       3.4,
+       8.2
+      ]
+     },
+     "c17": {
+      "n": 76,
+      "pct": 22.4,
+      "ci": [
+       18.2,
+       27.1
+      ]
+     },
+     "c18": {
+      "n": 158,
+      "pct": 46.5,
+      "ci": [
+       41.2,
+       51.8
+      ]
+     },
+     "c19": {
+      "n": 68,
+      "pct": 20.0,
+      "ci": [
+       16.1,
+       24.6
+      ]
+     },
+     "c20": {
+      "n": 11,
+      "pct": 3.2,
+      "ci": [
+       1.8,
+       5.7
+      ]
+     }
+    },
+    "street": {
+     "n": 96,
+     "le15": {
+      "n": 5,
+      "pct": 5.2,
+      "ci": [
+       2.2,
+       11.6
+      ]
+     },
+     "c16": {
+      "n": 0,
+      "pct": 0.0,
+      "ci": [
+       0.0,
+       3.8
+      ]
+     },
+     "c17": {
+      "n": 1,
+      "pct": 1.0,
+      "ci": [
+       0.2,
+       5.7
+      ]
+     },
+     "c18": {
+      "n": 8,
+      "pct": 8.3,
+      "ci": [
+       4.3,
+       15.6
+      ]
+     },
+     "c19": {
+      "n": 37,
+      "pct": 38.5,
+      "ci": [
+       29.4,
+       48.5
+      ]
+     },
+     "c20": {
+      "n": 45,
+      "pct": 46.9,
+      "ci": [
+       37.2,
+       56.8
+      ]
+     }
+    },
+    "industrial": {
+     "n": 90,
+     "le15": {
+      "n": 0,
+      "pct": 0.0,
+      "ci": [
+       0.0,
+       4.1
+      ]
+     },
+     "c16": {
+      "n": 1,
+      "pct": 1.1,
+      "ci": [
+       0.2,
+       6.0
+      ]
+     },
+     "c17": {
+      "n": 8,
+      "pct": 8.9,
+      "ci": [
+       4.6,
+       16.6
+      ]
+     },
+     "c18": {
+      "n": 24,
+      "pct": 26.7,
+      "ci": [
+       18.6,
+       36.6
+      ]
+     },
+     "c19": {
+      "n": 53,
+      "pct": 58.9,
+      "ci": [
+       48.6,
+       68.5
+      ]
+     },
+     "c20": {
+      "n": 4,
+      "pct": 4.4,
+      "ci": [
+       1.7,
+       10.9
+      ]
+     }
+    },
+    "civic": {
+     "n": 146,
+     "le15": {
+      "n": 6,
+      "pct": 4.1,
+      "ci": [
+       1.9,
+       8.7
+      ]
+     },
+     "c16": {
+      "n": 9,
+      "pct": 6.2,
+      "ci": [
+       3.3,
+       11.3
+      ]
+     },
+     "c17": {
+      "n": 17,
+      "pct": 11.6,
+      "ci": [
+       7.4,
+       17.9
+      ]
+     },
+     "c18": {
+      "n": 22,
+      "pct": 15.1,
+      "ci": [
+       10.2,
+       21.8
+      ]
+     },
+     "c19": {
+      "n": 69,
+      "pct": 47.3,
+      "ci": [
+       39.3,
+       55.3
+      ]
+     },
+     "c20": {
+      "n": 23,
+      "pct": 15.8,
+      "ci": [
+       10.7,
+       22.5
+      ]
+     }
+    }
+   }
+  },
+  "Scotland": {
+   "n_sampled": 2000,
+   "n_text": 2000,
+   "n_dated": 1913,
+   "dated_pct": 95.7,
+   "n_period_word": 19,
+   "n_year": 1077,
+   "dist": {
+    "n": 1913,
+    "n_eff": 1476,
+    "le15": {
+     "n": 17,
+     "pct": 1.1,
+     "ci": [
+      0.7,
+      1.8
+     ]
+    },
+    "c16": {
+     "n": 11,
+     "pct": 0.6,
+     "ci": [
+      0.3,
+      1.1
+     ]
+    },
+    "c17": {
+     "n": 50,
+     "pct": 3.1,
+     "ci": [
+      2.3,
+      4.1
+     ]
+    },
+    "c18": {
+     "n": 346,
+     "pct": 20.6,
+     "ci": [
+      18.6,
+      22.7
+     ]
+    },
+    "c19": {
+     "n": 1308,
+     "pct": 65.2,
+     "ci": [
+      62.8,
+      67.6
+     ]
+    },
+    "c20": {
+     "n": 181,
+     "pct": 9.4,
+     "ci": [
+      8.0,
+      11.0
+     ]
+    }
+   },
+   "dist_earliest": {
+    "n": 1913,
+    "n_eff": 1476,
+    "le15": {
+     "n": 25,
+     "pct": 1.5,
+     "ci": [
+      1.0,
+      2.3
+     ]
+    },
+    "c16": {
+     "n": 19,
+     "pct": 1.1,
+     "ci": [
+      0.7,
+      1.8
+     ]
+    },
+    "c17": {
+     "n": 77,
+     "pct": 4.6,
+     "ci": [
+      3.6,
+      5.7
+     ]
+    },
+    "c18": {
+     "n": 360,
+     "pct": 21.1,
+     "ci": [
+      19.1,
+      23.2
+     ]
+    },
+    "c19": {
+     "n": 1268,
+     "pct": 63.1,
+     "ci": [
+      60.7,
+      65.6
+     ]
+    },
+    "c20": {
+     "n": 164,
+     "pct": 8.6,
+     "ci": [
+      7.3,
+      10.1
+     ]
+    }
+   },
+   "population": 46749
+  },
+  "Wales": {
+   "n_sampled": 30110,
+   "n_text": 30110,
+   "n_dated": 29410,
+   "dated_pct": 97.7,
+   "n_period_word": 1299,
+   "n_year": 12759,
+   "dist": {
+    "n": 29410,
+    "le15": {
+     "n": 1761,
+     "pct": 6.0,
+     "ci": [
+      5.7,
+      6.3
+     ]
+    },
+    "c16": {
+     "n": 1055,
+     "pct": 3.6,
+     "ci": [
+      3.4,
+      3.8
+     ]
+    },
+    "c17": {
+     "n": 2440,
+     "pct": 8.3,
+     "ci": [
+      8.0,
+      8.6
+     ]
+    },
+    "c18": {
+     "n": 5208,
+     "pct": 17.7,
+     "ci": [
+      17.3,
+      18.1
+     ]
+    },
+    "c19": {
+     "n": 16600,
+     "pct": 56.4,
+     "ci": [
+      55.9,
+      57.0
+     ]
+    },
+    "c20": {
+     "n": 2346,
+     "pct": 8.0,
+     "ci": [
+      7.7,
+      8.3
+     ]
+    }
+   },
+   "dist_earliest": {
+    "n": 29410,
+    "le15": {
+     "n": 2179,
+     "pct": 7.4,
+     "ci": [
+      7.1,
+      7.7
+     ]
+    },
+    "c16": {
+     "n": 1404,
+     "pct": 4.8,
+     "ci": [
+      4.5,
+      5.0
+     ]
+    },
+    "c17": {
+     "n": 2854,
+     "pct": 9.7,
+     "ci": [
+      9.4,
+      10.0
+     ]
+    },
+    "c18": {
+     "n": 5879,
+     "pct": 20.0,
+     "ci": [
+      19.5,
+      20.5
+     ]
+    },
+    "c19": {
+     "n": 15327,
+     "pct": 52.1,
+     "ci": [
+      51.5,
+      52.7
+     ]
+    },
+    "c20": {
+     "n": 1767,
+     "pct": 6.0,
+     "ci": [
+      5.7,
+      6.3
+     ]
+    }
+   },
+   "by_council": {
+    "Flintshire": {
+     "n": 1010,
+     "le15": {
+      "n": 55,
+      "pct": 5.4,
+      "ci": [
+       4.2,
+       7.0
+      ]
+     },
+     "c16": {
+      "n": 46,
+      "pct": 4.6,
+      "ci": [
+       3.4,
+       6.0
+      ]
+     },
+     "c17": {
+      "n": 135,
+      "pct": 13.4,
+      "ci": [
+       11.4,
+       15.6
+      ]
+     },
+     "c18": {
+      "n": 176,
+      "pct": 17.4,
+      "ci": [
+       15.2,
+       19.9
+      ]
+     },
+     "c19": {
+      "n": 516,
+      "pct": 51.1,
+      "ci": [
+       48.0,
+       54.2
+      ]
+     },
+     "c20": {
+      "n": 82,
+      "pct": 8.1,
+      "ci": [
+       6.6,
+       10.0
+      ]
+     }
+    },
+    "Wrexham": {
+     "n": 1036,
+     "le15": {
+      "n": 39,
+      "pct": 3.8,
+      "ci": [
+       2.8,
+       5.1
+      ]
+     },
+     "c16": {
+      "n": 44,
+      "pct": 4.2,
+      "ci": [
+       3.2,
+       5.7
+      ]
+     },
+     "c17": {
+      "n": 117,
+      "pct": 11.3,
+      "ci": [
+       9.5,
+       13.4
+      ]
+     },
+     "c18": {
+      "n": 252,
+      "pct": 24.3,
+      "ci": [
+       21.8,
+       27.0
+      ]
+     },
+     "c19": {
+      "n": 492,
+      "pct": 47.5,
+      "ci": [
+       44.5,
+       50.5
+      ]
+     },
+     "c20": {
+      "n": 92,
+      "pct": 8.9,
+      "ci": [
+       7.3,
+       10.8
+      ]
+     }
+    },
+    "Conwy": {
+     "n": 1694,
+     "le15": {
+      "n": 81,
+      "pct": 4.8,
+      "ci": [
+       3.9,
+       5.9
+      ]
+     },
+     "c16": {
+      "n": 66,
+      "pct": 3.9,
+      "ci": [
+       3.1,
+       4.9
+      ]
+     },
+     "c17": {
+      "n": 143,
+      "pct": 8.4,
+      "ci": [
+       7.2,
+       9.9
+      ]
+     },
+     "c18": {
+      "n": 239,
+      "pct": 14.1,
+      "ci": [
+       12.5,
+       15.8
+      ]
+     },
+     "c19": {
+      "n": 978,
+      "pct": 57.7,
+      "ci": [
+       55.4,
+       60.1
+      ]
+     },
+     "c20": {
+      "n": 187,
+      "pct": 11.0,
+      "ci": [
+       9.6,
+       12.6
+      ]
+     }
+    },
+    "Denbighshire": {
+     "n": 1790,
+     "le15": {
+      "n": 144,
+      "pct": 8.0,
+      "ci": [
+       6.9,
+       9.4
+      ]
+     },
+     "c16": {
+      "n": 108,
+      "pct": 6.0,
+      "ci": [
+       5.0,
+       7.2
+      ]
+     },
+     "c17": {
+      "n": 242,
+      "pct": 13.5,
+      "ci": [
+       12.0,
+       15.2
+      ]
+     },
+     "c18": {
+      "n": 398,
+      "pct": 22.2,
+      "ci": [
+       20.4,
+       24.2
+      ]
+     },
+     "c19": {
+      "n": 806,
+      "pct": 45.0,
+      "ci": [
+       42.7,
+       47.3
+      ]
+     },
+     "c20": {
+      "n": 92,
+      "pct": 5.1,
+      "ci": [
+       4.2,
+       6.3
+      ]
+     }
+    },
+    "Powys": {
+     "n": 5354,
+     "le15": {
+      "n": 329,
+      "pct": 6.1,
+      "ci": [
+       5.5,
+       6.8
+      ]
+     },
+     "c16": {
+      "n": 239,
+      "pct": 4.5,
+      "ci": [
+       3.9,
+       5.1
+      ]
+     },
+     "c17": {
+      "n": 714,
+      "pct": 13.3,
+      "ci": [
+       12.5,
+       14.3
+      ]
+     },
+     "c18": {
+      "n": 1151,
+      "pct": 21.5,
+      "ci": [
+       20.4,
+       22.6
+      ]
+     },
+     "c19": {
+      "n": 2699,
+      "pct": 50.4,
+      "ci": [
+       49.1,
+       51.7
+      ]
+     },
+     "c20": {
+      "n": 222,
+      "pct": 4.1,
+      "ci": [
+       3.6,
+       4.7
+      ]
+     }
+    },
+    "Blaenau Gwent": {
+     "n": 53,
+     "le15": {
+      "n": 1,
+      "pct": 1.9,
+      "ci": [
+       0.3,
+       9.9
+      ]
+     },
+     "c16": {
+      "n": 3,
+      "pct": 5.7,
+      "ci": [
+       1.9,
+       15.4
+      ]
+     },
+     "c17": {
+      "n": 5,
+      "pct": 9.4,
+      "ci": [
+       4.1,
+       20.3
+      ]
+     },
+     "c18": {
+      "n": 5,
+      "pct": 9.4,
+      "ci": [
+       4.1,
+       20.3
+      ]
+     },
+     "c19": {
+      "n": 30,
+      "pct": 56.6,
+      "ci": [
+       43.3,
+       69.0
+      ]
+     },
+     "c20": {
+      "n": 9,
+      "pct": 17.0,
+      "ci": [
+       9.2,
+       29.2
+      ]
+     }
+    },
+    "Monmouthshire": {
+     "n": 2402,
+     "le15": {
+      "n": 240,
+      "pct": 10.0,
+      "ci": [
+       8.9,
+       11.3
+      ]
+     },
+     "c16": {
+      "n": 180,
+      "pct": 7.5,
+      "ci": [
+       6.5,
+       8.6
+      ]
+     },
+     "c17": {
+      "n": 322,
+      "pct": 13.4,
+      "ci": [
+       12.1,
+       14.8
+      ]
+     },
+     "c18": {
+      "n": 501,
+      "pct": 20.9,
+      "ci": [
+       19.3,
+       22.5
+      ]
+     },
+     "c19": {
+      "n": 967,
+      "pct": 40.3,
+      "ci": [
+       38.3,
+       42.2
+      ]
+     },
+     "c20": {
+      "n": 192,
+      "pct": 8.0,
+      "ci": [
+       7.0,
+       9.1
+      ]
+     }
+    },
+    "Caerphilly": {
+     "n": 369,
+     "le15": {
+      "n": 14,
+      "pct": 3.8,
+      "ci": [
+       2.3,
+       6.3
+      ]
+     },
+     "c16": {
+      "n": 18,
+      "pct": 4.9,
+      "ci": [
+       3.1,
+       7.6
+      ]
+     },
+     "c17": {
+      "n": 21,
+      "pct": 5.7,
+      "ci": [
+       3.8,
+       8.5
+      ]
+     },
+     "c18": {
+      "n": 40,
+      "pct": 10.8,
+      "ci": [
+       8.1,
+       14.4
+      ]
+     },
+     "c19": {
+      "n": 132,
+      "pct": 35.8,
+      "ci": [
+       31.1,
+       40.8
+      ]
+     },
+     "c20": {
+      "n": 144,
+      "pct": 39.0,
+      "ci": [
+       34.2,
+       44.1
+      ]
+     }
+    },
+    "Vale of Glamorgan": {
+     "n": 737,
+     "le15": {
+      "n": 122,
+      "pct": 16.6,
+      "ci": [
+       14.0,
+       19.4
+      ]
+     },
+     "c16": {
+      "n": 80,
+      "pct": 10.9,
+      "ci": [
+       8.8,
+       13.3
+      ]
+     },
+     "c17": {
+      "n": 69,
+      "pct": 9.4,
+      "ci": [
+       7.5,
+       11.7
+      ]
+     },
+     "c18": {
+      "n": 81,
+      "pct": 11.0,
+      "ci": [
+       8.9,
+       13.5
+      ]
+     },
+     "c19": {
+      "n": 295,
+      "pct": 40.0,
+      "ci": [
+       36.6,
+       43.6
+      ]
+     },
+     "c20": {
+      "n": 90,
+      "pct": 12.2,
+      "ci": [
+       10.0,
+       14.8
+      ]
+     }
+    },
+    "Newport": {
+     "n": 417,
+     "le15": {
+      "n": 40,
+      "pct": 9.6,
+      "ci": [
+       7.1,
+       12.8
+      ]
+     },
+     "c16": {
+      "n": 17,
+      "pct": 4.1,
+      "ci": [
+       2.6,
+       6.4
+      ]
+     },
+     "c17": {
+      "n": 25,
+      "pct": 6.0,
+      "ci": [
+       4.1,
+       8.7
+      ]
+     },
+     "c18": {
+      "n": 60,
+      "pct": 14.4,
+      "ci": [
+       11.3,
+       18.1
+      ]
+     },
+     "c19": {
+      "n": 214,
+      "pct": 51.3,
+      "ci": [
+       46.5,
+       56.1
+      ]
+     },
+     "c20": {
+      "n": 61,
+      "pct": 14.6,
+      "ci": [
+       11.6,
+       18.3
+      ]
+     }
+    },
+    "Torfaen": {
+     "n": 257,
+     "le15": {
+      "n": 8,
+      "pct": 3.1,
+      "ci": [
+       1.6,
+       6.0
+      ]
+     },
+     "c16": {
+      "n": 8,
+      "pct": 3.1,
+      "ci": [
+       1.6,
+       6.0
+      ]
+     },
+     "c17": {
+      "n": 27,
+      "pct": 10.5,
+      "ci": [
+       7.3,
+       14.9
+      ]
+     },
+     "c18": {
+      "n": 56,
+      "pct": 21.8,
+      "ci": [
+       17.2,
+       27.2
+      ]
+     },
+     "c19": {
+      "n": 117,
+      "pct": 45.5,
+      "ci": [
+       39.5,
+       51.6
+      ]
+     },
+     "c20": {
+      "n": 41,
+      "pct": 16.0,
+      "ci": [
+       12.0,
+       20.9
+      ]
+     }
+    },
+    "Carmarthenshire": {
+     "n": 1802,
+     "le15": {
+      "n": 98,
+      "pct": 5.4,
+      "ci": [
+       4.5,
+       6.6
+      ]
+     },
+     "c16": {
+      "n": 31,
+      "pct": 1.7,
+      "ci": [
+       1.2,
+       2.4
+      ]
+     },
+     "c17": {
+      "n": 49,
+      "pct": 2.7,
+      "ci": [
+       2.1,
+       3.6
+      ]
+     },
+     "c18": {
+      "n": 361,
+      "pct": 20.0,
+      "ci": [
+       18.2,
+       21.9
+      ]
+     },
+     "c19": {
+      "n": 1114,
+      "pct": 61.8,
+      "ci": [
+       59.6,
+       64.0
+      ]
+     },
+     "c20": {
+      "n": 149,
+      "pct": 8.3,
+      "ci": [
+       7.1,
+       9.6
+      ]
+     }
+    },
+    "Gwynedd": {
+     "n": 4056,
+     "le15": {
+      "n": 162,
+      "pct": 4.0,
+      "ci": [
+       3.4,
+       4.6
+      ]
+     },
+     "c16": {
+      "n": 107,
+      "pct": 2.6,
+      "ci": [
+       2.2,
+       3.2
+      ]
+     },
+     "c17": {
+      "n": 330,
+      "pct": 8.1,
+      "ci": [
+       7.3,
+       9.0
+      ]
+     },
+     "c18": {
+      "n": 688,
+      "pct": 17.0,
+      "ci": [
+       15.8,
+       18.1
+      ]
+     },
+     "c19": {
+      "n": 2556,
+      "pct": 63.0,
+      "ci": [
+       61.5,
+       64.5
+      ]
+     },
+     "c20": {
+      "n": 213,
+      "pct": 5.3,
+      "ci": [
+       4.6,
+       6.0
+      ]
+     }
+    },
+    "Isle of Anglesey": {
+     "n": 1117,
+     "le15": {
+      "n": 77,
+      "pct": 6.9,
+      "ci": [
+       5.6,
+       8.5
+      ]
+     },
+     "c16": {
+      "n": 29,
+      "pct": 2.6,
+      "ci": [
+       1.8,
+       3.7
+      ]
+     },
+     "c17": {
+      "n": 62,
+      "pct": 5.6,
+      "ci": [
+       4.4,
+       7.1
+      ]
+     },
+     "c18": {
+      "n": 262,
+      "pct": 23.5,
+      "ci": [
+       21.1,
+       26.0
+      ]
+     },
+     "c19": {
+      "n": 617,
+      "pct": 55.2,
+      "ci": [
+       52.3,
+       58.1
+      ]
+     },
+     "c20": {
+      "n": 70,
+      "pct": 6.3,
+      "ci": [
+       5.0,
+       7.8
+      ]
+     }
+    },
+    "Pembrokeshire": {
+     "n": 2781,
+     "le15": {
+      "n": 207,
+      "pct": 7.4,
+      "ci": [
+       6.5,
+       8.5
+      ]
+     },
+     "c16": {
+      "n": 31,
+      "pct": 1.1,
+      "ci": [
+       0.8,
+       1.6
+      ]
+     },
+     "c17": {
+      "n": 61,
+      "pct": 2.2,
+      "ci": [
+       1.7,
+       2.8
+      ]
+     },
+     "c18": {
+      "n": 445,
+      "pct": 16.0,
+      "ci": [
+       14.7,
+       17.4
+      ]
+     },
+     "c19": {
+      "n": 1873,
+      "pct": 67.3,
+      "ci": [
+       65.6,
+       69.1
+      ]
+     },
+     "c20": {
+      "n": 164,
+      "pct": 5.9,
+      "ci": [
+       5.1,
+       6.8
+      ]
+     }
+    },
+    "Ceredigion": {
+     "n": 1883,
+     "le15": {
+      "n": 26,
+      "pct": 1.4,
+      "ci": [
+       0.9,
+       2.0
+      ]
+     },
+     "c16": {
+      "n": 4,
+      "pct": 0.2,
+      "ci": [
+       0.1,
+       0.5
+      ]
+     },
+     "c17": {
+      "n": 31,
+      "pct": 1.6,
+      "ci": [
+       1.2,
+       2.3
+      ]
+     },
+     "c18": {
+      "n": 210,
+      "pct": 11.2,
+      "ci": [
+       9.8,
+       12.7
+      ]
+     },
+     "c19": {
+      "n": 1541,
+      "pct": 81.8,
+      "ci": [
+       80.0,
+       83.5
+      ]
+     },
+     "c20": {
+      "n": 71,
+      "pct": 3.8,
+      "ci": [
+       3.0,
+       4.7
+      ]
+     }
+    },
+    "Rhondda Cynon Taff": {
+     "n": 336,
+     "le15": {
+      "n": 9,
+      "pct": 2.7,
+      "ci": [
+       1.4,
+       5.0
+      ]
+     },
+     "c16": {
+      "n": 3,
+      "pct": 0.9,
+      "ci": [
+       0.3,
+       2.6
+      ]
+     },
+     "c17": {
+      "n": 12,
+      "pct": 3.6,
+      "ci": [
+       2.1,
+       6.1
+      ]
+     },
+     "c18": {
+      "n": 22,
+      "pct": 6.5,
+      "ci": [
+       4.4,
+       9.7
+      ]
+     },
+     "c19": {
+      "n": 205,
+      "pct": 61.0,
+      "ci": [
+       55.7,
+       66.1
+      ]
+     },
+     "c20": {
+      "n": 85,
+      "pct": 25.3,
+      "ci": [
+       20.9,
+       30.2
+      ]
+     }
+    },
+    "Neath Port Talbot": {
+     "n": 387,
+     "le15": {
+      "n": 17,
+      "pct": 4.4,
+      "ci": [
+       2.8,
+       6.9
+      ]
+     },
+     "c16": {
+      "n": 3,
+      "pct": 0.8,
+      "ci": [
+       0.3,
+       2.3
+      ]
+     },
+     "c17": {
+      "n": 13,
+      "pct": 3.4,
+      "ci": [
+       2.0,
+       5.7
+      ]
+     },
+     "c18": {
+      "n": 69,
+      "pct": 17.8,
+      "ci": [
+       14.3,
+       22.0
+      ]
+     },
+     "c19": {
+      "n": 229,
+      "pct": 59.2,
+      "ci": [
+       54.2,
+       64.0
+      ]
+     },
+     "c20": {
+      "n": 56,
+      "pct": 14.5,
+      "ci": [
+       11.3,
+       18.3
+      ]
+     }
+    },
+    "Swansea": {
+     "n": 502,
+     "le15": {
+      "n": 26,
+      "pct": 5.2,
+      "ci": [
+       3.6,
+       7.5
+      ]
+     },
+     "c16": {
+      "n": 6,
+      "pct": 1.2,
+      "ci": [
+       0.5,
+       2.6
+      ]
+     },
+     "c17": {
+      "n": 16,
+      "pct": 3.2,
+      "ci": [
+       2.0,
+       5.1
+      ]
+     },
+     "c18": {
+      "n": 66,
+      "pct": 13.1,
+      "ci": [
+       10.5,
+       16.4
+      ]
+     },
+     "c19": {
+      "n": 287,
+      "pct": 57.2,
+      "ci": [
+       52.8,
+       61.4
+      ]
+     },
+     "c20": {
+      "n": 101,
+      "pct": 20.1,
+      "ci": [
+       16.8,
+       23.8
+      ]
+     }
+    },
+    "Bridgend": {
+     "n": 371,
+     "le15": {
+      "n": 34,
+      "pct": 9.2,
+      "ci": [
+       6.6,
+       12.5
+      ]
+     },
+     "c16": {
+      "n": 15,
+      "pct": 4.0,
+      "ci": [
+       2.5,
+       6.6
+      ]
+     },
+     "c17": {
+      "n": 20,
+      "pct": 5.4,
+      "ci": [
+       3.5,
+       8.2
+      ]
+     },
+     "c18": {
+      "n": 46,
+      "pct": 12.4,
+      "ci": [
+       9.4,
+       16.1
+      ]
+     },
+     "c19": {
+      "n": 216,
+      "pct": 58.2,
+      "ci": [
+       53.1,
+       63.1
+      ]
+     },
+     "c20": {
+      "n": 40,
+      "pct": 10.8,
+      "ci": [
+       8.0,
+       14.3
+      ]
+     }
+    },
+    "Merthyr Tydfil": {
+     "n": 210,
+     "le15": {
+      "n": 1,
+      "pct": 0.5,
+      "ci": [
+       0.1,
+       2.6
+      ]
+     },
+     "c16": {
+      "n": 1,
+      "pct": 0.5,
+      "ci": [
+       0.1,
+       2.6
+      ]
+     },
+     "c17": {
+      "n": 5,
+      "pct": 2.4,
+      "ci": [
+       1.0,
+       5.5
+      ]
+     },
+     "c18": {
+      "n": 15,
+      "pct": 7.1,
+      "ci": [
+       4.4,
+       11.4
+      ]
+     },
+     "c19": {
+      "n": 147,
+      "pct": 70.0,
+      "ci": [
+       63.5,
+       75.8
+      ]
+     },
+     "c20": {
+      "n": 41,
+      "pct": 19.5,
+      "ci": [
+       14.7,
+       25.4
+      ]
+     }
+    },
+    "Cardiff": {
+     "n": 846,
+     "le15": {
+      "n": 31,
+      "pct": 3.7,
+      "ci": [
+       2.6,
+       5.2
+      ]
+     },
+     "c16": {
+      "n": 16,
+      "pct": 1.9,
+      "ci": [
+       1.2,
+       3.1
+      ]
+     },
+     "c17": {
+      "n": 21,
+      "pct": 2.5,
+      "ci": [
+       1.6,
+       3.8
+      ]
+     },
+     "c18": {
+      "n": 65,
+      "pct": 7.7,
+      "ci": [
+       6.1,
+       9.7
+      ]
+     },
+     "c19": {
+      "n": 569,
+      "pct": 67.3,
+      "ci": [
+       64.0,
+       70.3
+      ]
+     },
+     "c20": {
+      "n": 144,
+      "pct": 17.0,
+      "ci": [
+       14.6,
+       19.7
+      ]
+     }
+    }
+   },
+   "coverage_pct": 100.0
+  },
+  "Northern Ireland": {
+   "n_sampled": 9198,
+   "n_text": 9198,
+   "n_dated": 5827,
+   "dated_pct": 63.4,
+   "dist": {
+    "n": 5827,
+    "le15": {
+     "n": 0,
+     "pct": 0.0,
+     "ci": [
+      0.0,
+      0.1
+     ]
+    },
+    "c16": {
+     "n": 6,
+     "pct": 0.1,
+     "ci": [
+      0.0,
+      0.2
+     ]
+    },
+    "c17": {
+     "n": 60,
+     "pct": 1.0,
+     "ci": [
+      0.8,
+      1.3
+     ]
+    },
+    "c18": {
+     "n": 549,
+     "pct": 9.4,
+     "ci": [
+      8.7,
+      10.2
+     ]
+    },
+    "c19": {
+     "n": 4282,
+     "pct": 73.5,
+     "ci": [
+      72.3,
+      74.6
+     ]
+    },
+    "c20": {
+     "n": 930,
+     "pct": 16.0,
+     "ci": [
+      15.0,
+      16.9
+     ]
+    }
+   },
+   "bands": {
+    "1860 - 1879": 1143,
+    "1840 - 1859": 1061,
+    "1820 - 1839": 937,
+    "1880 - 1899": 788,
+    "1900 - 1919": 473,
+    "1800 - 1819": 339,
+    "1920 - 1939": 298,
+    "1780 - 1799": 254,
+    "1760 - 1779": 139,
+    "1940 - 1959": 113,
+    "1740 - 1759": 78,
+    "1720 - 1739": 55,
+    "1650 - 1699": 46,
+    "1960 - 1979": 40,
+    "1700 - 1719": 23,
+    "1600 - 1649": 14,
+    "Pre 1600": 6,
+    "1980 - 1999": 4,
+    "1820-1839": 4,
+    "1860-1879": 3,
+    "1820 - 1939": 2,
+    "1900-1919": 2,
+    "1820 - 1829": 1,
+    "1880-1899": 1,
+    "1800-1819": 1,
+    "1880 - 1889": 1,
+    "1860 - 1870": 1
+   }
+  }
+ },
+ "oldest": {
+  "England_sample": [
+   {
+    "name": "CHURCH OF ST MARY",
+    "year": 950,
+    "match": "C10",
+    "county": "Oxfordshire",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1053559",
+    "id": "1053559"
+   },
+   {
+    "name": "CHURCH OF ST CUTHBERT",
+    "year": 950,
+    "match": "C10",
+    "county": "Stockton-on-Tees",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1139241",
+    "id": "1139241"
+   },
+   {
+    "name": "REMAINS OF SAXON CROSS IN GRAVEYARD OF CHURCH OF ST THOMAS THE APOSTLE",
+    "year": 1000,
+    "match": "saxon",
+    "county": "Stockport",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1260261",
+    "id": "1260261"
+   },
+   {
+    "name": "CHURCH OF THE HOLY CROSS",
+    "year": 1000,
+    "match": "saxon",
+    "county": "Kent",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1086253",
+    "id": "1086253"
+   },
+   {
+    "name": "GRANITE TROUGH AND RECESS IN SOUTH WALL OF CHURCH STYLE GARDEN ABOUT 27 METRES SOUTH OF TROUGH LANE",
+    "year": 1000,
+    "match": "anglo-saxon",
+    "county": "Devon",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1165637",
+    "id": "1165637"
+   },
+   {
+    "name": "CHURCH OF SAINT BARTHOLOMEW",
+    "year": 1050,
+    "match": "C11",
+    "county": "East Riding of Yorkshire",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1083529",
+    "id": "1083529"
+   },
+   {
+    "name": "PRIORS DEAN CHURCH",
+    "year": 1050,
+    "match": "C11",
+    "county": "Hampshire",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1237077",
+    "id": "1237077"
+   },
+   {
+    "name": "CHURCH OF ST NICHOLS",
+    "year": 1050,
+    "match": "C11",
+    "county": "Lincolnshire",
+    "nation": "England",
+    "url": "https://historicengland.org.uk/listing/the-list/list-entry/1359766",
+    "id": "1359766"
+   }
+  ],
+  "Wales": [
+   {
+    "name": "Church of St Beuno",
+    "year": 615,
+    "match": "early C7",
+    "county": "Gwynedd",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=4374",
+    "id": "4374"
+   },
+   {
+    "name": "Church of St Cynhafal",
+    "year": 650,
+    "match": "C7",
+    "county": "Denbighshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=786",
+    "id": "786"
+   },
+   {
+    "name": "Church of St Melyd",
+    "year": 650,
+    "match": "C7",
+    "county": "Denbighshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=1424",
+    "id": "1424"
+   },
+   {
+    "name": "Parish Church of St Peter",
+    "year": 650,
+    "match": "C7",
+    "county": "Monmouthshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=1980",
+    "id": "1980"
+   },
+   {
+    "name": "Church of St.Cadwaladr",
+    "year": 650,
+    "match": "C7",
+    "county": "Isle of Anglesey",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=5505",
+    "id": "5505"
+   },
+   {
+    "name": "Church of St David at Llanthony Priory",
+    "year": 750,
+    "match": "C8",
+    "county": "Monmouthshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=1938",
+    "id": "1938"
+   },
+   {
+    "name": "Church of St. Jeffrey and St. Oswald",
+    "year": 750,
+    "match": "C8",
+    "county": "Pembrokeshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=6052",
+    "id": "6052"
+   },
+   {
+    "name": "St John's Priory Precinct Wall or Nun's Walk",
+    "year": 750,
+    "match": "C8",
+    "county": "Carmarthenshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=9508",
+    "id": "9508"
+   },
+   {
+    "name": "Section of wall at SW corner of Parc Hinds",
+    "year": 750,
+    "match": "C8",
+    "county": "Carmarthenshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=9509",
+    "id": "9509"
+   },
+   {
+    "name": "Church of St Dogfan",
+    "year": 850,
+    "match": "C9",
+    "county": "Powys",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=636",
+    "id": "636"
+   },
+   {
+    "name": "Churchyard Cross",
+    "year": 850,
+    "match": "C9",
+    "county": "Denbighshire",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=667",
+    "id": "667"
+   },
+   {
+    "name": "Church of St. Garmon",
+    "year": 850,
+    "match": "C9",
+    "county": "Powys",
+    "nation": "Wales",
+    "url": "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=7625",
+    "id": "7625"
+   }
+  ],
+  "Scotland_sample": [
+   {
+    "name": "Old Churchyard, Tillicoultry House, Tillicoultry (excluding Scheduled Hog-Backed Stone, Scheduled Monument No 2328)",
+    "year": 1150,
+    "match": "12th centur",
+    "county": "Clackmannanshire",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB42056",
+    "id": "LB42056"
+   },
+   {
+    "name": "Inverquiech Castle",
+    "year": 1250,
+    "match": "13th centur",
+    "county": "Perth and Kinross",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB4363",
+    "id": "LB4363"
+   },
+   {
+    "name": "Dornoch Cathedral",
+    "year": 1250,
+    "match": "13th centur",
+    "county": "Highland",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB24632",
+    "id": "LB24632"
+   },
+   {
+    "name": "Drum Castle",
+    "year": 1280,
+    "match": "c 1280",
+    "county": "Aberdeenshire",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB3113",
+    "id": "LB3113"
+   },
+   {
+    "name": "CANISBAY PARISH CHURCH, KIRKSTYLE AND BURIAL GROUND. (ST DROSTAN'S CHURCH OF SCOTLAND",
+    "year": 1350,
+    "match": "medieval",
+    "county": "Highland",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB1795",
+    "id": "LB1795"
+   },
+   {
+    "name": "Craufurdland",
+    "year": 1350,
+    "match": "mediaeval",
+    "county": "East Ayrshire",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB12532",
+    "id": "LB12532"
+   },
+   {
+    "name": "Rutherglen Tower And Fragments Of Old Church, Rutherglen Old Parish Church, Main Street, Rutherglen, Glasgow",
+    "year": 1350,
+    "match": "medieval",
+    "county": "South Lanarkshire",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB33563",
+    "id": "LB33563"
+   },
+   {
+    "name": "Haddington House, 27 Sidegate Street, Haddington",
+    "year": 1350,
+    "match": "medieval",
+    "county": "East Lothian",
+    "nation": "Scotland",
+    "url": "https://portal.historicenvironment.scot/designation/LB34388",
+    "id": "LB34388"
+   }
+  ]
+ },
+ "wikidata": {
+  "n": 23851,
+  "by_nation": {
+   "England": 16075,
+   "Northern Ireland": 5746,
+   "Scotland": 1171,
+   "Wales": 859
+  },
+  "pct_of_all": 5.1,
+  "dist": {
+   "n": 23851,
+   "le15": {
+    "n": 4827,
+    "pct": 20.2,
+    "ci": [
+     19.7,
+     20.8
+    ]
+   },
+   "c16": {
+    "n": 249,
+    "pct": 1.0,
+    "ci": [
+     0.9,
+     1.2
+    ]
+   },
+   "c17": {
+    "n": 694,
+    "pct": 2.9,
+    "ci": [
+     2.7,
+     3.1
+    ]
+   },
+   "c18": {
+    "n": 2970,
+    "pct": 12.5,
+    "ci": [
+     12.0,
+     12.9
+    ]
+   },
+   "c19": {
+    "n": 11627,
+    "pct": 48.7,
+    "ci": [
+     48.1,
+     49.4
+    ]
+   },
+   "c20": {
+    "n": 3484,
+    "pct": 14.6,
+    "ci": [
+     14.2,
+     15.1
+    ]
+   }
+  },
+  "n_both": 1042,
+  "same_century_pct": 77.4,
+  "tier1_pct": 24.4
+ },
+ "oldest_by_county_n": 218,
+ "n_built_dated": 59000,
+ "built_dated_by_source": {
+  "Wikidata": 17026,
+  "HE list entry text (sample)": 4895,
+  "HES list description (sample)": 1842,
+  "Cadw full report": 29410,
+  "NI Historic Buildings Record": 5827
+ },
+ "date_check": {
+  "England": {
+   "n": 60,
+   "unsure": 2,
+   "wrong": 2,
+   "right": 56
+  },
+  "Scotland": {
+   "n": 30,
+   "unsure": 0,
+   "wrong": 0,
+   "right": 30
+  },
+  "Wales": {
+   "n": 30,
+   "unsure": 1,
+   "wrong": 1,
+   "right": 28
+  },
+  "all": {
+   "n": 120,
+   "unsure": 3,
+   "wrong": 3,
+   "right": 114,
+   "right_pct": 97.4
+  }
+ }
+}
