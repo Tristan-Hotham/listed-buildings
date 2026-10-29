@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Listed Kingdom</title>
+<meta name="description" content="Every listed building in the United Kingdom on one map: 465,740 list entries from Historic England, Cadw, Historic Environment Scotland and Northern Ireland's Historic Buildings Record, by grade, type, when they were listed and, where the record says, when they were built.">
+<meta property="og:title" content="The Listed Kingdom: every listed building in the UK">
+<meta property="og:description" content="465,740 listed buildings across England, Scotland, Wales and Northern Ireland, mapped by grade, type, date of listing and date of building.">
+<meta property="og:image" content="https://maps.tristanhotham.com/listed-buildings/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/listed-buildings/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+/* Limestone, slate and the red of a listing notice. */
+:root{
+  --bg:#F5F1E8; --panel:#ECE5D7; --fg:#22201D; --muted:#6A635A; --rule:#DED5C4; --card:#FCFAF5; --border:#CFC4B0;
+  --red:#A3261E; --ochre:#C8860F; --slate:#46677D; --sea:#E4E7E6; --nodata:#E6E0D5;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#191816; --panel:#24221F; --fg:#EFEAE1; --muted:#ABA397; --rule:#37332E; --card:#201E1B; --border:#4A443C;
+  --red:#E9675C; --ochre:#E8AC45; --slate:#8FB2C9; --sea:#1B1F21; --nodata:#2C2925; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#191816; --panel:#24221F; --fg:#EFEAE1; --muted:#ABA397; --rule:#37332E; --card:#201E1B; --border:#4A443C;
+  --red:#E9675C; --ochre:#E8AC45; --slate:#8FB2C9; --sea:#1B1F21; --nodata:#2C2925; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:690px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1140px,calc(100vw - 32px));margin-left:calc((100% - min(1140px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--red);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--red);color:#fff;padding:5px 8px;font-weight:500}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(44px,11vw,92px)/.92 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--red)}
+.mark{width:clamp(78px,16vw,124px);height:auto;display:block;color:var(--fg)}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:52ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.06 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--red);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--red)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(25px,5.4vw,36px)/1 var(--display);color:var(--fg)}
+.stats b.r{color:var(--red)} .stats b.o{color:var(--ochre)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:280px;z-index:1000;transform:translate(-50%,calc(-100% - 12px));display:none}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 10px}
+.controls label.l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;white-space:nowrap}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px;white-space:nowrap}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:3px;overflow:hidden;max-width:100%;flex:0 0 auto}
+.seg .btn{border:0;border-radius:0;border-right:1px solid var(--border)}
+.seg .btn:last-child{border-right:0}
+select{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 8px;min-height:36px;max-width:100%}
+.chk{font:500 12px/1 var(--mono);display:inline-flex;gap:6px;align-items:center;white-space:nowrap;cursor:pointer}
+.searchbox{position:relative;flex:1 1 240px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+@media (max-width:700px){
+  .controls.scroll{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:thin}
+  .controls.scroll::-webkit-scrollbar{height:4px}
+  .controls.scroll::-webkit-scrollbar-thumb{background:var(--border)}
+}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+#lmap{height:780px;border:1px solid var(--border);background:var(--sea);border-radius:2px}
+@media (max-width:900px){#lmap{height:640px}}
+@media (max-width:700px){#lmap{height:min(62vh,520px)}}
+.leaflet-container{font:400 12px/1.4 var(--mono);background:var(--sea)}
+.leaflet-bar a,.leaflet-bar a:hover{background:var(--card);color:var(--fg);border-bottom-color:var(--border)}
+.leaflet-control-attribution{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted)}
+.leaflet-control-attribution a{color:var(--fg)}
+@media (max-width:600px){.leaflet-control-attribution{font-size:10px;line-height:1.25}}
+.leaflet-tooltip{font:400 12px/1.4 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border)}
+.city{font:500 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.city.r1{font-size:10.5px;font-weight:400}.city.r0{font-size:10px;font-weight:400;opacity:.92}
+.city i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:4px;vertical-align:1px}
+.city.r0 i,.city.r1 i{width:4px;height:4px}
+.lyrBtn{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:240px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:calc(100% - 50px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;align-items:center;margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel input[type=range]{width:100%;accent-color:var(--fg)}
+.lyrPanel select{font:400 12px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--border);border-radius:2px;padding:2px 4px;width:100%;min-height:0}
+.lyrPanel .sub{grid-column:1/-1;display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px}
+.lyrPanel .sub span{flex:0 0 52px}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.pin{width:20px;height:20px;border:3px solid var(--fg);border-radius:50%;background:transparent;box-shadow:0 0 0 2px var(--bg)}
+.sel{width:16px;height:16px;border:2.5px solid var(--red);border-radius:50%;background:transparent;box-shadow:0 0 0 2px #fff}
+.zoomhint{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:800;font:500 11px/1.2 var(--mono);max-width:88%;text-align:center;white-space:normal!important;background:color-mix(in srgb,var(--card) 90%,transparent);border:1px solid var(--border);padding:5px 8px;border-radius:3px;pointer-events:none;white-space:nowrap}
+.side{background:var(--card);border:1px solid var(--border);padding:14px 14px 10px}
+.side h4{font:500 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+#legend{margin:4px 0 8px;font:400 12px/1.35 var(--mono)}
+#legend .it{display:flex;gap:7px;align-items:center;margin:3px 0;cursor:default}
+#legend .it i{width:11px;height:11px;border-radius:50%;flex:0 0 auto;border:1px solid rgba(0,0,0,.15)}
+#legend .it small{color:var(--muted);margin-left:auto;padding-left:6px}
+.lg{display:flex;height:14px;border:1px solid var(--border)}
+.lg span{flex:1}
+.lgt{font:500 12.5px/1.35 var(--mono);margin:0 0 6px}
+.lgl{display:flex;justify-content:space-between;font:400 11px/1.3 var(--mono);color:var(--muted);margin-top:3px}
+#info{font:400 12.5px/1.45 var(--mono);min-height:120px;border-top:1px solid var(--rule);padding-top:8px;margin-top:8px}
+#info b{font-weight:500}
+#info .nm{font:600 16px/1.25 var(--display);margin:2px 0 4px}
+#info table{border-collapse:collapse;width:100%;margin-top:4px}
+#info td{padding:1px 0;font-size:11.5px;vertical-align:top}
+#info td.k{color:var(--muted);width:42%}
+#info a{text-decoration-color:var(--red)}
+.sw{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:6px;border:1px solid var(--border)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+@media (max-width:600px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-left:10px solid var(--red);padding:12px 14px;font:400 13px/1.5 var(--mono);cursor:pointer}
+.card b{font:600 19px/1.2 var(--display);display:block;margin-bottom:2px}
+.card .big{font:900 28px/1.05 var(--display);margin:6px 0 4px}
+.card .big span{color:var(--muted);font:400 13px/1 var(--mono)}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--ochre);padding:4px 0 4px 18px;margin:30px 0}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+table.t{width:100%;border-collapse:collapse;font:400 13px/1.35 var(--mono)}
+table.t th{text-align:left;font-weight:500;color:var(--muted);border-bottom:2px solid var(--fg);padding:6px 8px 6px 0}
+table.t td{border-bottom:1px solid var(--rule);padding:7px 8px 7px 0;vertical-align:top}
+table.t td.num,table.t th.num{text-align:right;white-space:nowrap}
+.tablewrap{overflow-x:auto}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--red);border-color:var(--red);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+.loading{font:400 12px/1.4 var(--mono);color:var(--muted)}
+@media print{.theme,.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>Buildings</span><span>United Kingdom, 2026</span></div>
+<header class="hero">
+  <h1>The Listed <span class="a">Kingdom</span></h1>
+  <svg class="mark" viewBox="0 0 120 120" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+      <path d="M14 104 H106"/><path d="M22 104 V58 L60 26 L98 58 V104"/><path d="M48 104 V76 H72 V104"/>
+      <path d="M60 26 V12"/><path d="M53 17 H67"/>
+    </g>
+    <circle cx="60" cy="58" r="8" fill="#A3261E"/>
+  </svg>
+  <p class="dek">Every listed building in the United Kingdom on one map: 465,740 entries on the four national lists, from cathedrals and castles to telephone boxes and milestones. Where are they thickest? What gets listed? When were they built, and when did someone decide they were worth keeping?</p>
+</header>
+<div class="byline">Dr Tristan Hotham, Independent researcher · 2026 · Data: Historic England, Cadw, Historic Environment Scotland and the Department for Communities (Northern Ireland), all Open Government Licence v3.0</div>
+
+<div class="stats">
+  <div><b>465,740</b><span>list entries across the UK, about 6.7 for every 1,000 people</span></div>
+  <div><b class="r">9.5</b><span>per 1,000 people in Wales, against 6.5 in England, 8.4 in Scotland and 4.8 in Northern Ireland</span></div>
+  <div><b class="o">54%</b><span>of England's Grade I entries are churches and chapels</span></div>
+  <div><b>33%</b><span>of a random sample of England's entries were built in the 1800s; 31% in the 1700s</span></div>
+</div>
+
+<p class="lede">Somebody decided each of these was worth keeping. Since the late 1940s the four nations of the UK have kept lists of buildings of special architectural or historic interest, and a listed building cannot be demolished or much altered without consent. Each list is published as open data: Historic England's National Heritage List, Cadw's list for Wales, Historic Environment Scotland's list and Northern Ireland's Historic Buildings Record. Put together they hold 465,740 entries.</p>
+<p>An entry is not always one building. A single entry can be a whole terrace, a church, a farmhouse with its barn, a gravestone or a milestone. And the four lists were made by different people with different rules, so a Grade II building in Kent and a category B building in Fife are not quite the same thing. With those cautions, here they all are.</p>
+
+<h2><span class="n">01 · The map</span>Every listed building</h2>
+<div class="figure bleed">
+  <div class="controls scroll">
+    <label class="l">Colour by</label>
+    <div class="seg" role="group" aria-label="Colour by" id="modeBtns"><button class="btn" data-m="grade" aria-pressed="true">Grade</button><button class="btn" data-m="type" aria-pressed="false">Type</button><button class="btn" data-m="built" aria-pressed="false">Built</button><button class="btn" data-m="listed" aria-pressed="false">Year listed</button><button class="btn" data-m="county" aria-pressed="false">Per head</button></div>
+  </div>
+  <div class="controls scroll">
+    <label class="l">Show</label>
+    <select id="typeSel" aria-label="Type of building"></select>
+    <label class="chk"><input type="checkbox" id="topOnly"> Top grade only</label>
+    <label class="chk" id="datedWrap"><input type="checkbox" id="datedOnly"> Dated only</label>
+  </div>
+  <div class="controls">
+    <div class="searchbox">
+      <input type="search" id="q" placeholder="Find a town, village or postcode" aria-label="Find a place or postcode" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="sug">
+      <ul class="suggest" id="sug" role="listbox"></ul>
+    </div>
+    <span class="loading" id="loadMsg">Loading the map…</span>
+  </div>
+  <div class="mapgrid">
+    <div style="position:relative"><div id="lmap" role="region" aria-label="Map of every listed building in the UK"></div><div class="zoomhint" id="zoomhint">Zoom in or search a place to pick out single buildings</div></div>
+    <div class="side">
+      <h4>Key</h4>
+      <div id="legend"></div>
+      <div id="info">Tap or click a dot to read its entry. Search a place to see what is listed near it.</div>
+    </div>
+  </div>
+  <div class="src">Lists retrieved 2026-10-29. Each dot is one list entry at the point the list gives. "Built" colours only entries with a date: every entry in Wales (from Cadw's descriptions) and Northern Ireland (from the record), the random samples from England and Scotland, and items dated in Wikidata; the rest are faint grey. Map layers (top right) adds hills, roads, borders and place names.</div>
+</div>
+
+<p>Zoomed out, the map is a portrait of where the country was busy before the twentieth century: thick across lowland England, in the old towns and along the valleys, thin on the uplands and in places that grew up later. Zoom in and each town resolves into its streets: a market place ringed with dots, a church with its churchyard tombs, a farmhouse with its barns. Switch to "Per head" to see counties by entries per 1,000 residents, or to "Built" to see Wales and Northern Ireland, where every entry has a date, by century.</p>
+
+<h2><span class="n">02 · Where</span>Most listed per head</h2>
+<p>Wales has the most list entries per person of the four nations (9.5 per 1,000 people), then Scotland (8.4), England (6.5) and Northern Ireland (4.8). Among the 218 counties and unitary authorities, the Isles of Scilly lead with 56.5 entries per 1,000 residents and the City of London follows (43.5); both have very few residents. Among places with more people, rural Wales and the English Marches stand out: Powys (40.7), Gwynedd (34.8), Rutland (33.9) and Herefordshire (30.8). The fewest per head, among places of 100,000 people or more, are in Barking and Dagenham (0.18), Newham and Brent: outer London and towns that grew mostly in the twentieth century.</p>
+<div class="figure">
+  <div class="fig-h">Listed entries per 1,000 residents</div>
+  <div class="fig-sub">The twelve counties and unitary authorities with most per head, and the ten with fewest among those of 100,000 people or more. Populations: ONS, NRS and NISRA mid-2025 estimates.</div>
+  <div class="chart" id="ctyChart"></div>
+</div>
+<p>By sheer number, Devon has most (19,176), then Kent (17,341) and Essex (14,002). London's 33 boroughs hold 19,371 between them, 2.1 per 1,000 Londoners; Westminster alone has 3,788.</p>
+<p>Towns tell the same story at a finer grain. Among the 890 built-up areas in England and Wales with 10,000 or more residents, the most listed per head is Ludlow (40.7 per 1,000 people), followed by Sherborne, Whitby and Monmouth: small old market, port and cathedral towns. Among villages and small towns of 1,000 to 10,000 people the counts go higher still: Aberaeron has 194.0 entries per 1,000 residents and Beaumaris 143.3. Among towns of 50,000 or more, Bath leads (23.7), and Barking and Dagenham has the fewest (0.17).</p>
+<div class="figure">
+  <div class="fig-h">Towns with most listed entries per head</div>
+  <div class="fig-sub">Built-up areas (ONS 2022) in England and Wales with 10,000 or more residents (Census 2021). Each entry is counted in the built-up area its point falls in.</div>
+  <div class="controls"><div class="seg" role="group" aria-label="Town size" id="townBtns"><button class="btn" data-t="10" aria-pressed="true">10,000+ people</button><button class="btn" data-t="50" aria-pressed="false">50,000+ people</button></div></div>
+  <div class="chart" id="townChart"></div>
+</div>
+
+<h2><span class="n">03 · What</span>Houses, barns and a great many churches</h2>
+<p>The lists do not have a shared "type" field, so I read each entry's name with a set of open keyword rules (a "Barn at Lot Farm" is a barn; "The Bull Public House" is a pub). The rules give a type to 31.4% houses and cottages, 6.8% barns and farm buildings, 6.2% walls, gates and railings and 6.7% churches and chapels. A further 17.7% are numbered street buildings whose name is just an address, and 8.6% have names that do not say what they are ("The Laurels").</p>
+<div class="figure">
+  <div class="fig-h">What is on each list</div>
+  <div class="fig-sub">Share of list entries by type, read from their names. Click a type to show it on the map.</div>
+  <div class="chart" id="typeChart"></div>
+</div>
+<p>The top grade is a different world. Of England's 9,341 Grade I entries, 54% are churches and chapels; in Wales 39% of Grade I entries are. Parish churches are the backbone of the top grade, and in England's sample 31% of listed churches have a first date before 1500. Wales's Grade I is also 17% castles and defences. Scotland's category A (7.5% of its list) is led by houses (25%), with churches only 12%.</p>
+<div class="pull">There are 2,626 listed telephone kiosks, 4,860 listed milestones and mileposts, and 4,874 listed war memorials.</div>
+<p>The grades are not used alike. England gives Grade I to 2.5% of entries and Grade II* to 5.8%; Wales gives Grade I to 1.6%. Scotland's three categories are spread differently: A 7.5%, B 49.6%, C 42.9%. Northern Ireland uses A, B+, B1 and B2; A is 2.4%.</p>
+<div class="figure">
+  <div class="fig-h">How each nation grades</div>
+  <div class="fig-sub">Share of list entries in each grade or category.</div>
+  <div class="chart" id="gradeChart"></div>
+</div>
+
+<h2><span class="n">04 · When built</span>Georgian, Victorian and older</h2>
+<p>None of the four open datasets has a "date built" field except Northern Ireland's. The date is in the words: each entry has a written description that usually starts with it ("Farmhouse. Late C17." or "1845, by Robert Dodds"). I read every one of Wales's 30,110 Cadw descriptions, a random sample of 5,000 of England's entries and 2,000 of Scotland's, and took the first date each one gives. Rules found a date in 98% of England's sampled descriptions, 96% of Scotland's and 98% of Wales's.</p>
+<div class="figure">
+  <div class="fig-h">When listed buildings were built</div>
+  <div class="fig-sub">Share of dated entries by century of the first date in their description. England and Scotland: random samples, with 95% intervals. Wales: every entry. Northern Ireland: the record's date band.</div>
+  <div class="chart" id="centChart"></div>
+</div>
+<p>The listed UK is mostly Georgian and Victorian. In England's sample, 31% of dated entries were built in the 1700s and 33% in the 1800s; 18% in the 1600s and 6% before 1500. England's list is the oldest of the four. Wales has a similar share from before 1500 (6%) but far more from the 1800s (56%); Scotland is younger again (65% from the 1800s) and Northern Ireland's record youngest of all (74%).</p>
+<p>Inside England the difference is east and west, old and new. The East of England has the oldest listed buildings: 10% from before 1500 and 14% from the 1500s. London's are the youngest, 56% from the 1800s, and the North West's next (46%).</p>
+<div class="figure">
+  <div class="fig-h">England's regions: the 1700s against the 1800s</div>
+  <div class="fig-sub">Share of each region's sampled, dated entries built in each century. Regions with the sample size shown.</div>
+  <div class="chart" id="regChart"></div>
+  <div class="src">About 4,895 dated entries in all, so each region rests on a few hundred; 95% intervals are about plus or minus 3 to 7 points.</div>
+</div>
+<p>A warning about the very oldest dates. The first date in a description is usually the build date, but for old churches it is often the date of the site: Welsh descriptions open with a saint's foundation in the 600s, or a Roman camp, before saying that the present church is medieval. I skip a first date whose sentence speaks of a foundation or a site when a later date follows, but some remain, so I do not crown an "oldest listed building" from these rules. In England's sample the earliest dates belong to churches with fabric from before the Norman Conquest, such as St Mary's at Bampton in Oxfordshire (C10). For the oldest buildings still standing, see my earlier study <a href="https://maps.tristanhotham.com/oldest-buildings/">Still Standing</a>, which maps every building in Wikidata dated before 1100.</p>
+
+<h2><span class="n">05 · When listed</span>Waves of listing</h2>
+<p>Listing has come in waves. In England, 23% of today's entries were first listed before 1970, 47% in the 1980s, when the lists were resurveyed parish by parish, and 4% since 2000. The busiest single year was 1987, with 34,953 entries. Scotland's busiest year was 1971 and Wales's 1998; 24% of Wales's entries were listed since 2000.</p>
+<p>The newest listings tell their own story. Of the 5,682 entries England has listed since 2015, 2,889 are war memorials, more than half, as the centenary of the First World War prompted a push to protect them.</p>
+<div class="figure">
+  <div class="fig-h">Entries on today's lists, by the year they were first listed</div>
+  <div class="fig-sub">Entries per year. Buildings listed and later removed are not on today's lists, so the early years are undercounted. Northern Ireland's open data has no listing date.</div>
+  <div class="controls"><div class="seg" role="group" aria-label="Nation" id="lyBtns"><button class="btn" data-n="England" aria-pressed="true">England</button><button class="btn" data-n="Scotland" aria-pressed="false">Scotland</button><button class="btn" data-n="Wales" aria-pressed="false">Wales</button></div></div>
+  <div class="chart" id="lyChart"></div>
+</div>
+
+<div class="note" id="method">
+  <h3>How I did this</h3>
+  <p><b>Lists.</b> Historic England's National Heritage List for England (listed building points, 379,683 entries), Historic Environment Scotland's listed buildings (46,749), Cadw's listed buildings for Wales (30,110) and the Department for Communities' Historic Buildings Record for Northern Ireland, keeping only listed grades A, B+, B1, B2 and B (9,198; 6,683 "record only" and delisted entries are left out). All were read from the publishers' own open data services on 2026-10-29.</p>
+  <p><b>Types.</b> Keyword rules in <code>code/rules.py</code> read each entry's name: the head of the name (before "at", "to", "of" or a comma) is searched for words like barn, church, kiosk or bridge, and the last such word wins, since English names end in their head noun. Northern Ireland's record gives a use, which the same rules read. As a check, Wales's list has its own broad class for each entry: where the rules gave a type, it was consistent with Cadw's class in 71% of 18,631 entries (77% leaving out walls and gates, which Cadw often files under the house they belong to). Read the types as a good guide, not a census.</p>
+  <p><b>Dates.</b> I read the description of every entry in Wales, a seeded random sample of entries in England and Scotland, and took the first date each description gives: a year ("1845", "c1800") or a century ("Late C17", "18th century"). A century alone is placed in its middle; "early" and "late" move it by 35 years. Where no number appears, a period word (Georgian, Victorian, medieval) is used and flagged. The first date is normally the date of the main build; older parts often come later in the text, so these dates lean young for buildings with long histories. The text is not republished, only the date and the words it came from. To test the rules I read 120 random descriptions (60 from England, 30 each from Scotland and Wales, as part of the AI-assisted analysis): of those that could be judged, the rules put 97.4% in the right century (3 wrong), and two of the three errors were then fixed in the rules. Wikidata's inception dates (23,851 entries) fill in some others on the map, marked as such; they lean towards old and famous buildings.</p>
+  <p><b>People and places.</b> Counties and unitary authorities: ONS December 2023 boundaries and mid-2025 estimates (with NRS and NISRA). Towns: ONS built-up areas (2022) and Census 2021 residents. England's regions: each entry takes the region of its nearest census area.</p>
+  <p><b>Limits.</b> An entry can cover one milestone or a whole terrace, so counts are of entries, not buildings. Grades differ between nations. Buildings demolished or delisted are gone from today's lists, so the listing waves are of survivors. A few points are placed at a grid reference rather than on the building.</p>
+</div>
+<div class="cta">
+  <a class="p" href="https://github.com/Tristan-Hotham/listed-buildings">Data and code</a>
+  <a href="https://doi.org/10.5281/zenodo.23761429">Paper (Zenodo)</a>
+  <a href="https://blog.tristanhotham.com/2026/10/29/listed-buildings/">Blog post</a>
+  <a href="https://maps.tristanhotham.com/oldest-buildings/">Still Standing: the oldest buildings</a>
+</div>
+<footer>
+  <p>Dr Tristan Hotham, Independent researcher. ORCID 0000-0003-4931-9349. Cite as: Hotham, T. (2026) The Listed Kingdom: every listed building in the UK by grade, type, date of listing and date of building. https://doi.org/10.5281/zenodo.23761429</p>
+  <p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+  <p>Listed buildings: contains Historic England data © Historic England 2026, National Heritage List for England; Historic Environment Scotland; Cadw; Department for Communities, Historic Environment Division (via OpenDataNI); all Open Government Licence v3.0. Dates read from the publishers' list descriptions (sample). Wikidata (CC0). Boundaries and populations: ONS Open Geography Portal and mid-year estimates, NRS, NISRA (OGL v3.0); contains OS data © Crown copyright and database right. Place names: OS Open Names (OGL v3.0) and GeoNames (CC BY 4.0). Postcode look-ups: postcodes.io. Map tiles: Esri. Map library: Leaflet.</p>
+  <p>Data files: Open Government Licence v3.0. Text and figures: CC BY 4.0. Code: MIT. More data studies on the <a href="https://blog.tristanhotham.com/">blog</a>, including <a href="https://maps.tristanhotham.com/oldest-buildings/">the oldest buildings still standing</a>.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const R = {"nations":{"England":{"n":379683,"pop":58834812,"per_1000":6.45,"grades":{"II":{"n":348215,"pct":91.7},"II*":{"n":22127,"pct":5.8},"I":{"n":9341,"pct":2.5}},"top_grade":"I","top_n":9341,"top_pct":2.5,"mid_grade":"II*","mid_n":22127,"mid_pct":5.8},"Scotland":{"n":46749,"pop":5545500,"per_1000":8.43,"grades":{"B":{"n":23194,"pct":49.6},"C":{"n":20048,"pct":42.9},"A":{"n":3507,"pct":7.5}},"top_grade":"A","top_n":3507,"top_pct":7.5,"mid_grade":"B","mid_n":23194,"mid_pct":49.6},"Wales":{"n":30110,"pop":3175181,"per_1000":9.48,"grades":{"II":{"n":27473,"pct":91.2},"II*":{"n":2142,"pct":7.1},"I":{"n":494,"pct":1.6},"null":{"n":1,"pct":0.0}},"top_grade":"I","top_n":494,"top_pct":1.6,"mid_grade":"II*","mid_n":2142,"mid_pct":7.1},"Northern Ireland":{"n":9198,"pop":1928446,"per_1000":4.77,"grades":{"B2":{"n":3843,"pct":41.8},"B1":{"n":3435,"pct":37.3},"B":{"n":1017,"pct":11.1},"B+":{"n":679,"pct":7.4},"A":{"n":224,"pct":2.4}},"top_grade":"A","top_n":224,"top_pct":2.4,"mid_grade":"B+","mid_n":679,"mid_pct":7.4}},"types":{"England":{"church":{"n":24602,"pct":6.5},"monument":{"n":16741,"pct":4.4},"war_memorial":{"n":4390,"pct":1.2},"house":{"n":123567,"pct":32.5},"farm":{"n":27172,"pct":7.2},"pub":{"n":10175,"pct":2.7},"commercial":{"n":3887,"pct":1.0},"transport":{"n":15720,"pct":4.1},"wall":{"n":22661,"pct":6.0},"street":{"n":6685,"pct":1.8},"industrial":{"n":7387,"pct":1.9},"civic":{"n":9230,"pct":2.4},"garden":{"n":5874,"pct":1.5},"defence":{"n":2211,"pct":0.6},"address":{"n":67098,"pct":17.7},"other":{"n":32283,"pct":8.5}},"Scotland":{"church":{"n":3442,"pct":7.4},"monument":{"n":777,"pct":1.7},"war_memorial":{"n":244,"pct":0.5},"house":{"n":11887,"pct":25.4},"farm":{"n":2005,"pct":4.3},"pub":{"n":1193,"pct":2.6},"commercial":{"n":1186,"pct":2.5},"transport":{"n":3529,"pct":7.5},"wall":{"n":3743,"pct":8.0},"street":{"n":409,"pct":0.9},"industrial":{"n":1233,"pct":2.6},"civic":{"n":2021,"pct":4.3},"garden":{"n":1312,"pct":2.8},"defence":{"n":922,"pct":2.0},"address":{"n":11593,"pct":24.8},"other":{"n":1253,"pct":2.7}},"Wales":{"church":{"n":2301,"pct":7.6},"monument":{"n":590,"pct":2.0},"war_memorial":{"n":239,"pct":0.8},"house":{"n":6275,"pct":20.8},"farm":{"n":2479,"pct":8.2},"pub":{"n":707,"pct":2.3},"commercial":{"n":513,"pct":1.7},"transport":{"n":2130,"pct":7.1},"wall":{"n":1885,"pct":6.3},"street":{"n":315,"pct":1.0},"industrial":{"n":777,"pct":2.6},"civic":{"n":791,"pct":2.6},"garden":{"n":554,"pct":1.8},"defence":{"n":336,"pct":1.1},"address":{"n":3554,"pct":11.8},"other":{"n":6664,"pct":22.1}},"Northern Ireland":{"church":{"n":987,"pct":10.7},"monument":{"n":168,"pct":1.8},"war_memorial":{"n":1,"pct":0.0},"house":{"n":4533,"pct":49.3},"farm":{"n":176,"pct":1.9},"pub":{"n":167,"pct":1.8},"commercial":{"n":1029,"pct":11.2},"transport":{"n":588,"pct":6.4},"wall":{"n":376,"pct":4.1},"street":{"n":218,"pct":2.4},"industrial":{"n":167,"pct":1.8},"civic":{"n":621,"pct":6.8},"garden":{"n":68,"pct":0.7},"defence":{"n":9,"pct":0.1},"address":{"n":20,"pct":0.2},"other":{"n":70,"pct":0.8}},"UK":{"church":{"n":31332,"pct":6.7},"monument":{"n":18276,"pct":3.9},"war_memorial":{"n":4874,"pct":1.0},"house":{"n":146262,"pct":31.4},"farm":{"n":31832,"pct":6.8},"pub":{"n":12242,"pct":2.6},"commercial":{"n":6615,"pct":1.4},"transport":{"n":21967,"pct":4.7},"wall":{"n":28665,"pct":6.2},"street":{"n":7627,"pct":1.6},"industrial":{"n":9564,"pct":2.1},"civic":{"n":12663,"pct":2.7},"garden":{"n":7808,"pct":1.7},"defence":{"n":3478,"pct":0.7},"address":{"n":82265,"pct":17.7},"other":{"n":40270,"pct":8.6}}},"type_labels":{"church":"Churches and chapels","monument":"Tombs, crosses and monuments","war_memorial":"War memorials","house":"Houses and cottages","farm":"Barns and farm buildings","pub":"Pubs, inns and hotels","commercial":"Shops, banks and offices","transport":"Bridges, roads, railways and canals","wall":"Walls, gates and railings","street":"Kiosks, post boxes, pumps and lamps","industrial":"Mills, works and industry","civic":"Schools, halls and public buildings","garden":"Garden and park structures","defence":"Castles and defences","other":"Named buildings (use not in name)","address":"Numbered street buildings (use not in name)"},"cent_keys":["le15","c16","c17","c18","c19","c20"],"cent_labels":{"le15":"Before 1500","c16":"1500s (16th century)","c17":"1600s (17th century)","c18":"1700s (18th century)","c19":"1800s (19th century)","c20":"1900 and later"},"dates":{"England":{"n_dated":4895,"dist":{"n":4895,"le15":{"n":282,"pct":5.8,"ci":[5.1,6.4]},"c16":{"n":323,"pct":6.6,"ci":[5.9,7.3]},"c17":{"n":865,"pct":17.7,"ci":[16.6,18.8]},"c18":{"n":1510,"pct":30.8,"ci":[29.6,32.2]},"c19":{"n":1596,"pct":32.6,"ci":[31.3,33.9]},"c20":{"n":319,"pct":6.5,"ci":[5.9,7.2]}},"by_region":{"South East":{"n":976,"le15":{"n":70,"pct":7.2,"ci":[5.7,9.0]},"c16":{"n":93,"pct":9.5,"ci":[7.8,11.5]},"c17":{"n":197,"pct":20.2,"ci":[17.8,22.8]},"c18":{"n":310,"pct":31.8,"ci":[28.9,34.7]},"c19":{"n":247,"pct":25.3,"ci":[22.7,28.1]},"c20":{"n":59,"pct":6.0,"ci":[4.7,7.7]}},"South West":{"n":1198,"le15":{"n":57,"pct":4.8,"ci":[3.7,6.1]},"c16":{"n":61,"pct":5.1,"ci":[4.0,6.5]},"c17":{"n":212,"pct":17.7,"ci":[15.6,20.0]},"c18":{"n":387,"pct":32.3,"ci":[29.7,35.0]},"c19":{"n":435,"pct":36.3,"ci":[33.6,39.1]},"c20":{"n":46,"pct":3.8,"ci":[2.9,5.1]}},"East of England":{"n":743,"le15":{"n":75,"pct":10.1,"ci":[8.1,12.5]},"c16":{"n":106,"pct":14.3,"ci":[11.9,17.0]},"c17":{"n":179,"pct":24.1,"ci":[21.2,27.3]},"c18":{"n":169,"pct":22.7,"ci":[19.9,25.9]},"c19":{"n":162,"pct":21.8,"ci":[19.0,24.9]},"c20":{"n":52,"pct":7.0,"ci":[5.4,9.1]}},"East Midlands":{"n":387,"le15":{"n":20,"pct":5.2,"ci":[3.4,7.8]},"c16":{"n":8,"pct":2.1,"ci":[1.1,4.0]},"c17":{"n":71,"pct":18.3,"ci":[14.8,22.5]},"c18":{"n":131,"pct":33.9,"ci":[29.3,38.7]},"c19":{"n":128,"pct":33.1,"ci":[28.6,37.9]},"c20":{"n":29,"pct":7.5,"ci":[5.3,10.6]}},"West Midlands":{"n":443,"le15":{"n":23,"pct":5.2,"ci":[3.5,7.7]},"c16":{"n":26,"pct":5.9,"ci":[4.0,8.5]},"c17":{"n":100,"pct":22.6,"ci":[18.9,26.7]},"c18":{"n":154,"pct":34.8,"ci":[30.5,39.3]},"c19":{"n":114,"pct":25.7,"ci":[21.9,30.0]},"c20":{"n":26,"pct":5.9,"ci":[4.0,8.5]}},"North East":{"n":176,"le15":{"n":10,"pct":5.7,"ci":[3.1,10.1]},"c16":{"n":6,"pct":3.4,"ci":[1.6,7.2]},"c17":{"n":16,"pct":9.1,"ci":[5.7,14.3]},"c18":{"n":62,"pct":35.2,"ci":[28.6,42.5]},"c19":{"n":65,"pct":36.9,"ci":[30.2,44.3]},"c20":{"n":17,"pct":9.7,"ci":[6.1,14.9]}},"London":{"n":249,"le15":{"n":4,"pct":1.6,"ci":[0.6,4.1]},"c16":{"n":2,"pct":0.8,"ci":[0.2,2.9]},"c17":{"n":8,"pct":3.2,"ci":[1.6,6.2]},"c18":{"n":51,"pct":20.5,"ci":[15.9,25.9]},"c19":{"n":140,"pct":56.2,"ci":[50.0,62.2]},"c20":{"n":44,"pct":17.7,"ci":[13.4,22.9]}},"North West":{"n":321,"le15":{"n":6,"pct":1.9,"ci":[0.9,4.0]},"c16":{"n":9,"pct":2.8,"ci":[1.5,5.2]},"c17":{"n":44,"pct":13.7,"ci":[10.4,17.9]},"c18":{"n":87,"pct":27.1,"ci":[22.5,32.2]},"c19":{"n":147,"pct":45.8,"ci":[40.4,51.3]},"c20":{"n":28,"pct":8.7,"ci":[6.1,12.3]}},"Yorkshire and The Humber":{"n":402,"le15":{"n":17,"pct":4.2,"ci":[2.7,6.7]},"c16":{"n":12,"pct":3.0,"ci":[1.7,5.1]},"c17":{"n":38,"pct":9.5,"ci":[7.0,12.7]},"c18":{"n":159,"pct":39.6,"ci":[34.9,44.4]},"c19":{"n":158,"pct":39.3,"ci":[34.7,44.2]},"c20":{"n":18,"pct":4.5,"ci":[2.9,7.0]}}}},"Scotland":{"n_dated":1913,"dist":{"n":1913,"n_eff":1476,"le15":{"n":17,"pct":1.1,"ci":[0.7,1.8]},"c16":{"n":11,"pct":0.6,"ci":[0.3,1.1]},"c17":{"n":50,"pct":3.1,"ci":[2.3,4.1]},"c18":{"n":346,"pct":20.6,"ci":[18.6,22.7]},"c19":{"n":1308,"pct":65.2,"ci":[62.8,67.6]},"c20":{"n":181,"pct":9.4,"ci":[8.0,11.0]}}},"Wales":{"n_dated":29410,"dist":{"n":29410,"le15":{"n":1761,"pct":6.0,"ci":[5.7,6.3]},"c16":{"n":1055,"pct":3.6,"ci":[3.4,3.8]},"c17":{"n":2440,"pct":8.3,"ci":[8.0,8.6]},"c18":{"n":5208,"pct":17.7,"ci":[17.3,18.1]},"c19":{"n":16600,"pct":56.4,"ci":[55.9,57.0]},"c20":{"n":2346,"pct":8.0,"ci":[7.7,8.3]}}},"Northern Ireland":{"n_dated":5827,"dist":{"n":5827,"le15":{"n":0,"pct":0.0,"ci":[0.0,0.1]},"c16":{"n":6,"pct":0.1,"ci":[0.0,0.2]},"c17":{"n":60,"pct":1.0,"ci":[0.8,1.3]},"c18":{"n":549,"pct":9.4,"ci":[8.7,10.2]},"c19":{"n":4282,"pct":73.5,"ci":[72.3,74.6]},"c20":{"n":930,"pct":16.0,"ci":[15.0,16.9]}}}},"list_years":{"England":{"by_year":{"1947":62,"1948":270,"1949":2116,"1950":5734,"1951":7691,"1952":11227,"1953":4030,"1954":5765,"1955":6073,"1956":906,"1957":1351,"1958":2266,"1959":3105,"1960":3659,"1961":2859,"1962":1475,"1963":1225,"1964":749,"1965":1405,"1966":5943,"1967":10598,"1968":3306,"1969":4095,"1970":4282,"1971":4890,"1972":13700,"1973":10224,"1974":12815,"1975":9397,"1976":8219,"1977":5377,"1978":4888,"1979":4069,"1980":5282,"1981":4408,"1982":5181,"1983":16285,"1984":28440,"1985":28663,"1986":27213,"1987":34953,"1988":21674,"1989":6007,"1990":3538,"1991":2038,"1992":1923,"1993":3153,"1994":3806,"1995":2020,"1996":1808,"1997":1203,"1998":1905,"1999":2252,"2000":1293,"2001":800,"2002":543,"2003":587,"2004":598,"2005":497,"2006":328,"2007":517,"2008":466,"2009":500,"2010":655,"2011":572,"2012":439,"2013":342,"2014":341,"2015":747,"2016":1083,"2017":915,"2018":901,"2019":512,"2020":363,"2021":244,"2022":203,"2023":195,"2024":208,"2025":183,"2026":128}},"Scotland":{"by_year":{"1957":3,"1959":74,"1960":75,"1961":35,"1962":2,"1963":46,"1964":66,"1965":712,"1966":597,"1967":557,"1969":8,"1970":1540,"1971":10382,"1972":3583,"1973":575,"1974":388,"1975":92,"1976":199,"1977":1490,"1978":647,"1979":1818,"1980":2966,"1981":1926,"1982":619,"1983":567,"1984":1210,"1985":497,"1986":734,"1987":586,"1988":935,"1989":1139,"1990":736,"1991":660,"1992":1005,"1993":1572,"1994":812,"1995":704,"1996":905,"1997":715,"1998":864,"1999":628,"2000":632,"2001":480,"2002":527,"2003":379,"2004":307,"2005":113,"2006":483,"2007":215,"2008":149,"2009":83,"2010":181,"2011":99,"2012":34,"2013":50,"2014":63,"2015":18,"2016":35,"2017":46,"2018":14,"2019":39,"2020":31,"2021":16,"2022":24,"2023":10,"2024":18,"2025":16,"2026":18}},"Wales":{"by_year":{"1949":76,"1950":331,"1951":487,"1952":650,"1953":278,"1954":33,"1955":53,"1956":86,"1960":26,"1961":380,"1962":353,"1963":540,"1964":165,"1965":21,"1966":639,"1967":130,"1968":267,"1969":6,"1970":224,"1971":306,"1972":52,"1973":124,"1974":789,"1975":499,"1976":741,"1977":263,"1978":371,"1979":47,"1980":287,"1981":927,"1982":129,"1983":209,"1984":57,"1985":312,"1986":393,"1987":482,"1988":696,"1989":690,"1990":590,"1991":455,"1992":839,"1993":892,"1994":1191,"1995":1170,"1996":1184,"1997":977,"1998":1870,"1999":1452,"2000":1528,"2001":1334,"2002":975,"2003":845,"2004":875,"2005":1381,"2006":40,"2007":37,"2008":23,"2009":15,"2010":27,"2011":16,"2012":14,"2013":9,"2014":6,"2015":1,"2016":28,"2017":20,"2018":25,"2019":8,"2020":23,"2021":29,"2022":25,"2023":38,"2024":18,"2025":18,"2026":10}}},"county_top_per_head":[{"name":"Isles of Scilly","nation":"England","per_1000":56.55,"n":130,"pop":2299},{"name":"City of London","nation":"England","per_1000":43.5,"n":680,"pop":15631},{"name":"Powys","nation":"Wales","per_1000":40.74,"n":5493,"pop":134843},{"name":"Gwynedd","nation":"Wales","per_1000":34.79,"n":4185,"pop":120295},{"name":"Rutland","nation":"England","per_1000":33.92,"n":1412,"pop":41629},{"name":"Herefordshire, County of","nation":"England","per_1000":30.75,"n":5921,"pop":192539},{"name":"Orkney Islands","nation":"Scotland","per_1000":28.7,"n":629,"pop":21920},{"name":"Ceredigion","nation":"Wales","per_1000":26.45,"n":1923,"pop":72696},{"name":"Scottish Borders","nation":"Scotland","per_1000":25.45,"n":2972,"pop":116800},{"name":"Monmouthshire","nation":"Wales","per_1000":25.19,"n":2401,"pop":95329},{"name":"Dorset","nation":"England","per_1000":23.59,"n":9226,"pop":391036},{"name":"Wiltshire","nation":"England","per_1000":23.35,"n":12289,"pop":526392}],"county_bottom_per_head":[{"name":"Barking and Dagenham","nation":"England","per_1000":0.18,"n":42,"pop":238295},{"name":"Newham","nation":"England","per_1000":0.33,"n":126,"pop":376542},{"name":"Brent","nation":"England","per_1000":0.35,"n":123,"pop":352201},{"name":"Luton","nation":"England","per_1000":0.36,"n":85,"pop":236380},{"name":"Blackpool","nation":"England","per_1000":0.39,"n":56,"pop":143492},{"name":"Waltham Forest","nation":"England","per_1000":0.41,"n":115,"pop":283713},{"name":"Croydon","nation":"England","per_1000":0.43,"n":178,"pop":410085},{"name":"Redbridge","nation":"England","per_1000":0.43,"n":137,"pop":321829},{"name":"Bexley","nation":"England","per_1000":0.45,"n":116,"pop":257103},{"name":"Havering","nation":"England","per_1000":0.54,"n":151,"pop":280787}],"town_top_per_head":[{"name":"Ludlow","nation":"England","per_1000":40.69,"n":436,"pop":10714},{"name":"Sherborne","nation":"England","per_1000":36.48,"n":378,"pop":10363},{"name":"Whitby","nation":"England","per_1000":34.5,"n":453,"pop":13132},{"name":"Monmouth","nation":"Wales","per_1000":34.12,"n":377,"pop":11049},{"name":"Lewes","nation":"England","per_1000":31.46,"n":526,"pop":16719},{"name":"Henley-on-Thames","nation":"England","per_1000":30.52,"n":372,"pop":12187},{"name":"Wells","nation":"England","per_1000":29.88,"n":333,"pop":11145},{"name":"Haverfordwest","nation":"Wales","per_1000":27.55,"n":322,"pop":11689},{"name":"Tewkesbury","nation":"England","per_1000":26.93,"n":365,"pop":13555},{"name":"Bewdley","nation":"England","per_1000":24.71,"n":279,"pop":11290},{"name":"Caernarfon","nation":"Wales","per_1000":24.7,"n":249,"pop":10079},{"name":"Bath","nation":"England","per_1000":23.74,"n":2256,"pop":95048},{"name":"Llandudno","nation":"Wales","per_1000":23.4,"n":354,"pop":15128},{"name":"Berwick-upon-Tweed","nation":"England","per_1000":21.68,"n":288,"pop":13286},{"name":"Stamford","nation":"England","per_1000":21.4,"n":444,"pop":20751}],"town50_top_per_head":[{"name":"Bath","nation":"England","per_1000":23.74,"n":2256,"pop":95048},{"name":"City of Westminster","nation":"England","per_1000":18.98,"n":3876,"pop":204242},{"name":"Canterbury","nation":"England","per_1000":16.47,"n":913,"pop":55421},{"name":"Weymouth","nation":"England","per_1000":10.53,"n":562,"pop":53377},{"name":"Shrewsbury","nation":"England","per_1000":10.12,"n":763,"pop":75432},{"name":"Cheltenham","nation":"England","per_1000":9.17,"n":1036,"pop":113026},{"name":"Camden","nation":"England","per_1000":9.05,"n":1873,"pop":207075},{"name":"York","nation":"England","per_1000":8.94,"n":1270,"pop":142114},{"name":"Huddersfield","nation":"England","per_1000":8.73,"n":1240,"pop":142085},{"name":"Kensington and Chelsea","nation":"England","per_1000":7.93,"n":1137,"pop":143376}],"pop_year":"2025"};
+const META = {"n":465740,"bbox":[-8.75,49.85,1.85,60.95],"cell":0.1,"nx":106,"ny":111,"chunk":6000,"nations":["England","Scotland","Wales","Northern Ireland"],"types":["church","monument","war_memorial","house","farm","pub","commercial","transport","wall","street","industrial","civic","garden","defence","address","other"],"dropped":0};
+const NS = "http://www.w3.org/2000/svg";
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const isDark = () => document.documentElement.dataset.theme === "dark" || (document.documentElement.dataset.theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = (v, d = 0) => v == null || !isFinite(v) ? "n/a" : v.toLocaleString("en-GB", { minimumFractionDigits: d, maximumFractionDigits: d });
+const redraws = [];
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+function hover(node, h) { node.style.cursor = "pointer"; node.setAttribute("tabindex", "0"); const s = () => { const r = node.getBoundingClientRect(); showTip(h, r.left + r.width / 2, r.top); }; node.addEventListener("pointerenter", s); node.addEventListener("pointerleave", hideTip); node.addEventListener("focus", s); node.addEventListener("blur", hideTip); }
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); }
+function el(tag, at, parent) { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); if (parent) parent.appendChild(e); return e; }
+function txt(x, y, s, cls, parent, anchor) { const t = el("text", { x, y, class: "lab " + (cls || ""), "text-anchor": anchor || "start" }, parent); t.textContent = s; return t; }
+document.getElementById("theme").onclick = () => { const d = isDark(); document.documentElement.dataset.theme = d ? "light" : "dark"; setTiles(); redraws.forEach(f => f()); };
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { setTiles(); redraws.forEach(f => f()); });
+const hex = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+const rgb = c => `rgb(${c[0]},${c[1]},${c[2]})`;
+const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+
+/* ===== colours ===== */
+const NATIONS = META.nations, TYPES = META.types;
+const TCOL = {"church": "#6A3D9A", "monument": "#A88BC8", "war_memorial": "#2B2B2B", "house": "#C1703A", "farm": "#8C7A3B", "pub": "#E3A21A", "commercial": "#2E78B7", "transport": "#178F7D", "wall": "#A39A8A", "street": "#D7263D", "industrial": "#5C4A3D", "civic": "#4F9FD8", "garden": "#5E9E3A", "defence": "#7A1F1F", "address": "#CBBBA4", "other": "#DED5C6"};
+const CCOL = ["#3B1C6E", "#7B2D8E", "#B83A7A", "#E0623F", "#2F7FA8", "#5BAE6A"];
+const TIERCOL = () => isDark() ? ["#E9675C", "#E8AC45", "#8FB2C9"] : ["#A3261E", "#C8860F", "#46677D"];
+const LYRAMP = ["#0B3C49", "#1F6F78", "#3E9C8F", "#8CC084", "#D9C45C", "#E08E3C", "#B8402E"];  // 1940s ... 2000s+
+function lyClass(y) { if (!y) return -1; const yr = 1900 + y; return yr < 1950 ? 0 : yr < 1960 ? 1 : yr < 1970 ? 2 : yr < 1980 ? 3 : yr < 1990 ? 4 : yr < 2000 ? 5 : 6; }
+const LYLAB = ["Before 1950", "1950s", "1960s", "1970s", "1980s", "1990s", "2000 or later"];
+function centClass(b) { if (!b) return -1; const y = b * 10 + 500; return y <= 1500 ? 0 : y <= 1600 ? 1 : y <= 1700 ? 2 : y <= 1800 ? 3 : y <= 1900 ? 4 : 5; }
+const TIERLAB = n => ({ England: ["Grade I", "Grade II*", "Grade II"], Wales: ["Grade I", "Grade II*", "Grade II"], Scotland: ["Category A", "Category B", "Category C"], "Northern Ireland": ["A", "B+", "B, B1, B2"] }[n]);
+
+/* ===== state ===== */
+const S = { mode: "grade", type: "all", top: false, dated: false };
+let PT = null;  // decoded points
+const lmap = L.map("lmap", { zoomSnap: .5, minZoom: 5, maxZoom: 18, scrollWheelZoom: false, maxBounds: [[48.5, -12], [62, 5]], preferCanvas: true }).fitBounds([[49.9, -8.2], [58.7, 1.8]]);
+lmap.attributionControl.setPrefix('<a href="https://leafletjs.com">Leaflet</a>');
+lmap.on("click", () => lmap.scrollWheelZoom.enable());
+["hills", "areas", "lines", "dots", "labels", "names"].forEach((n, i) => { lmap.createPane(n); lmap.getPane(n).style.zIndex = 410 + i * 10; lmap.getPane(n).style.pointerEvents = n === "areas" ? "auto" : "none"; });
+const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+const ESRI_ATT = 'Tiles &copy; Esri, HERE, Garmin, USGS, NGA, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, and the GIS user community';
+let base = null, hills = null, labels = null;
+let ctyLines = L.layerGroup(), ctyFill = null, nameL = L.layerGroup();
+const LY = { base: "plain", hills: true, hillK: 40, labels: false, labelK: 75, names: true, nameLvl: 1, lines: true, lineK: 35, colour: 85 };
+const LYDEF = { ...LY };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("listed_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("listed_layers", JSON.stringify(LY)); } catch (e) {} };
+function setTiles() {
+  [base, hills, labels].forEach(l => { if (l) lmap.removeLayer(l); });
+  const t = isDark() ? "Dark" : "Light";
+  base = LY.base === "none" ? null : L.tileLayer(LY.base === "relief" ? ESRI + "World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}" : LY.base === "satellite" ? ESRI + "World_Imagery/MapServer/tile/{z}/{y}/{x}" : LY.base === "streets" ? ESRI + "World_Street_Map/MapServer/tile/{z}/{y}/{x}" : `${ESRI}Canvas/World_${t}_Gray_Base/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 18, maxNativeZoom: LY.base === "relief" ? 13 : 16, attribution: ESRI_ATT });
+  if (base) base.addTo(lmap);
+  hills = L.tileLayer(ESRI + "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}", { maxZoom: 18, maxNativeZoom: 16, pane: "hills" });
+  labels = L.tileLayer(`${ESRI}Canvas/World_${t}_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 18, maxNativeZoom: 16, pane: "labels" });
+  applyLayers();
+}
+function applyLayers() {
+  if (LY.hills) { hills.addTo(lmap); hills.setOpacity(Math.min(.85, .08 + LY.hillK / 140)); } else lmap.removeLayer(hills);
+  if (LY.labels) { labels.addTo(lmap); labels.setOpacity(LY.labelK / 100); } else lmap.removeLayer(labels);
+  if (LY.lines) { ctyLines.addTo(lmap); ctyLines.eachLayer(l => l.setStyle && l.setStyle({ opacity: .12 + LY.lineK / 100 * .8 })); } else lmap.removeLayer(ctyLines);
+  if (LY.names) nameL.addTo(lmap); else lmap.removeLayer(nameL);
+  dots.getContainer() && (dots.getContainer().style.opacity = LY.colour / 100);
+  if (ctyFill) ctyFill.setStyle(f => areaStyle(f));
+  placeNames();
+}
+(function layerControl() {
+  const Ctl = L.Control.extend({ options: { position: "topright" }, onAdd() {
+    const d = L.DomUtil.create("div"); L.DomEvent.disableClickPropagation(d); L.DomEvent.disableScrollPropagation(d);
+    d.innerHTML = `<button class="lyrBtn" aria-expanded="false" aria-controls="lyrPanel">Map layers</button>
+<div class="lyrPanel" id="lyrPanel" hidden>
+ <div class="row"><label for="lyBase" style="font-weight:600">Base map</label><div class="sub"><select id="lyBase" aria-label="Base map"><option value="plain">Plain grey</option><option value="streets">Streets</option><option value="relief">Shaded relief</option><option value="satellite">Satellite</option><option value="none">None</option></select></div></div>
+ <div class="row"><label><input type="checkbox" id="lyHills"> Hills</label><div class="sub"><span>strength</span><input type="range" id="lyHillK" min="10" max="100" step="5" aria-label="Hill shading strength"></div></div>
+ <div class="row"><label><input type="checkbox" id="lyNames"> Place names</label><div class="sub"><span>how many</span><select id="lyNameLvl" aria-label="How many place names"><option value="0">Cities only</option><option value="1">Cities and towns</option><option value="2">Down to villages</option></select></div></div>
+ <div class="row"><label><input type="checkbox" id="lyLabels"> Roads and map labels</label><div class="sub"><span>strength</span><input type="range" id="lyLabelK" min="20" max="100" step="5" aria-label="Map label strength"></div></div>
+ <div class="row"><label><input type="checkbox" id="lyLines"> County borders</label><div class="sub"><span>strength</span><input type="range" id="lyLineK" min="10" max="100" step="5" aria-label="Border strength"></div></div>
+ <div class="row"><label style="font-weight:600">Colour</label><div class="sub"><span>strength</span><input type="range" id="lyColour" min="25" max="100" step="5" aria-label="Colour strength"></div></div>
+ <button class="reset" id="lyReset">Reset layers</button>
+</div>`;
+    return d; } });
+  lmap.addControl(new Ctl());
+  const q = id => document.getElementById(id), btn = lmap.getContainer().querySelector(".lyrBtn"), pan = q("lyrPanel");
+  btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+  const sync = () => { q("lyBase").value = LY.base; q("lyHills").checked = LY.hills; q("lyHillK").value = LY.hillK; q("lyNames").checked = LY.names; q("lyNameLvl").value = LY.nameLvl; q("lyLabels").checked = LY.labels; q("lyLabelK").value = LY.labelK; q("lyLines").checked = LY.lines; q("lyLineK").value = LY.lineK; q("lyColour").value = LY.colour; };
+  const on = (id, ev, f, retile) => q(id).addEventListener(ev, e => { f(e.target); saveLY(); retile ? setTiles() : applyLayers(); });
+  on("lyBase", "change", t => LY.base = t.value, true);
+  on("lyHills", "change", t => LY.hills = t.checked); on("lyHillK", "input", t => { LY.hillK = +t.value; LY.hills = q("lyHills").checked = true; });
+  on("lyNames", "change", t => LY.names = t.checked); on("lyNameLvl", "change", t => { LY.nameLvl = +t.value; LY.names = q("lyNames").checked = true; });
+  on("lyLabels", "change", t => LY.labels = t.checked); on("lyLabelK", "input", t => { LY.labelK = +t.value; LY.labels = q("lyLabels").checked = true; });
+  on("lyLines", "change", t => LY.lines = t.checked); on("lyLineK", "input", t => { LY.lineK = +t.value; LY.lines = q("lyLines").checked = true; });
+  on("lyColour", "input", t => LY.colour = +t.value);
+  q("lyReset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); setTiles(); };
+  sync();
+})();
+
+/* place names (OS Open Names, GeoNames), thinned so they never overlap */
+let PLACES = null;
+const MAJOR = new Set(["London", "Birmingham", "Manchester", "Glasgow", "Edinburgh", "Cardiff", "Belfast", "Leeds", "Liverpool", "Bristol", "Newcastle upon Tyne", "Sheffield"]);
+function placeNames() {
+  nameL.clearLayers(); if (!LY.names || !PLACES) return;
+  const z = lmap.getZoom(), bb = lmap.getBounds().pad(.05), lvl = LY.nameLvl;
+  const minR = lvl === 0 ? (z >= 8 ? 1 : 2) : lvl === 1 ? (z >= 10 ? 0 : z >= 7.5 ? 1 : 2) : (z >= 9 ? 0 : z >= 7 ? 1 : 2);
+  const cand = [];
+  for (const p of PLACES) { const r = MAJOR.has(p[0]) && p[4] === 2 ? 3 : p[4]; if ((r >= minR || (lvl === 0 && r === 3)) && bb.contains([p[2], p[3]])) cand.push({ p, r }); }
+  if (lvl === 0 && z < 7) for (let i = cand.length - 1; i >= 0; i--) if (cand[i].r < 3) cand.splice(i, 1);
+  cand.sort((a, b) => b.r - a.r);
+  const boxes = []; let n = 0;
+  for (const c of cand) {
+    const pt = lmap.latLngToContainerPoint([c.p[2], c.p[3]]), fs = c.r >= 2 ? 11 : 10.5;
+    const bx = [pt.x - 4, pt.y - 8, pt.x + 10 + c.p[0].length * fs * .62, pt.y + 7];
+    if (boxes.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue;
+    boxes.push(bx);
+    L.marker([c.p[2], c.p[3]], { pane: "names", interactive: false, keyboard: false, icon: L.divIcon({ className: "city" + (c.r <= 1 ? " r" + c.r : ""), html: `<i></i>${esc(c.p[0])}`, iconSize: null, iconAnchor: [3, 6] }) }).addTo(nameL);
+    if (++n >= 240) break;
+  }
+}
+
+/* ===== points: decode the packed columns ===== */
+async function gunzip(buf) {
+  const u = new Uint8Array(buf);
+  if (u[0] !== 0x1f || u[1] !== 0x8b) return buf;  // already decoded by the server
+  const ds = new DecompressionStream("gzip");
+  return await new Response(new Blob([buf]).stream().pipeThrough(ds)).arrayBuffer();
+}
+function decode(ab) {
+  const n = META.n, nc = META.nx * META.ny + 1;
+  let o = 0; const off = new Uint32Array(ab, o, nc); o += nc * 4;
+  const x = new Uint16Array(ab, o, n); o += n * 2; const y = new Uint16Array(ab, o, n); o += n * 2;
+  const b = k => { const a = new Uint8Array(ab, o, n); o += n; return a; };
+  const nt = b(), ty = b(), ly = b(), bu = b(), co = b(), sr = b();
+  const [W, Sb, E, Nb] = META.bbox;
+  const mx = new Float64Array(n), my = new Float64Array(n), lat = new Float32Array(n), lon = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const lo = W + x[i] / 65535 * (E - W), la = Sb + y[i] / 65535 * (Nb - Sb);
+    lon[i] = lo; lat[i] = la;
+    mx[i] = (lo + 180) / 360; my[i] = (1 - Math.log(Math.tan(Math.PI / 4 + la * Math.PI / 360)) / Math.PI) / 2;
+  }
+  return { n, off, nt, ty, ly, bu, co, sr, mx, my, lat, lon };
+}
+function pass(i) {
+  if (S.type !== "all" && TYPES[PT.ty[i]] !== S.type) return false;
+  if (S.top && (PT.nt[i] & 3) !== 1) return false;
+  if (S.dated && !PT.bu[i]) return false;
+  return true;
+}
+function colourOf(i) {
+  const m = S.mode;
+  if (m === "grade" || m === "county") return TIERCOL()[(PT.nt[i] & 3) - 1];
+  if (m === "type") return TCOL[TYPES[PT.ty[i]]];
+  if (m === "listed") { const k = lyClass(PT.ly[i]); return k < 0 ? null : LYRAMP[k]; }
+  if (m === "built") { const k = centClass(PT.bu[i]); return k < 0 ? null : CCOL[k]; }
+}
+const DotLayer = L.GridLayer.extend({
+  createTile(c) {
+    const t = document.createElement("canvas"), dpr = Math.min(2, window.devicePixelRatio || 1);
+    t.width = t.height = 256 * dpr; t.style.width = t.style.height = "256px";
+    if (!PT || S.mode === "county") return t;
+    const ctx = t.getContext("2d"); ctx.scale(dpr, dpr);
+    const z = c.z, sc = 256 * Math.pow(2, z), x0 = c.x * 256, y0 = c.y * 256;
+    const r = z < 6 ? .55 : z < 7 ? .75 : z < 8 ? 1 : z < 9 ? 1.3 : z < 10 ? 1.7 : z < 11 ? 2.2 : z < 12 ? 2.8 : z < 13 ? 3.5 : z < 15 ? 4.5 : 5.5;
+    const pad = r + 1;
+    // tile bounds in degrees, to pick the cells
+    const lonA = (x0 - pad) / sc * 360 - 180, lonB = (x0 + 256 + pad) / sc * 360 - 180;
+    const latOf = py => { const n = Math.PI - 2 * Math.PI * py / sc; return 180 / Math.PI * Math.atan(.5 * (Math.exp(n) - Math.exp(-n))); };
+    const latA = latOf(y0 + 256 + pad), latB = latOf(y0 - pad);
+    const [W, Sb] = META.bbox, cs = META.cell;
+    const cx0 = Math.max(0, Math.floor((lonA - W) / cs)), cx1 = Math.min(META.nx - 1, Math.floor((lonB - W) / cs));
+    const cy0 = Math.max(0, Math.floor((latA - Sb) / cs)), cy1 = Math.min(META.ny - 1, Math.floor((latB - Sb) / cs));
+    if (cx1 < cx0 || cy1 < cy0) return t;
+    const big = z >= 12, faint = isDark() ? "rgba(200,190,175,.28)" : "rgba(90,80,70,.22)";
+    const draw = (want) => {
+      for (let cy = cy0; cy <= cy1; cy++) for (let cx = cx0; cx <= cx1; cx++) {
+        const cell = cy * META.nx + cx;
+        for (let i = PT.off[cell]; i < PT.off[cell + 1]; i++) {
+          if (!pass(i)) continue;
+          const col = colourOf(i);
+          if (want === "faint" ? col != null : col == null) continue;
+          if (typeof want === "number" && (PT.nt[i] & 3) !== want) continue;
+          const px = PT.mx[i] * sc - x0, py = PT.my[i] * sc - y0;
+          if (px < -pad || py < -pad || px > 256 + pad || py > 256 + pad) continue;
+          ctx.fillStyle = col || faint;
+          if (r < 1.2) { ctx.fillRect(px - r, py - r, 2 * r, 2 * r); continue; }
+          ctx.beginPath(); ctx.arc(px, py, col ? r : r * .7, 0, 6.2832); ctx.fill();
+          if (big && col) { ctx.lineWidth = 1; ctx.strokeStyle = isDark() ? "rgba(0,0,0,.6)" : "rgba(255,255,255,.9)"; ctx.stroke(); }
+        }
+      }
+    };
+    if (S.mode === "built" || S.mode === "listed") { draw("faint"); draw("all"); }
+    else if (S.mode === "grade" && z >= 10) { draw(3); draw(2); draw(1); }
+    else draw("all");
+    return t;
+  }
+});
+const dots = new DotLayer({ pane: "dots", updateWhenZooming: false, keepBuffer: 1, maxZoom: 18 }).addTo(lmap);
+function redrawDots() { dots.redraw(); }
+
+/* counties for the per head view and borders */
+let GJ = null, BREAKS = [];
+const AREARAMP = ["#F1E7D2", "#E5CFA5", "#D7AE73", "#C58648", "#A85C2C", "#7E3A1E", "#521F11"];
+function areaCol(v) { if (v == null) return css("--nodata"); let k = 0; while (k < BREAKS.length && v >= BREAKS[k]) k++; return AREARAMP[k]; }
+function areaStyle(f) { return S.mode === "county" ? { fillColor: areaCol(f.properties.per_1000), fillOpacity: LY.colour / 100, color: isDark() ? "#EFEAE1" : "#22201D", weight: .6, opacity: .45 } : { fillOpacity: 0, opacity: 0, weight: 0 }; }
+function setupCounties(gj) {
+  GJ = gj;
+  const v = gj.features.map(f => f.properties.per_1000).filter(x => x != null).sort((a, b) => a - b);
+  BREAKS = [1, 2, 3, 4, 5, 6].map(k => v[Math.floor(v.length * k / 7)]);
+  ctyLines = L.geoJSON(gj, { pane: "lines", interactive: false, style: () => ({ color: isDark() ? "#EFEAE1" : "#22201D", weight: .8, opacity: .4, fill: false }) });
+  ctyFill = L.geoJSON(gj, { pane: "areas", style: areaStyle, onEachFeature: (f, l) => l.on("click", () => { if (S.mode === "county") countyInfo(f.properties.i); }) }).addTo(lmap);
+  applyLayers();
+}
+function countyInfo(i) {
+  const f = GJ.features[i].properties;
+  const tops = TIERLAB(f.nation)[0];
+  document.getElementById("info").innerHTML = `<div class="nm">${esc(f.name)}</div>${esc(f.nation)}<table><tr><td class="k">List entries</td><td>${fmt(f.n)}</td></tr><tr><td class="k">Residents (mid-${R.pop_year})</td><td>${fmt(f.pop)}</td></tr><tr><td class="k">Per 1,000 people</td><td><span class="sw" style="background:${areaCol(f.per_1000)}"></span>${fmt(f.per_1000, 1)}</td></tr><tr><td class="k">${esc(tops)}</td><td>${fmt(f.top_pct, 1)}% of entries</td></tr></table>`;
+}
+
+/* ===== legend ===== */
+function counts() {
+  const c = {}; if (!PT) return c;
+  for (let i = 0; i < PT.n; i++) { if (!pass(i)) continue; const k = S.mode === "type" ? PT.ty[i] : S.mode === "built" ? centClass(PT.bu[i]) : S.mode === "listed" ? lyClass(PT.ly[i]) : (PT.nt[i] & 3); c[k] = (c[k] || 0) + 1; }
+  return c;
+}
+function legend() {
+  const e = document.getElementById("legend"), c = counts();
+  const it = (col, lab, n, attr) => `<div class="it"${attr || ""}><i style="background:${col}"></i>${esc(lab)}<small>${n != null ? fmt(n) : ""}</small></div>`;
+  let h = "";
+  if (S.mode === "grade") { const tc = TIERCOL(); h = `<div class="lgt" style="margin-bottom:4px">Grade (top, middle, other)</div>` + [1, 2, 3].map(t => it(tc[t - 1], ["Grade I, category A", "Grade II*, category B (Scotland), B+ (NI)", "Grade II, category C, B1, B2 and B"][t - 1], c[t])).join(""); }
+  else if (S.mode === "type") h = TYPES.map((t, k) => c[k] ? it(TCOL[t], R.type_labels[t], c[k], ` data-t="${t}" style="cursor:pointer"`) : "").join("") + `<div class="lgl"><span>Click a type to show only that type.</span></div>`;
+  else if (S.mode === "built") h = `<div class="lgt" style="margin-bottom:4px">Century of the first date in the description</div>` + R.cent_keys.map((k, i) => it(CCOL[i], R.cent_labels[k], c[i])).join("") + it(isDark() ? "rgba(200,190,175,.4)" : "rgba(90,80,70,.3)", "No date in the data used", c[-1]);
+  else if (S.mode === "listed") h = `<div class="lgt" style="margin-bottom:4px">Year first listed</div>` + LYLAB.map((l, i) => it(LYRAMP[i], l, c[i])).join("") + it(isDark() ? "rgba(200,190,175,.4)" : "rgba(90,80,70,.3)", "No date (Northern Ireland)", c[-1]);
+  else if (S.mode === "county") h = `<div class="lgt">List entries per 1,000 residents, by county and unitary authority</div><div class="lg">${AREARAMP.map(c => `<span style="background:${c}"></span>`).join("")}</div><div class="lgl" style="position:relative;height:14px">${BREAKS.map((b, i) => `<span style="position:absolute;left:${(i + 1) / 7 * 100}%;transform:translateX(-50%)">${fmt(b, 1)}</span>`).join("")}</div><div class="lgl"><span>Seven classes with equal numbers of areas. Click an area.</span></div>`;
+  e.innerHTML = h;
+  e.querySelectorAll("[data-t]").forEach(d => d.onclick = () => { setType(d.dataset.t); });
+}
+
+/* ===== click: nearest dot ===== */
+let selM = null, pinM = null;
+const NAMES = {};
+function chunk(k) {
+  if (!NAMES[k]) NAMES[k] = fetch(`data/names/${String(k).padStart(3, "0")}.json.gz`).then(r => r.arrayBuffer()).then(gunzip).then(b => JSON.parse(new TextDecoder().decode(b)));
+  return NAMES[k];
+}
+function nearest(lat, lon, maxPx) {
+  const z = lmap.getZoom(), sc = 256 * Math.pow(2, z);
+  const mx0 = (lon + 180) / 360, my0 = (1 - Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360)) / Math.PI) / 2;
+  const degPad = maxPx / sc * 360 * 1.6;
+  const [W, Sb] = META.bbox, cs = META.cell;
+  let best = -1, bd = maxPx * maxPx;
+  const cx0 = Math.max(0, Math.floor((lon - degPad - W) / cs)), cx1 = Math.min(META.nx - 1, Math.floor((lon + degPad - W) / cs));
+  const cy0 = Math.max(0, Math.floor((lat - degPad - Sb) / cs)), cy1 = Math.min(META.ny - 1, Math.floor((lat + degPad - Sb) / cs));
+  for (let cy = cy0; cy <= cy1; cy++) for (let cx = cx0; cx <= cx1; cx++) { const cell = cy * META.nx + cx; for (let i = PT.off[cell]; i < PT.off[cell + 1]; i++) { if (!pass(i)) continue; if ((S.mode === "built" || S.mode === "listed") && colourOf(i) == null && S.dated) continue; const dx = (PT.mx[i] - mx0) * sc, dy = (PT.my[i] - my0) * sc, d = dx * dx + dy * dy; if (d < bd || (d === bd && (PT.nt[i] & 3) < (PT.nt[best] & 3))) { bd = d; best = i; } } }
+  return best;
+}
+function urlOf(nation, id) {
+  if (nation === "England") return "https://historicengland.org.uk/listing/the-list/list-entry/" + id;
+  if (nation === "Scotland") return "https://portal.historicenvironment.scot/designation/" + id;
+  if (nation === "Wales") return "https://cadwpublic-api.azurewebsites.net/reports/listedbuilding/FullReport?lang=en&id=" + id;
+  return null;
+}
+async function showPoint(i) {
+  const nat = NATIONS[PT.nt[i] >> 2], tier = PT.nt[i] & 3;
+  if (selM) selM.remove();
+  selM = L.marker([PT.lat[i], PT.lon[i]], { icon: L.divIcon({ className: "sel", iconSize: [16, 16] }), interactive: false, zIndexOffset: 1000 }).addTo(lmap);
+  const info = document.getElementById("info");
+  info.innerHTML = "Loading…";
+  const k = Math.floor(i / META.chunk), rows = await chunk(k), [id, name] = rows[i - k * META.chunk];
+  const by = PT.bu[i] ? PT.bu[i] * 10 + 500 : null, src = ["", "the list description", "the NI record's date band", "Wikidata"][PT.sr[i]];
+  const u = urlOf(nat, id), cty = PT.co[i] < 255 && GJ ? GJ.features[PT.co[i]].properties.name : "";
+  info.innerHTML = `<div class="nm">${esc(name)}</div>${esc(cty ? cty + ", " : "")}${esc(nat)}
+  <table><tr><td class="k">Grade</td><td><span class="sw" style="background:${TIERCOL()[tier - 1]};border-radius:50%"></span>${esc(TIERLAB(nat)[tier - 1])}</td></tr>
+  <tr><td class="k">Type (from name)</td><td><span class="sw" style="background:${TCOL[TYPES[PT.ty[i]]]};border-radius:50%"></span>${esc(R.type_labels[TYPES[PT.ty[i]]])}</td></tr>
+  <tr><td class="k">First listed</td><td>${PT.ly[i] ? 1900 + PT.ly[i] : "not in the open data"}</td></tr>
+  <tr><td class="k">Built</td><td>${by ? "about " + (Math.round(by / 10) * 10) + "s, from " + src : "no date in the data used"}</td></tr>
+  <tr><td class="k">List entry</td><td>${u ? `<a href="${u}" target="_blank" rel="noopener">${esc(id)}</a>` : esc(id)}</td></tr></table>`;
+}
+lmap.on("click", ev => {
+  if (!PT || S.mode === "county") return;
+  const i = nearest(ev.latlng.lat, ev.latlng.lng, lmap.getZoom() >= 12 ? 22 : 12);
+  if (i >= 0) showPoint(i);
+});
+
+/* ===== controls ===== */
+function pressed(groupId, attr, val) { document.querySelectorAll(`#${groupId} .btn`).forEach(b => b.setAttribute("aria-pressed", b.dataset[attr] === val)); }
+function refresh() { if (ctyFill) ctyFill.setStyle(f => areaStyle(f)); lmap.getPane("areas").style.pointerEvents = S.mode === "county" ? "auto" : "none"; document.getElementById("datedWrap").style.display = S.mode === "built" ? "" : "none"; legend(); redrawDots(); }
+document.getElementById("modeBtns").onclick = e => { const b = e.target.closest(".btn"); if (!b) return; S.mode = b.dataset.m; if (S.mode !== "built") { S.dated = false; document.getElementById("datedOnly").checked = false; } pressed("modeBtns", "m", S.mode); refresh(); };
+const typeSel = document.getElementById("typeSel");
+typeSel.innerHTML = `<option value="all">All types</option>` + TYPES.map(t => `<option value="${t}">${esc(R.type_labels[t])}</option>`).join("");
+function setType(t) { S.type = t; typeSel.value = t; if (S.mode === "county") { S.mode = "type"; pressed("modeBtns", "m", "type"); } refresh(); }
+typeSel.onchange = () => setType(typeSel.value);
+document.getElementById("topOnly").onchange = e => { S.top = e.target.checked; refresh(); };
+document.getElementById("datedOnly").onchange = e => { S.dated = e.target.checked; refresh(); };
+function mapIntoView() { if (innerWidth < 900) { const r = document.getElementById("lmap").getBoundingClientRect(); if (r.top < 0 || r.bottom > innerHeight) document.getElementById("lmap").scrollIntoView({ behavior: "smooth", block: "start" }); } }
+lmap.on("zoomend", () => { document.getElementById("zoomhint").style.display = lmap.getZoom() >= 11 ? "none" : ""; placeNames(); });
+lmap.on("moveend", placeNames);
+
+/* ===== search: places and postcodes ===== */
+const qi = document.getElementById("q"), sug = document.getElementById("sug");
+let sugItems = [], sugIdx = -1;
+function showSug(items) { sugItems = items; sugIdx = -1; sug.innerHTML = items.map((p, k) => `<li role="option" data-k="${k}">${esc(p.label)} <span>${esc(p.sub || "")}</span></li>`).join(""); sug.style.display = items.length ? "block" : "none"; qi.setAttribute("aria-expanded", items.length > 0); }
+qi.addEventListener("input", () => {
+  const v = qi.value.trim(), vl = v.toLowerCase(), vu = v.toUpperCase().replace(/\s+/g, " ");
+  if (v.length < 2) { showSug([]); return; }
+  const out = [];
+  if (/^[A-Z]{1,2}[0-9][0-9A-Z]? ?[0-9][A-Z]{2}$/.test(vu)) out.push({ label: "Look up postcode " + vu, sub: "postcodes.io", pc: vu });
+  if (PLACES) for (const p of PLACES) { if (p[0].toLowerCase().startsWith(vl)) { out.push({ label: p[0], sub: p[1], ll: [p[2], p[3]], r: p[4] }); if (out.length > 30) break; } }
+  out.sort((a, b) => (b.pc ? 1 : 0) - (a.pc ? 1 : 0) || (b.r || 0) - (a.r || 0));
+  showSug(out.slice(0, 10));
+});
+qi.addEventListener("keydown", e => { if (!sugItems.length) return; if (e.key === "ArrowDown" || e.key === "ArrowUp") { sugIdx = (sugIdx + (e.key === "ArrowDown" ? 1 : -1) + sugItems.length) % sugItems.length; sug.querySelectorAll("li").forEach((l, k) => l.setAttribute("aria-selected", k === sugIdx)); e.preventDefault(); } else if (e.key === "Enter") { pick(sugItems[Math.max(0, sugIdx)]); e.preventDefault(); } else if (e.key === "Escape") showSug([]); });
+sug.addEventListener("click", e => { const li = e.target.closest("li"); if (li) pick(sugItems[+li.dataset.k]); });
+function near(ll, km) {
+  const out = { n: 0, t: [0, 0, 0, 0], best: -1, bestY: 1e9 };
+  const dLat = km / 111, dLon = km / (111 * Math.cos(ll[0] * Math.PI / 180)), [W, Sb] = META.bbox, cs = META.cell;
+  for (let cy = Math.max(0, Math.floor((ll[0] - dLat - Sb) / cs)); cy <= Math.min(META.ny - 1, Math.floor((ll[0] + dLat - Sb) / cs)); cy++)
+    for (let cx = Math.max(0, Math.floor((ll[1] - dLon - W) / cs)); cx <= Math.min(META.nx - 1, Math.floor((ll[1] + dLon - W) / cs)); cx++) {
+      const cell = cy * META.nx + cx;
+      for (let i = PT.off[cell]; i < PT.off[cell + 1]; i++) { const a = (PT.lat[i] - ll[0]) / dLat, b = (PT.lon[i] - ll[1]) / dLon; if (a * a + b * b > 1) continue; out.n++; out.t[PT.nt[i] & 3]++; if (PT.bu[i] && PT.bu[i] < out.bestY) { out.bestY = PT.bu[i]; out.best = i; } }
+    }
+  return out;
+}
+async function pinAt(ll, label) {
+  if (pinM) pinM.remove(); pinM = L.marker(ll, { icon: L.divIcon({ className: "pin", iconSize: [20, 20] }), interactive: false }).addTo(lmap);
+  lmap.setView(ll, 14); mapIntoView();
+  if (!PT) return;
+  const o = near(ll, 1);
+  let old = "";
+  if (o.best >= 0) { const k = Math.floor(o.best / META.chunk), rows = await chunk(k); old = `<br>Oldest with a date within 1 km: <b>${esc(rows[o.best - k * META.chunk][1])}</b>, about ${Math.round((PT.bu[o.best] * 10 + 500) / 10) * 10}s`; }
+  document.getElementById("info").innerHTML = `<div class="nm">${esc(label)}</div>Within 1 km: <b>${fmt(o.n)}</b> list entries (${fmt(o.t[1])} in the top grade, ${fmt(o.t[2])} in the second).${old}<br><span style="color:var(--muted)">Tap a dot for its entry.</span>`;
+}
+function pick(it) {
+  showSug([]); if (!it) return; qi.value = it.label.replace(/^Look up postcode /, "");
+  if (it.ll) { pinAt(it.ll, it.label); return; }
+  if (it.pc) fetch("https://api.postcodes.io/postcodes/" + encodeURIComponent(it.pc.replace(/ /g, ""))).then(r => r.json()).then(j => { if (j.result) pinAt([j.result.latitude, j.result.longitude], it.pc); else document.getElementById("info").textContent = "Postcode not found."; }).catch(() => { document.getElementById("info").textContent = "The postcode service did not answer."; });
+}
+
+/* ===== charts ===== */
+function hbarDraw(box, W, narrow, items, opt) {
+  const lw = narrow ? 140 : 210, rh = 26, h = items.length * rh + 26, svg = el("svg", { viewBox: `0 0 ${W} ${h}` }, box);
+  const max = opt.max || Math.max(...items.map(i => i.v)) * 1.08, sx = v => lw + (W - lw - 60) * v / max;
+  items.forEach((it, i) => {
+    const y = i * rh + 4;
+    const lab = narrow && it.label.length > 19 ? it.label.slice(0, 18) + "." : it.label;
+    txt(lw - 8, y + 15, lab, "lab" + (it.bold ? " b" : ""), svg, "end");
+    if (it.v == null) return;
+    const r = el("rect", { x: lw, y: y + 3, width: Math.max(1, sx(it.v) - lw), height: rh - 9, fill: it.col || opt.col || css("--red"), rx: 1 }, svg);
+    txt(sx(it.v) + 5, y + 15, opt.f ? opt.f(it.v) : fmt(it.v, 1), "lab m", svg);
+    if (it.tip) hover(r, it.tip);
+  });
+}
+function hbar(box, items, opt) { resp(box, (W, narrow) => hbarDraw(box, W, narrow, typeof items === "function" ? items() : items, opt)); }
+function ctyChart() {
+  const it = R.county_top_per_head.map(c => ({ label: c.name, v: c.per_1000, col: css("--red"), tip: `<b>${esc(c.name)}</b><br>${fmt(c.n)} entries, ${fmt(c.pop)} people` }))
+    .concat([{ label: "· · ·", v: null }])
+    .concat(R.county_bottom_per_head.slice().reverse().map(c => ({ label: c.name, v: c.per_1000, col: css("--slate"), tip: `<b>${esc(c.name)}</b><br>${fmt(c.n)} entries, ${fmt(c.pop)} people` })));
+  hbar(document.getElementById("ctyChart"), it, { f: v => fmt(v, 1) });
+}
+function townChart() {
+  let t = "10";
+  const items = () => (t === "10" ? R.town_top_per_head : R.town50_top_per_head).map((c, i) => ({ label: c.name, v: c.per_1000, col: css("--ochre"), bold: i === 0, tip: `<b>${esc(c.name)}</b> (${esc(c.nation)})<br>${fmt(c.n)} entries, ${fmt(c.pop)} residents` }));
+  hbar(document.getElementById("townChart"), items, { f: v => fmt(v, 1) });
+  const rd = redraws[redraws.length - 1];
+  document.getElementById("townBtns").onclick = e => { const b = e.target.closest(".btn"); if (!b) return; t = b.dataset.t; pressed("townBtns", "t", t); rd(); };
+}
+function typeChart() {
+  const nats = ["England", "Scotland", "Wales", "Northern Ireland"];
+  resp(document.getElementById("typeChart"), (W, narrow) => {
+    const lw = narrow ? 64 : 120, bh = 30, gap = 14, legendRows = Math.ceil(TYPES.length / (W < 500 ? 1 : W < 820 ? 2 : 3)), h = nats.length * (bh + gap) + legendRows * 20 + 16;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${h}` }, document.getElementById("typeChart"));
+    nats.forEach((n, j) => {
+      const y = j * (bh + gap); let x = lw;
+      txt(lw - 8, y + bh / 2 + 4, narrow ? ["Eng", "Sco", "Wal", "NI"][j] : n, "lab", svg, "end");
+      TYPES.forEach(t => { const d = R.types[n][t]; const w = (W - lw - 4) * d.pct / 100; if (w <= 0) return; const r = el("rect", { x, y, width: w, height: bh, fill: TCOL[t] }, svg); hover(r, `<b>${esc(n)}</b>: ${esc(R.type_labels[t])}<br>${fmt(d.n)} entries, ${fmt(d.pct, 1)}%`); r.addEventListener("click", () => { setType(t); document.getElementById("lmap").scrollIntoView({ behavior: "smooth", block: "center" }); }); x += w; });
+    });
+    const cols = W < 500 ? 1 : W < 820 ? 2 : 3, cw = (W - 4) / cols, y0 = nats.length * (bh + gap) + 6;
+    TYPES.forEach((t, k) => { const x = (k % cols) * cw, y = y0 + Math.floor(k / cols) * 20; el("rect", { x, y, width: 11, height: 11, fill: TCOL[t] }, svg); const lab = R.type_labels[t]; txt(x + 16, y + 10, lab, "lab s", svg); });
+  });
+}
+function gradeChart() {
+  const nats = ["England", "Wales", "Scotland", "Northern Ireland"];
+  resp(document.getElementById("gradeChart"), (W, narrow) => {
+    const lw = narrow ? 64 : 120, bh = 30, gap = 12, h = nats.length * (bh + gap) + 10, svg = el("svg", { viewBox: `0 0 ${W} ${h}` }, document.getElementById("gradeChart"));
+    const tc = TIERCOL();
+    nats.forEach((n, j) => {
+      const y = j * (bh + gap), N = R.nations[n]; let x = lw;
+      txt(lw - 8, y + bh / 2 + 4, narrow ? ["Eng", "Wal", "Sco", "NI"][j] : n, "lab", svg, "end");
+      const parts = [[N.top_pct, tc[0], TIERLAB(n)[0]], [N.mid_pct, tc[1], TIERLAB(n)[1]], [100 - N.top_pct - N.mid_pct, tc[2], TIERLAB(n)[2]]];
+      parts.forEach(([p, c, lab]) => { const w = (W - lw - 4) * p / 100; const r = el("rect", { x, y, width: w, height: bh, fill: c }, svg); hover(r, `<b>${esc(n)}</b>: ${esc(lab)}<br>${fmt(p, 1)}%`); if (w > 46) { const t = txt(x + 5, y + bh / 2 + 4, fmt(p, 1) + "%", "lab s", svg); t.style.fill = "#fff"; } x += w; });
+    });
+  });
+}
+function centChart() {
+  const nats = ["England", "Scotland", "Wales", "Northern Ireland"], ks = R.cent_keys;
+  resp(document.getElementById("centChart"), (W, narrow) => {
+    const lw = 36, top = 16, ch = 210, h = ch + top + 74, svg = el("svg", { viewBox: `0 0 ${W} ${h}` }, document.getElementById("centChart"));
+    const gw = (W - lw) / ks.length, bw = Math.min(26, (gw - 10) / 4), max = Math.ceil(Math.max(...nats.flatMap(n => ks.map(k => R.dates[n].dist[k].ci ? Math.max(R.dates[n].dist[k].pct, R.dates[n].dist[k].ci[1] || 0) : R.dates[n].dist[k].pct))) / 10) * 10, sy = v => top + ch - ch * v / max;
+    [0, .25, .5, .75, 1].map(f => Math.round(f * max)).forEach(v => { el("line", { x1: lw, x2: W, y1: sy(v), y2: sy(v), stroke: css("--rule") }, svg); txt(30, sy(v) + 4, v + "%", "lab s m", svg, "end"); });
+    const ncol = ["#A3261E", "#46677D", "#C8860F", "#5E7F3A"];
+    ks.forEach((k, i) => {
+      const gx = lw + i * gw + (gw - bw * 4) / 2;
+      nats.forEach((n, j) => { const d = R.dates[n].dist[k], x = gx + j * bw; const r = el("rect", { x, y: sy(d.pct), width: bw - 2, height: Math.max(0, sy(0) - sy(d.pct)), fill: ncol[j] }, svg); hover(r, `<b>${esc(n)}</b>, ${esc(R.cent_labels[k])}<br>${fmt(d.pct, 1)}% of ${fmt(R.dates[n].dist.n)} dated entries${n === "England" || n === "Scotland" ? `<br>95% interval ${fmt(d.ci[0], 1)} to ${fmt(d.ci[1], 1)}%` : ""}`);
+        if (n === "England" || n === "Scotland") { const cx = x + (bw - 2) / 2; el("line", { x1: cx, x2: cx, y1: sy(d.ci[0]), y2: sy(d.ci[1]), stroke: css("--fg"), "stroke-width": 1.2 }, svg); } });
+      const lab = R.cent_labels[k].replace(/ \(.*\)/, "");
+      txt(lw + i * gw + gw / 2, top + ch + 16, narrow ? lab.replace("Before ", "<").replace(" and later", "+") : lab, "lab s", svg, "middle");
+    });
+    nats.forEach((n, j) => { const x = lw + (j % (narrow ? 2 : 4)) * (narrow ? W / 2 : W / 4), y = top + ch + 36 + Math.floor(j / (narrow ? 2 : 4)) * 18; el("rect", { x, y, width: 11, height: 11, fill: ncol[j] }, svg); txt(x + 16, y + 10, (narrow && n === "Northern Ireland" ? "N. Ireland" : n) + (n === "Wales" ? " (all)" : n === "Northern Ireland" ? " (record)" : " (sample)"), "lab s", svg); });
+  });
+}
+function regChart() {
+  const reg = R.dates.England.by_region, names = Object.keys(reg).sort((a, b) => reg[b].c18.pct - reg[a].c18.pct);
+  resp(document.getElementById("regChart"), (W, narrow) => {
+    const lw = narrow ? 150 : 210, rh = 30, lgr = narrow ? 3 : 2, h = names.length * rh + 34 + lgr * 18 + 10, svg = el("svg", { viewBox: `0 0 ${W} ${h}` }, document.getElementById("regChart"));
+    const sx = v => lw + (W - lw - 10) * v / 100;
+    [0, 25, 50, 75, 100].forEach(v => txt(sx(v), 10, v + "%", "lab s m", svg, "middle"));
+    names.forEach((g, i) => {
+      const y = 18 + i * rh, d = reg[g]; let x = lw;
+      txt(lw - 8, y + 15, (narrow && g.length > 17 ? g.replace("Yorkshire and The Humber", "Yorks and Humber").replace("East of England", "East") : g) + ` (${d.n})`, "lab s", svg, "end");
+      R.cent_keys.forEach((k, j) => { const w = (W - lw - 10) * d[k].pct / 100; const r = el("rect", { x, y: y + 3, width: Math.max(0, w), height: rh - 10, fill: CCOL[j] }, svg); hover(r, `<b>${esc(g)}</b>, ${esc(R.cent_labels[k])}<br>${fmt(d[k].pct, 1)}% (${d[k].n} of ${d.n}), 95% interval ${fmt(d[k].ci[0], 1)} to ${fmt(d[k].ci[1], 1)}%`); x += w; });
+    });
+    const per = narrow ? 2 : 3, y0 = 18 + names.length * rh + 8;
+    R.cent_keys.forEach((k, j) => { const x = (j % per) * (W / per), y = y0 + Math.floor(j / per) * 18; el("rect", { x, y, width: 11, height: 11, fill: CCOL[j] }, svg); txt(x + 16, y + 10, R.cent_labels[k], "lab s", svg); });
+  });
+}
+function lyChart() {
+  let nat = "England";
+  resp(document.getElementById("lyChart"), (W, narrow) => {
+    const d = R.list_years[nat].by_year, ys = Object.keys(d).map(Number), y0 = 1945, y1 = 2026, h = 230, top = 10, bot = 26;
+    const max = Math.max(...Object.values(d)), svg = el("svg", { viewBox: `0 0 ${W} ${h}` }, document.getElementById("lyChart"));
+    const bw = (W - 40) / (y1 - y0 + 1), sx = y => 34 + (y - y0) * bw, sy = v => top + (h - top - bot) * (1 - v / max);
+    const step = max > 20000 ? 5000 : max > 8000 ? 2000 : max > 2000 ? 500 : 200;
+    for (let v = 0; v <= max; v += step) { el("line", { x1: 34, x2: W, y1: sy(v), y2: sy(v), stroke: css("--rule") }, svg); txt(30, sy(v) + 4, v >= 1000 ? (v / 1000) + "k" : v, "lab s m", svg, "end"); }
+    ys.forEach(y => { if (y < y0) return; const v = d[y]; const r = el("rect", { x: sx(y), y: sy(v), width: Math.max(1, bw - 1), height: sy(0) - sy(v), fill: LYRAMP[lyClass(y - 1900)] }, svg); hover(r, `<b>${y}</b><br>${fmt(v)} entries first listed`); });
+    for (let y = 1950; y <= 2020; y += narrow ? 20 : 10) txt(sx(y) + bw / 2, h - 8, y, "lab s", svg, "middle");
+  });
+  const rd = redraws[redraws.length - 1];
+  document.getElementById("lyBtns").onclick = e => { const b = e.target.closest(".btn"); if (!b) return; nat = b.dataset.n; pressed("lyBtns", "n", nat); rd(); };
+}
+
+/* ===== load ===== */
+setTiles();
+fetch("data/counties.geojson").then(r => r.json()).then(setupCounties);
+fetch("data/places.json").then(r => r.json()).then(p => { PLACES = p; placeNames(); });
+fetch("data/points.bin.gz").then(r => r.arrayBuffer()).then(gunzip).then(ab => {
+  PT = decode(ab); document.getElementById("loadMsg").textContent = ""; legend(); redrawDots();
+}).catch(e => { document.getElementById("loadMsg").textContent = "The map data did not load in this browser."; console.error(e); });
+legend();
+ctyChart(); townChart(); typeChart(); gradeChart(); centChart(); regChart(); lyChart();
+</script>
+</body>
+</html>
