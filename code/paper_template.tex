@@ -1,0 +1,202 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\newfontfamily\headfont{Inter}[UprightFont=*-ExtraBold,BoldFont=*-ExtraBold,Extension=.otf,Path=/usr/share/fonts/opentype/inter/]
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{graphicx,booktabs,float,caption,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{setspace}
+\setstretch{1.05}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\titleformat{\section}{\headfont\Large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\headfont\large}{\thesubsection}{0.8em}{}
+\captionsetup{font=small,labelfont=bf}
+\urlstyle{same}
+\hypersetup{pdftitle={The Listed Kingdom: Every Listed Building in the United Kingdom by Grade, Type, Date of Listing and Date of Building},pdfauthor={Tristan Hotham}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries The Listed Kingdom\\[2pt] Every Listed Building in the United Kingdom by Grade,\\[2pt] Type, Date of Listing and Date of Building\par}
+\vspace{1.2em}
+{\large Tristan Hotham\par}
+\vspace{0.3em}
+{\small Independent researcher\\
+ORCID: 0000-0003-4931-9349\\
+DOI: \href{https://doi.org/10.5281/zenodo.23761429}{https://doi.org/10.5281/zenodo.23761429}\par}
+\vspace{0.8em}
+2026
+\end{center}
+
+\begin{quote}
+\small
+\begin{center}\textbf{Abstract}\end{center}
+The four nations of the United Kingdom each keep a statutory list of buildings of special architectural or historic interest, and each publishes it as open data. I combined Historic England's National Heritage List, Historic Environment Scotland's list, Cadw's list for Wales and the listed grades of Northern Ireland's Historic Buildings Record into one table of {{n_total|int}} list entries, retrieved on {{retrieved}}, and added what the open files lack: a type for each entry, read from its name with open keyword rules, and a date of building, read from the first date in the official description for every entry in Wales and for random samples of {{dates.England.n_sampled|int}} entries in England and {{dates.Scotland.n_sampled|int}} in Scotland (Northern Ireland's record carries its own date bands). Wales has the most entries per head ({{nations.Wales.per_1000|f1}} per 1,000 residents), then Scotland ({{nations.Scotland.per_1000|f1}}), England ({{nations.England.per_1000|f1}}) and Northern Ireland ({{nations.Northern Ireland.per_1000|f1}}). Houses and cottages are the largest type ({{types.UK.house.pct|f1}}\% of entries), but {{top_church_pct.England|f1}}\% of England's Grade I entries are churches and chapels. In England's sample {{dates.England.dist.c18.pct|f1}}\% of dated entries were built in the 1700s and {{dates.England.dist.c19.pct|f1}}\% in the 1800s; Scotland's, Wales's and Northern Ireland's lists are younger, with {{dates.Scotland.dist.c19.pct|f1}}\%, {{dates.Wales.dist.c19.pct|f1}}\% and {{dates.Northern Ireland.dist.c19.pct|f1}}\% from the 1800s. Within England the East of England has the oldest listed stock and London the youngest. Listing came in waves: {{list_years.England.in_1980s_pct|f1}}\% of England's entries were first listed in the 1980s, and since 2015 more than half of England's new entries have been war memorials. A hand check of {{date_check.all.n|int}} descriptions found the date rules right in {{date_check.all.right_pct|f1}}\% of the cases that could be judged.
+
+\textbf{Keywords:} listed buildings; built heritage; National Heritage List for England; Cadw; Historic Environment Scotland; Northern Ireland Historic Buildings Record; open data; text mining; architectural history; United Kingdom
+\end{quote}
+
+\section{Introduction}
+
+Since the Town and Country Planning Act 1947 England and Wales, and later Scotland and Northern Ireland, have kept statutory lists of buildings of special architectural or historic interest. A listed building cannot be demolished, extended or altered in ways that affect its character without consent. The lists are among the largest records of the built past anywhere: they run from medieval cathedrals to telephone kiosks, milestones and post-war housing.
+
+Each nation now publishes its list as open data under the Open Government Licence: Historic England's National Heritage List for England (NHLE), Historic Environment Scotland's (HES) listed buildings, Cadw's listed buildings for Wales and the Department for Communities' Historic Buildings Record for Northern Ireland. The open files are spatial: they give a point, a name, a grade and usually the date of listing. They do not give a type of building, and except in Northern Ireland they do not give a date of building. Both are in the words of each entry's official description, but not in a field.
+
+This note puts the four lists together and asks four questions. Where are listed buildings thickest, relative to the people who live among them? What kinds of building are on the lists, and which reach the top grade? When were they built? And when were they listed? The interactive version, with every entry on one map, a search box, a colour switch for grade, type, date of building and date of listing, and a ``Map layers'' panel, is at \url{https://maps.tristanhotham.com/listed-buildings/}. It complements an earlier study of the oldest buildings still standing in Wikidata (\url{https://maps.tristanhotham.com/oldest-buildings/}).
+
+\section{Data}
+
+\subsection{The four lists}
+
+I read each list from its publisher's own open data service on {{retrieved}}.
+
+\textbf{England.} Historic England's NHLE ``Listed Building points'' layer (ArcGIS feature service): {{nations.England.n|int}} list entries, each with its list entry number, name, grade (I, II* or II), date first listed, date of last amendment and national grid coordinates.
+
+\textbf{Scotland.} HES's ``Listed Buildings by Category'' layer (ArcGIS map service). HES publishes one point per building within a designation, so its layer has {{scotland_entities|int}} points for {{nations.Scotland.n|int}} list entries (designations). I keep one row per designation, at its first point, so that Scotland is counted in list entries like the other nations. Categories are A, B and C.
+
+\textbf{Wales.} Cadw's listed buildings layer on DataMapWales (WFS): {{nations.Wales.n|int}} entries with record number, name, grade (I, II* or II), designation date, Cadw's own broad class (Domestic, Religious, Agriculture and so on), community and local authority.
+
+\textbf{Northern Ireland.} The Historic Buildings Record (Department for Communities, Historic Environment Division, ArcGIS feature service, via OpenDataNI). It holds listed buildings and others recorded but not listed. I keep the listed grades A, B+, B1, B2 and B ({{nations.Northern Ireland.n|int}} entries) and leave out {{ni_dropped_record_only|int}} ``record only'' and delisted entries. The record gives address, current and former use and a date band of construction (for example ``1820 - 1839'', written here as 1820 to 1839) but no listing date.
+
+All four are under the Open Government Licence v3.0. In total there are {{n_total|int}} list entries. An entry is not always a single building: it may be a terrace, a church with its churchyard walls, a farmhouse and barn, a tomb or a milestone.
+
+\subsection{Descriptions}
+
+Each entry has an official written description on its publisher's website. These were read programmatically, only to extract dates; the text is not republished. For Wales I read the ``History'' (and if needed ``Period'' and ``Reason for designation'') fields of every one of the {{nations.Wales.n|int}} Cadw full reports. For England and Scotland, where reading every description was not practical, I drew seeded random samples: {{dates.England.n_sampled|int}} of England's list entries (a shuffle of all object identifiers with a fixed seed) and {{dates.Scotland.n_sampled|int}} of Scotland's building points. Because a Scottish designation with $k$ building points was $k$ times as likely to be drawn, each Scottish draw carries weight $1/k$, and Scottish shares are weighted, with intervals based on Kish's effective sample size ({{dates.Scotland.dist.n_eff|int}}).
+
+\subsection{People and places}
+
+Counties and unitary authorities (218 areas) are the ONS December 2023 boundaries with mid-{{pop_year}} population estimates from ONS, NRS and NISRA. Towns are ONS built-up areas (2022) for Great Britain, with Census 2021 usual residents for England and Wales summed from lower layer super output areas. England's regions are taken from each entry's nearest census area (middle layer super output area population-weighted centroid). Wikidata's inception dates (CC0) for items carrying a list identifier ({{wikidata.n|int}} matched entries) add dates for some entries on the map, flagged as such.
+
+\section{Methods}
+
+\subsection{Types from names}
+
+Keyword rules (\texttt{code/rules.py}) give each entry one of fourteen types, or leave it as a numbered street building (a name that is only an address) or a named building whose use the name does not say (``The Laurels''). The rules take the head of the name, the part before the first preposition or comma (``Barn \textit{at} Lot Farm''), split it on ``and'', and in the first part that has a keyword take the last keyword, since English noun phrases end in their head noun: ``Barn Close House'' is a house and ``The Bull Public House'' a pub. War memorials are caught first. If the head has no keyword, the first keyword anywhere in the name is used. Scotland's entries are read from the building name, falling back to the designation title; Northern Ireland's from the recorded current use, falling back to the address.
+
+As a check, Cadw gives every Welsh entry a broad class of its own. Where the rules gave a type, it was consistent with Cadw's class in {{type_check_wales.agree_pct|f1}}\% of {{type_check_wales.n|int}} entries, and {{type_check_wales.agree_pct_excl_walls|f1}}\% leaving out walls and gates, which Cadw often classes with the house or garden they belong to. The types are a good guide, not a census.
+
+\subsection{Dates from descriptions}
+
+Date rules (\texttt{code/rules.py}) find every date in a description: years (``1845'', ``c1800'', ``1820s''), centuries in the Historic England and Cadw style (``Late C17'', ``early C19'') and in words (``mid 19th century''). A century alone is placed at its middle year; ``early'' and ``late'' move it 35 years, ``first half'' and ``second half'' 25. The build date is the first date the description gives. Old-style English entries open with a header (parish, grid reference, list numbers, list date, grade); the rules skip it by starting after the grade, or after ``2.'' in the oldest numbered format. Grid references, administrative notes (``This list entry was subject to a Minor Amendment on \ldots'') and boilerplate after the description are removed first. When no number appears early, a period word such as ``medieval'', ``Georgian'' or ``Victorian'' is used and flagged; words followed by ``revival'' or ``style'' are not. When the first date sits in a sentence about the origins of the site (a saint's foundation, a Roman camp, a first church) and a later date follows, the later date is used. Dates are then grouped by century: before 1500, the 1500s, 1600s, 1700s, 1800s, and 1900 or later. A year such as 1700 falls in the 17th century, so the groups are centuries in the strict sense.
+
+The first date is normally the date of the main build. For buildings with long histories, older parts often appear later in the text, so these dates lean young; for old churches the first date is sometimes still the date of a foundation rather than of standing fabric. I therefore report shares by century and do not name an ``oldest listed building'' from the rules.
+
+To test the rules, I read {{date_check.all.n|int}} random descriptions ({{date_check.England.n|int}} from England, {{date_check.Scotland.n|int}} from Scotland and {{date_check.Wales.n|int}} from Wales), as part of the AI-assisted analysis, and noted the century of the build date each gives. Of those that could be judged ({{date_check.all.unsure|int}} could not), the rules were right in {{date_check.all.right|int}} and wrong in {{date_check.all.wrong|int}} ({{date_check.all.right_pct|f1}}\% right). Two of the three errors (an OCR misreading and a date in a page note) were then fixed in the rules; the third, a description that opens with the history of a movement rather than the building, was not.
+
+Shares from the samples carry Wilson 95\% intervals. Wales is read in full, so its shares carry no sampling error, only the error of the rules.
+
+\section{Results}
+
+\subsection{Where}
+
+Table~\ref{tab:nations} gives the four lists side by side. Wales has the most entries per head, Northern Ireland the fewest. Among counties and unitary authorities (Figure~\ref{fig:counties}), the Isles of Scilly ({{county_top_per_head.0.per_1000|f1}} per 1,000 residents) and the City of London ({{county_top_per_head.1.per_1000|f1}}) lead, both with very few residents; then come rural Wales and the English Marches: Powys ({{county_top_per_head.2.per_1000|f1}}), Gwynedd ({{county_top_per_head.3.per_1000|f1}}), Rutland ({{county_top_per_head.4.per_1000|f1}}) and Herefordshire ({{county_top_per_head.5.per_1000|f1}}). At the other end, among areas of 100,000 people or more, are {{county_bottom_per_head.0.name}} ({{county_bottom_per_head.0.per_1000|f2}}), {{county_bottom_per_head.1.name}} ({{county_bottom_per_head.1.per_1000|f2}}) and {{county_bottom_per_head.2.name}} ({{county_bottom_per_head.2.per_1000|f2}}). Devon has the most entries of any county ({{county_most.0.n|int}}). London's boroughs hold {{london.n|int}}, {{london.per_1000|f1}} per 1,000 residents, {{london.westminster.n|int}} of them in Westminster.
+
+Among the {{towns_n_ew_10k|int}} built-up areas of England and Wales with 10,000 residents or more, {{town_top_per_head.0.name}} has the most entries per head ({{town_top_per_head.0.per_1000|f1}} per 1,000), followed by {{town_top_per_head.1.name}} ({{town_top_per_head.1.per_1000|f1}}), {{town_top_per_head.2.name}} ({{town_top_per_head.2.per_1000|f1}}) and {{town_top_per_head.3.name}} ({{town_top_per_head.3.per_1000|f1}}) (Figure~\ref{fig:towns}). Among towns of 50,000 or more, {{town50_top_per_head.0.name}} leads ({{town50_top_per_head.0.per_1000|f1}}) and {{town50_bottom_per_head.0.name}} has the fewest ({{town50_bottom_per_head.0.per_1000|f2}}). {{pct_in_bua_gb|f1}}\% of entries in Great Britain fall inside a built-up area.
+
+{{TABLE_NATIONS}}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.78\textwidth]{f_map.png}
+\caption{Every list entry in the United Kingdom, one dot each, by grade. The top grade is Grade I in England and Wales and category A in Scotland and Northern Ireland; the middle is Grade II*, category B (Scotland) and B+ (Northern Ireland).}\label{fig:map}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.8\textwidth]{f_counties.png}
+\caption{List entries per 1,000 residents: the twelve counties and unitary authorities with most, and the ten with fewest among those of 100,000 people or more.}\label{fig:counties}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.8\textwidth]{f_towns.png}
+\caption{Built-up areas of England and Wales with 10,000 or more residents and the most list entries per head.}\label{fig:towns}
+\end{figure}
+
+\subsection{What}
+
+By the name rules, houses and cottages are {{types.UK.house.pct|f1}}\% of all entries, barns and farm buildings {{types.UK.farm.pct|f1}}\%, churches and chapels {{types.UK.church.pct|f1}}\%, walls, gates and railings {{types.UK.wall.pct|f1}}\%, bridges, roads, railways and canals {{types.UK.transport.pct|f1}}\% and tombs, crosses and monuments {{types.UK.monument.pct|f1}}\%. A further {{types.UK.address.pct|f1}}\% are numbered street buildings and {{types.UK.other.pct|f1}}\% are named buildings whose name does not give a use (Figure~\ref{fig:types}). There are {{n_kiosk|int}} entries naming a telephone kiosk, {{n_milestone|int}} naming a milestone or milepost and {{n_war_memorial|int}} war memorials.
+
+The top grade is a different mix. {{top_church_pct.England|f1}}\% of England's {{nations.England.top_n|int}} Grade I entries are churches and chapels, and in England's sample {{dates.England.by_type.church.le15.pct|f1}}\% of listed churches have a first date before 1500. In Wales churches are {{top_church_pct.Wales|f1}}\% of Grade I entries and castles and defences {{types.Wales.defence.top_pct|f1}}\%. Scotland's category A is led by houses ({{types.Scotland.house.top_pct|f1}}\%), with churches {{top_church_pct.Scotland|f1}}\%. The grades are used differently: England gives Grade I to {{nations.England.top_pct|f1}}\% of entries, Wales to {{nations.Wales.top_pct|f1}}\%, Scotland category A to {{nations.Scotland.top_pct|f1}}\% and Northern Ireland grade A to {{nations.Northern Ireland.top_pct|f1}}\%; Scotland's category B covers {{nations.Scotland.mid_pct|f1}}\% of its list.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.86\textwidth]{f_types.png}
+\caption{Share of list entries by type, read from their names, in each nation.}\label{fig:types}
+\end{figure}
+
+\subsection{When built}
+
+Rules found a date in {{dates.England.dated_pct|f1}}\% of England's sampled descriptions, {{dates.Scotland.dated_pct|f1}}\% of Scotland's and {{dates.Wales.dated_pct|f1}}\% of Wales's; {{dates.Northern Ireland.dated_pct|f1}}\% of Northern Ireland's listed entries have a usable date band. Table~\ref{tab:cent} and Figure~\ref{fig:cent} show the century of building. England's list is the oldest: {{dates.England.dist.le15.pct|f1}}\% of dated entries before 1500, {{dates.England.dist.c16.pct|f1}}\% in the 1500s, {{dates.England.dist.c17.pct|f1}}\% in the 1600s, {{dates.England.dist.c18.pct|f1}}\% in the 1700s and {{dates.England.dist.c19.pct|f1}}\% in the 1800s. Wales has a similar share from before 1500 ({{dates.Wales.dist.le15.pct|f1}}\%) but far fewer from the 1600s and 1700s and {{dates.Wales.dist.c19.pct|f1}}\% from the 1800s. Scotland's list is younger again ({{dates.Scotland.dist.c19.pct|f1}}\% from the 1800s) and Northern Ireland's record youngest ({{dates.Northern Ireland.dist.c19.pct|f1}}\%).
+
+Within England (Figure~\ref{fig:regions}) the East of England has the oldest listed buildings ({{dates.England.by_region.East of England.le15.pct|f1}}\% from before 1500 and {{dates.England.by_region.East of England.c16.pct|f1}}\% from the 1500s, from {{dates.England.by_region.East of England.n|int}} dated entries). London's are the youngest, {{dates.England.by_region.London.c19.pct|f1}}\% from the 1800s, followed by the North West ({{dates.England.by_region.North West.c19.pct|f1}}\%). Yorkshire and the Humber has the largest share from the 1700s ({{dates.England.by_region.Yorkshire and The Humber.c18.pct|f1}}\%). Regional samples are a few hundred each, so differences of a few points are within sampling error.
+
+In Wales, where every entry is dated, the pattern can be mapped (Figure~\ref{fig:wales}). Entries with first dates before 1500 are commonest in the Vale of Glamorgan ({{dates.Wales.by_council.Vale of Glamorgan.le15.pct|f1}}\%) and Monmouthshire ({{dates.Wales.by_council.Monmouthshire.le15.pct|f1}}\%), and rarest in Ceredigion ({{dates.Wales.by_council.Ceredigion.le15.pct|f1}}\%), where {{dates.Wales.by_council.Ceredigion.c19.pct|f1}}\% of entries date from the 1800s.
+
+{{TABLE_CENT}}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.86\textwidth]{f_centuries.png}
+\caption{Century of building by nation: share of dated entries by the century of the first date in their official description (England and Scotland: random samples with 95\% intervals; Wales: every entry; Northern Ireland: the record's date band).}\label{fig:cent}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.86\textwidth]{f_regions.png}
+\caption{England's regions: share of sampled, dated entries by century of building, with the number of dated entries in each region.}\label{fig:regions}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.72\textwidth]{f_wales_built.png}
+\caption{Every listed entry in Wales by the century of the first date in its Cadw description.}\label{fig:wales}
+\end{figure}
+
+Wikidata's inception dates, which cover {{wikidata.pct_of_all|f1}}\% of entries, lean heavily towards old and grand buildings: {{wikidata.dist.le15.pct|f1}}\% of them are before 1500, and {{wikidata.tier1_pct|f1}}\% of the matched entries are in the top grade. Where an entry has both a Wikidata date and a date from its description ({{wikidata.n_both|int}} entries), the two fall in the same century {{wikidata.same_century_pct|f1}}\% of the time. On the map, a date from the description takes precedence.
+
+\subsection{When listed}
+
+Figure~\ref{fig:waves} shows the year each entry on today's lists was first listed. In England, {{list_years.England.before_1970_pct|f1}}\% were first listed before 1970, {{list_years.England.in_1980s_pct|f1}}\% in the 1980s and {{list_years.England.since_2000_pct|f1}}\% since 2000; the busiest year was {{list_years.England.peak_year}}, with {{list_years.England.peak_n|int}} entries. Scotland's busiest year was {{list_years.Scotland.peak_year}} ({{list_years.Scotland.peak_n|int}} entries), and Wales's {{list_years.Wales.peak_year}}; {{list_years.Wales.since_2000_pct|f1}}\% of Wales's entries were first listed since 2000. Of the {{eng_recent.n|int}} entries England has listed since 2015, {{eng_recent.types.war_memorial|int}} are war memorials, in the years around the centenary of the First World War. Buildings that were listed and later demolished or removed are not on today's lists, so the early years are undercounted.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=.86\textwidth]{f_waves.png}
+\caption{Entries on today's lists by the year they were first listed. Northern Ireland's open data has no listing date.}\label{fig:waves}
+\end{figure}
+
+\section{Discussion}
+
+Three things stand out. First, the lists are dominated by ordinary buildings of the eighteenth and nineteenth centuries: houses, cottages, farm buildings and the walls and gates around them. The famous buildings are a thin layer; the top grade is {{uk_top_pct|f1}}\% of entries across the UK, and in England and Wales a large part of it is parish churches. Second, the nations differ, in how much they list per head, in how they grade and in the age of what they list. England's list reaches furthest back, with more from the 1500s and 1600s than any other; Scotland's and Northern Ireland's are overwhelmingly from the 1800s. Part of this is history, part the practice of each listing body, and these data cannot separate the two. Third, the timing of listing follows campaigns: England's resurvey of the 1980s, Scotland's large year of {{list_years.Scotland.peak_year}}, Wales's long programme into the 2000s, and in the last decade England's listing of war memorials.
+
+Per head measures say as much about population as about buildings. Small, old, slow-growing places top the tables because they have many old buildings and few new residents; outer London boroughs and twentieth-century towns are at the bottom because most of their buildings are recent, not because nothing in them is worth keeping.
+
+\section{Limitations}
+
+Counts are of list entries, not buildings, and the four lists divide entries differently (Scotland's designations can cover many buildings). Grades are not comparable across nations. The type of each entry is read from its name, and about a quarter of names do not say. Build dates are the first date in each description: they lean young for buildings with long histories, and some early church dates are foundations rather than fabric. England and Scotland are sampled; regional and type breakdowns rest on a few hundred entries each. Northern Ireland's date bands are the record's own and a third of its listed entries have none. Wikidata dates are sparse and biased to famous buildings. Listing dates describe survivors: buildings delisted or demolished are gone from today's lists. Points are where the publishers put them; a few are approximate.
+
+\section{Conclusion}
+
+Put together, the four UK lists hold {{n_total|int}} entries, about {{uk_per_1000|f1}} for every 1,000 people. Read with simple open rules, their names and descriptions show a heritage that is mostly domestic, mostly Georgian and Victorian, oldest in eastern England, youngest in London, Scotland and Northern Ireland, and listed in waves. The interactive map makes every entry findable, with a link to its official record.
+
+\section*{Data and code availability}
+
+Data, code and the interactive page: \url{https://github.com/Tristan-Hotham/listed-buildings} and \url{https://maps.tristanhotham.com/listed-buildings/}. Archived with this paper: \url{https://doi.org/10.5281/zenodo.23761429}. The published tables give every entry's type, coordinates, county, built-up area and any date, and the parsed dates for every sampled and Welsh description (the words matched, not the text). The listing data are under the Open Government Licence v3.0; Wikidata is CC0; code is MIT.
+
+\section*{AI statement}
+
+I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.
+
+\section*{References}
+\small
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Cadw (2026) Listed buildings (Wales). DataMapWales, \url{https://datamap.gov.wales/}; full reports at \url{https://cadwpublic-api.azurewebsites.net/}. Open Government Licence v3.0.
+\item Department for Communities, Historic Environment Division (2026) Historic Buildings Record. OpenDataNI, \url{https://www.opendatani.gov.uk/}. Open Government Licence v3.0.
+\item Historic England (2026) National Heritage List for England. \url{https://historicengland.org.uk/listing/the-list/}. Open Government Licence v3.0.
+\item Historic Environment Scotland (2026) Listed buildings. \url{https://portal.historicenvironment.scot/}. Open Government Licence v3.0.
+\item Office for National Statistics (2023, 2026) Counties and Unitary Authorities (December 2023) boundaries; Built-up Areas (2022); Census 2021; mid-year population estimates. \url{https://geoportal.statistics.gov.uk/}. Open Government Licence v3.0.
+\item National Records of Scotland and Northern Ireland Statistics and Research Agency (2026) Mid-year population estimates. Open Government Licence v3.0.
+\item Planning (Listed Buildings and Conservation Areas) Act 1990, c. 9. \url{https://www.legislation.gov.uk/ukpga/1990/9}.
+\item Planning (Listed Buildings and Conservation Areas) (Scotland) Act 1997, c. 9. \url{https://www.legislation.gov.uk/ukpga/1997/9}.
+\item Wikidata (2026) \url{https://www.wikidata.org/}, queried through QLever, \url{https://qlever.cs.uni-freiburg.de/}. CC0.
+\item Hotham, T. (2026) Still Standing: why buildings from before AD 1100 survive, in Wikidata. \url{https://maps.tristanhotham.com/oldest-buildings/}.
+\end{itemize}
+\end{document}

@@ -1,0 +1,149 @@
+<!-- wp:paragraph -->
+<p><em>The UK keeps four lists of buildings worth saving. Together they hold {{n_total|int}} entries. I put every one of them on one map, read their names to see what they are, and read their official descriptions to see when they were built.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://maps.tristanhotham.com/listed-buildings/">Explore the interactive version</a></div>
+<!-- /wp:button -->
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://doi.org/10.5281/zenodo.23761429">Read the paper</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:paragraph -->
+<p>Somebody decided each of these was worth keeping. Since the late 1940s the nations of the UK have listed buildings of special architectural or historic interest, and a listed building cannot be knocked down or much altered without consent. Historic England, Cadw in Wales, Historic Environment Scotland and Northern Ireland's Department for Communities each publish their list as open data. What the files do not say is what each building is, or when it was built. Those things are in the words.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>So I read them. Each entry's name says, more often than not, what it is: a barn, a church, a telephone kiosk. Each entry's official description usually opens with its date: "Farmhouse. Late C17." I read the description of every one of Wales's {{nations.Wales.n|int}} entries, and random samples of {{dates.England.n_sampled|int}} in England and {{dates.Scotland.n_sampled|int}} in Scotland. Northern Ireland's record gives its own date bands.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Half a million dots</h2>
+<!-- /wp:heading -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_map.png|Map of the UK made of {{n_total|int}} small dots, one for each listed building entry, coloured slate blue for Grade II and its equivalents, amber for Grade II* and Scotland's category B, and red for Grade I and category A. England is densely covered in blue; Scotland shows more amber.|Every list entry in the UK, one dot each, by grade. Scotland looks amber because it puts half its list in category B.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>There are {{n_total|int}} entries in all, about {{uk_per_1000|f1}} for every 1,000 people. An entry is not always one building: it can be a whole terrace or a single gravestone. Wales has the most per person ({{nations.Wales.per_1000|f1}} per 1,000), then Scotland ({{nations.Scotland.per_1000|f1}}), England ({{nations.England.per_1000|f1}}) and Northern Ireland ({{nations["Northern Ireland"].per_1000|f1}}).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Among counties and unitary authorities, the tiny populations of the Isles of Scilly ({{county_top_per_head.0.per_1000|f1}} per 1,000) and the City of London ({{county_top_per_head.1.per_1000|f1}}) put them on top. Next come rural Wales and the Marches: Powys ({{county_top_per_head.2.per_1000|f1}}), Gwynedd and Rutland. At the bottom are outer London boroughs and twentieth-century towns: Barking and Dagenham has {{county_bottom_per_head.0.per_1000|f2}} entries per 1,000 residents.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_counties.png|Bar chart of listed entries per 1,000 residents: the twelve highest areas, led by the Isles of Scilly at {{county_top_per_head.0.per_1000|f1}} and the City of London at {{county_top_per_head.1.per_1000|f1}}, and the ten lowest, all under one per 1,000, led by Barking and Dagenham.|The most and fewest listed entries per head, by county and unitary authority.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Towns tell the same story at a finer grain. Among towns of 10,000 people or more in England and Wales, {{town_top_per_head.0.name|raw}} comes first with {{town_top_per_head.0.per_1000|f1}} entries per 1,000 residents, then {{town_top_per_head.1.name|raw}}, {{town_top_per_head.2.name|raw}} and {{town_top_per_head.3.name|raw}}. Among bigger places, {{town50_top_per_head.0.name|raw}} leads. In small places the numbers get silly: {{village_top_per_head.0.name|raw}}, a small harbour town of about {{village_top_per_head.0.pop|int}} people, has {{village_top_per_head.0.n|int}} entries.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Houses, barns and a great many churches</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Read by their names, {{types.UK.house.pct|f1}}% of entries are houses and cottages, {{types.UK.farm.pct|f1}}% barns and farm buildings, {{types.UK.church.pct|f1}}% churches and chapels and {{types.UK.wall.pct|f1}}% walls, gates and railings. About a quarter have names that do not say. And there are oddities by the thousand: {{n_kiosk|int}} telephone kiosks, {{n_milestone|int}} milestones and mileposts, {{n_war_memorial|int}} war memorials.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_types.png|Stacked bars for England, Scotland, Wales and Northern Ireland showing the share of list entries of each type; houses and cottages are the largest block in each nation, and numbered street buildings and named buildings of unknown use are large in Scotland and Wales.|What is on each list, read from the entries' names.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>The top grade is another world. Only {{uk_top_pct|f1}}% of all entries are in it. In England, {{top_church_pct.England|int}}% of Grade I entries are churches and chapels. In Wales castles make up {{types.Wales.defence.top_pct|int}}% of Grade I. Scotland's category A is led by houses.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pullquote -->
+<figure class="wp-block-pullquote"><blockquote><p>In England, {{top_church_pct.England|int}}% of Grade I entries are churches and chapels.</p></blockquote></figure>
+<!-- /wp:pullquote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Georgian and Victorian, mostly</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The listed UK is mostly from the 1700s and 1800s. In England's sample, {{dates.England.dist.c18.pct|int}}% of dated entries were built in the 1700s and {{dates.England.dist.c19.pct|int}}% in the 1800s; {{dates.England.dist.c17.pct|int}}% in the 1600s and {{dates.England.dist.le15.pct|int}}% before 1500. England's list is the oldest of the four. Wales has a similar share from before 1500 but many more from the 1800s ({{dates.Wales.dist.c19.pct|int}}%). Scotland's is younger again ({{dates.Scotland.dist.c19.pct|int}}% from the 1800s) and Northern Ireland's youngest ({{dates["Northern Ireland"].dist.c19.pct|int}}%).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_centuries.png|Grouped bar chart of the share of dated entries built in each century for England, Scotland, Wales and Northern Ireland; the 1800s bar is tallest in every nation, highest in Northern Ireland at {{dates["Northern Ireland"].dist.c19.pct|int}}%, and England has the largest shares before 1800.|When listed buildings were built, from the first date in each official description. England and Scotland are random samples with 95% intervals.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Inside England the oldest stock is in the east. In the East of England, {{dates.England.by_region["East of England"].le15.pct|int}}% of sampled entries date from before 1500 and {{dates.England.by_region["East of England"].c16.pct|int}}% from the 1500s. London's are the youngest: {{dates.England.by_region.London.c19.pct|int}}% from the 1800s.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_regions.png|Stacked bars for England's nine regions showing the share of sampled entries built in each century; the East of England has the largest share before 1600 and London the largest share from the 1800s.|England's regions by century of building, with the number of dated entries in each.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Wales is the one place where I could date every entry, so it can be mapped in full. Entries with a date before 1500 are commonest in the Vale of Glamorgan ({{dates.Wales.by_council["Vale of Glamorgan"].le15.pct|int}}%) and Monmouthshire ({{dates.Wales.by_council.Monmouthshire.le15.pct|int}}%); in Ceredigion, in the west, {{dates.Wales.by_council.Ceredigion.c19.pct|int}}% date from the 1800s.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_wales_built.png|Map of Wales with every listed entry as a dot coloured by century: dark purple for before 1500 clustered in the Vale of Glamorgan and Monmouthshire, blue for the 1800s spread across the west.|Every listed entry in Wales by the century of the first date in its Cadw description.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Waves of listing</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Listing came in waves. {{list_years.England.in_1980s_pct|int}}% of England's entries were first listed in the 1980s, when the lists were resurveyed parish by parish; the busiest single year was {{list_years.England.peak_year|raw}}, with {{list_years.England.peak_n|int}} entries. Scotland's peak was {{list_years.Scotland.peak_year|raw}}, Wales's {{list_years.Wales.peak_year|raw}}. The newest wave is war memorials: of the {{eng_recent.n|int}} entries England has listed since 2015, {{eng_recent.types.war_memorial|int}} are war memorials, more than half, in the years around the centenary of the First World War.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"sizeSlug":"full"} -->
+<figure class="wp-block-image size-full">{{IMG|b_waves.png|Three bar charts of entries on today's lists by the year they were first listed: England peaks in the 1980s at about {{list_years.England.peak_n|int}} in {{list_years.England.peak_year|raw}}, Scotland spikes in {{list_years.Scotland.peak_year|raw}}, and Wales rises through the 1990s and early 2000s.|Entries on today's lists by the year they were first listed.}}</figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How I did this</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The four lists come from the publishers' own open data services, all under the Open Government Licence. Types come from simple keyword rules on each entry's name; where Cadw gives its own class, the rules agreed {{type_check_wales.agree_pct|int}}% of the time, so treat them as a guide. Dates come from the first date in each description. I read {{date_check.all.n|int}} descriptions to check the rules, and they were right {{date_check.all.right_pct|int}}% of the time where a date could be judged. The first date is usually the main build; for old churches it is sometimes a saint's foundation, so I don't name an "oldest listed building". Per head figures use ONS, NRS and NISRA populations. For the oldest buildings still standing, see my earlier study <a href="https://maps.tristanhotham.com/oldest-buildings/">Still Standing</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://maps.tristanhotham.com/listed-buildings/">Explore the interactive version</a></div>
+<!-- /wp:button -->
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://doi.org/10.5281/zenodo.23761429">Read the paper</a></div>
+<!-- /wp:button -->
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://github.com/Tristan-Hotham/listed-buildings">Data and code</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Notes and sources</h3>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Historic England, <a href="https://historicengland.org.uk/listing/the-list/">National Heritage List for England</a> (Open Government Licence v3.0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Historic Environment Scotland, <a href="https://portal.historicenvironment.scot/">listed buildings</a> (Open Government Licence v3.0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Cadw, <a href="https://datamap.gov.wales/">listed buildings on DataMapWales</a> and full reports (Open Government Licence v3.0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Department for Communities, Historic Environment Division, <a href="https://www.opendatani.gov.uk/">Historic Buildings Record via OpenDataNI</a> (Open Government Licence v3.0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>ONS boundaries, built-up areas, Census 2021 and mid-year estimates; NRS and NISRA population estimates (Open Government Licence v3.0). <a href="https://www.wikidata.org/">Wikidata</a> inception dates (CC0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
